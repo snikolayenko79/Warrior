@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Charapters\ISpellCaster.cs" />
+    <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\LegacyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />

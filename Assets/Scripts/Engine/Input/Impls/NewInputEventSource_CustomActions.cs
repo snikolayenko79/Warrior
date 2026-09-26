@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem; // Обязательный namespace для новой системы
 
-public class NewInputSystemSource_CustomActions : MonoBehaviour, IInputEventSource, GameControls.IGameplayActions
+public class NewInputEventSource_CustomActions : MonoBehaviour, IInputEventSource, GameControls.IGameplayActions
 {
     public event Action<string, InputContext> OnInputAction;
     

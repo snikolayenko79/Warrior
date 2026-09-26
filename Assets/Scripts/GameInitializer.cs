@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private NewInputSystemSource_CustomActions MuInputSource;
+    [SerializeField] private NewInputEventSource MuInputSource;
     [SerializeField] private Player MyPlayer;
     private InputRouter inputRouter;
     

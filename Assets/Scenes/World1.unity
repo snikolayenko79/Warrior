@@ -494,7 +494,8 @@ GameObject:
   m_Component:
   - component: {fileID: 716001900}
   - component: {fileID: 716001901}
-  - component: {fileID: 716001902}
+  - component: {fileID: 716001903}
+  - component: {fileID: 716001904}
   m_Layer: 0
   m_Name: GameInitializer
   m_TagString: Untagged
@@ -529,9 +530,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39de8ac11447bb64c8b1d4376bccaed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
-  MuInputSource: {fileID: 716001902}
+  MuInputSource: {fileID: 716001904}
   MyPlayer: {fileID: 1002305717}
---- !u!114 &716001902
+--- !u!114 &716001903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,9 +541,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 716001899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4ae602c1601804b896b2f8f5547aef, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewInputSystemSource
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: c2bf68372325d9e458bbb1d60a8aabed, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f4057423-aa77-4644-87b4-39a87dbc233a
+    m_ActionName: 'Gameplay/Rotate[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 196e0802-80c4-4a33-8fa8-485fe9adde3a
+    m_ActionName: 'Gameplay/Move[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b3263b0-80ed-48f6-a48b-733f62f213b0
+    m_ActionName: 'Gameplay/Attack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a807dc77-d0d3-4e52-9de1-0b3f38371777
+    m_ActionName: 'Gameplay/Spell[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0fbd6879-723b-4ac0-8913-f6fe8c572001
+    m_ActionName: 'Gameplay/Click[/Mouse/leftButton]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &716001904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2dc2d9dce78584e9f9facda432185b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewInputEventSource
 --- !u!1001 &761802106
 PrefabInstance:
   m_ObjectHideFlags: 0
