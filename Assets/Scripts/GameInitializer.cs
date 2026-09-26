@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameInitializer : MonoBehaviour
 {
     [SerializeField] private NewInputEventSource MuInputSource;
+    [SerializeField] private PlayerInputController MyPlayerController;
     [SerializeField] private Player MyPlayer;
     private InputRouter inputRouter;
     
@@ -10,8 +11,11 @@ public class GameInitializer : MonoBehaviour
     {
         inputRouter = new  InputRouter();
         inputRouter.Initialize(MuInputSource);
-        
-        if (MyPlayer)
-            MyPlayer.Initialize(inputRouter);
+
+        if (MyPlayerController)
+        {
+            MyPlayerController.Initialize(inputRouter);
+            MyPlayerController.SetTarget(MyPlayer);
+        }
     }
 }

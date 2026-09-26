@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 716001901}
   - component: {fileID: 716001903}
   - component: {fileID: 716001904}
+  - component: {fileID: 716001905}
   m_Layer: 0
   m_Name: GameInitializer
   m_TagString: Untagged
@@ -531,6 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   MuInputSource: {fileID: 716001904}
+  MyPlayerController: {fileID: 716001905}
   MyPlayer: {fileID: 1002305717}
 --- !u!114 &716001903
 MonoBehaviour:
@@ -594,6 +596,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2dc2d9dce78584e9f9facda432185b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewInputEventSource
+--- !u!114 &716001905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786015cf5462f5e4dbd8716e86321a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  myActionsName:
+  - Move
+  - Attack
+  - Spell
+  - Rotate
 --- !u!1001 &761802106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,11 +1120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   MyAnimator: {fileID: 1002305718}
-  MyActionsName:
-  - Rotate
-  - Move
-  - Attack
-  - Spell
 --- !u!95 &1002305718 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}

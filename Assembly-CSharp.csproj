@@ -47,17 +47,19 @@
     <Analyzer Include="C:\Program Files\Unity 6000.3.23f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Charapters\Player.cs" />
     <Compile Include="Assets\Scripts\Charapters\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Charapters\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\LegacyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Engine\Input\Impls\InputListener.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Charapter.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
-    <Compile Include="Assets\Scripts\Charapters\Impls\Player.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputListener.cs" />
