@@ -1,10 +1,11 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem; // Обязательный namespace для новой системы
 
-public class NewInputSystemSource : MonoBehaviour, IInputEventSource, GameControls.IGameplayActions
+public class NewInputSystemSource_CustomActions : MonoBehaviour, IInputEventSource, GameControls.IGameplayActions
 {
-    public event Action<string, float> OnInputAction;
+    public event Action<string, InputContext> OnInputAction;
     
     private GameControls controls;
 
@@ -40,27 +41,34 @@ public class NewInputSystemSource : MonoBehaviour, IInputEventSource, GameContro
         if (Mathf.Approximately(currentDirection, LastRotateDirection) == false)
         {
             LastRotateDirection = currentDirection;
-            OnInputAction?.Invoke(context.action.name, currentDirection);
+            OnInputAction?.Invoke(context.action.name, new InputContext(currentDirection));
         }
     }
     
     public void OnMove(InputAction.CallbackContext context)
     {
-        OnInputAction?.Invoke(context.action.name, 0);
+        // Предполагаем, что может быть либо флоат, либо вектор.
+        OnInputAction?.Invoke(context.action.name, context.valueType == typeof(Vector2) ? new InputContext(context.ReadValue<Vector2>()) : new InputContext(context.ReadValue<float>()));
     }
     
     public void OnAttack(InputAction.CallbackContext context)
     {
-        OnInputAction?.Invoke(context.action.name, 0);
+        // Для обычных кнопок передаем 1 (нажато) или 0 (отпущено)
+        float value = context.performed ? 1f : 0f;
+        OnInputAction?.Invoke(context.action.name, new InputContext(value));
     }
     
     public void OnSpell(InputAction.CallbackContext context)
     {
-        OnInputAction?.Invoke(context.action.name, 0);
+        // Для обычных кнопок передаем 1 (нажато) или 0 (отпущено)
+        float value = context.performed ? 1f : 0f;
+        OnInputAction?.Invoke(context.action.name, new InputContext(value));
     }
     
     public void OnClick(InputAction.CallbackContext context)
     {
-        OnInputAction?.Invoke(context.action.name, 0);
+        // Для обычных кнопок передаем 1 (нажато) или 0 (отпущено)
+        float value = context.performed ? 1f : 0f;
+        OnInputAction?.Invoke(context.action.name, new InputContext(value));
     }
 }

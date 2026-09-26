@@ -4,5 +4,5 @@ using System.Collections.Generic;
 public interface IInputListener
 {
     List<string> ActionsName { get; }
-    void HandleInput(string actionName, float val = 0);
+    void HandleInput(string actionName, InputContext inputContextcontext);
 }

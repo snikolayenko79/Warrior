@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Charapter : MonoBehaviour
 {
+    public Animator MyAnimator;
+
+    protected void Awake()
+    {
+        if (MyAnimator == null)
+            MyAnimator = this.GetComponent<Animator>();
+    }
+    
     protected void Rotate()
     {
         Debug.Log("Rotate");
@@ -15,10 +23,5 @@ public class Charapter : MonoBehaviour
     protected void Attack()
     {
         Debug.Log("Attack");
-    }
-    
-    protected void Spell()
-    {
-        Debug.Log("Spell");
     }
 }

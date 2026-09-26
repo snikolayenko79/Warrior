@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : Charapter, IInputListener
+public class Player : Charapter, ISpellCaster, IInputListener
 {
     public List<string> ActionsName => MyActionsName;
     
@@ -20,7 +20,13 @@ public class Player : Charapter, IInputListener
         MyInputRouter.Unregister(this);
     }
 
-    public void HandleInput(string actionName, float val = 0)
+    public void Spell()
+    {
+        if (MyAnimator)
+            MyAnimator.SetTrigger("Spell");
+    }
+    
+    public void HandleInput(string actionName, InputContext inputContext)
     {
         if (actionName == "Rotate")
         {
@@ -42,4 +48,11 @@ public class Player : Charapter, IInputListener
             Spell();
         }
     }
+
+    // void Update()
+    // {
+    //     Vector3 p = transform.localPosition;
+    //     p -= transform.up * Time.deltaTime * 0.1f;
+    //     transform.localPosition = p;
+    // }
 }

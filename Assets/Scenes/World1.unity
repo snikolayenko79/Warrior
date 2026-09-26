@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   MuInputSource: {fileID: 716001902}
-  MyPlayer: {fileID: 1002305714}
+  MyPlayer: {fileID: 1002305717}
 --- !u!114 &716001902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yodan1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01989ca0c0069024ba27d4044c24da98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1166776317834038045, guid: 01989ca0c0069024ba27d4044c24da98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00014715927
@@ -986,19 +990,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.6785982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.6785982
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.19875742
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.19875742
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1026,14 +1030,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1002305714}
+      addedObject: {fileID: 1002305717}
   m_SourcePrefab: {fileID: 100100000, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
 --- !u!1 &1002305713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
   m_PrefabInstance: {fileID: 1002305712}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1002305714
+--- !u!114 &1002305717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1045,18 +1049,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8d8ec3d9ff6ee4bafcf0308c8b534f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  MyAnimator: {fileID: 1002305718}
   MyActionsName:
   - Rotate
   - Move
   - Attack
   - Spell
+--- !u!95 &1002305718 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
+  m_PrefabInstance: {fileID: 1002305712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2684448}
   - {fileID: 436055145}
-  - {fileID: 1002305712}
   - {fileID: 761802106}
   - {fileID: 414409319}
   - {fileID: 716001900}
+  - {fileID: 1002305712}

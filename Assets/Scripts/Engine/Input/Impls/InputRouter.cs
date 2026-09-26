@@ -18,7 +18,6 @@ public class InputRouter : IInputRouter
     
     public void Register(IInputListener listener)
     {
-        Debug.Log($"Registering {listener.ActionsName}");
         foreach (var actionName in listener.ActionsName)
         {
             if (!InputMap.ContainsKey(actionName))
@@ -35,16 +34,28 @@ public class InputRouter : IInputRouter
         {
             if (InputMap.ContainsKey(actionName))
                 InputMap[actionName].Remove(listener);
+
+            if (InputMap.TryGetValue(actionName, out List<IInputListener> listeners))
+            {
+                listeners.Remove(listener);
+                
+                // ОПТИМИЗАЦИЯ: Если для этого действия больше нет слушателей,
+                // полностью удаляем ключ из словаря, освобождая память.
+                if (listeners.Count == 0)
+                {
+                    InputMap.Remove(actionName);
+                }
+            }
         }
     }
 
-    private void OnInputAction(string actionNane, float value)
+    private void OnInputAction(string actionName, InputContext inputContext)
     {
-        if (InputMap.ContainsKey(actionNane))
+        if (InputMap.TryGetValue(actionName, out List<IInputListener> listeners))
         {
-            foreach (var listener in InputMap[actionNane])
+            foreach (var listener in listeners)
             {
-                listener.HandleInput(actionNane, value);
+                listener.HandleInput(actionName, inputContext);
             }
         }
     }
