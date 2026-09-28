@@ -1,73 +1,49 @@
 using UnityEngine;
 
-public interface IMovable
-{
-    Vector3 MoveDirection { get; set; }
-    Vector3 Orientation { get; }
-}
-
 public class Charapter : MonoBehaviour, IMovable
 {
     public Animator MyAnimator;
 
-    private Vector3 _moveDirection;
+    [SerializeField] private float MyMoveSpeed = 0.5f;
 
-    public Vector3 MoveDirection
+    public float MoveSpeed
     {
-        get => _moveDirection;
-        set
-        {
-            bool oldIsMoving = IsMoving;
-            
-            _moveDirection = value;
-            
-            if (oldIsMoving != IsMoving)
-            {
-                OnMoveChange();
-            }
-        }
+        get => MyMoveSpeed;
     }
-    
+
     public Vector3 Orientation
     {
         // TODO. настраивать в редакторе.
         get => -this.transform.up;
     }
     
-    public bool IsMoving { get => _moveDirection != Vector3.zero; }
+    private bool isMoving = false;
+
+    public bool IsMoving
+    {
+        get => isMoving;
+        set
+        {
+            isMoving = value;
+            OnMoveChange();
+        }
+    }
+
+    public Vector3 Position
+    {
+        get => transform.position;
+        set => transform.position = value;
+    }
 
     protected void Awake()
     {
         if (MyAnimator == null)
             MyAnimator = this.GetComponent<Animator>();
     }
-
-    void Update()
-    {
-        if (IsMoving)
-        {
-            transform.position += _moveDirection * Time.deltaTime * 0.3f;
-        }
-    }
     
-    protected void Rotate()
-    {
-        Debug.Log("Rotate");
-    }
-    
-    protected void Walk()
-    {
-        Debug.Log("Walk");
-    }
-    
-    protected void Attack()
-    {
-        Debug.Log("Attack");
-    }
-
     void OnMoveChange()
     {
-        Debug.Log("Move change to " + IsMoving.ToString());
+        //Debug.Log("Move change to " + IsMoving.ToString());
         
         if (MyAnimator != null)
             MyAnimator.SetBool("IsMoving", IsMoving);

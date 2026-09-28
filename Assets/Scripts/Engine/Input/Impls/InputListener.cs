@@ -40,5 +40,5 @@ public abstract class InputListener : MonoBehaviour, IInputListener
 
     // Ключевой метод интерфейса IInputListener. 
     // abstract заставляет всех наследников обязательно его реализовать.
-    public abstract void HandleInput(string actionName, InputContext context);
+    public abstract void HandleInput(string logicalActionName, InputContext context);
 }

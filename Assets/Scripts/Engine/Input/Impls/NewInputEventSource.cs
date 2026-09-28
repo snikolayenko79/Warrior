@@ -38,7 +38,7 @@ public class NewInputEventSource : MonoBehaviour, IInputEventSource
         // Получаем техническое имя экшена напрямую из настроек Unity (например, "Move", "Attack")
         string hardwareActionName = context.action.name;
         
-        Debug.Log(hardwareActionName);
+        //Debug.Log(hardwareActionName);
 
         // Определяем тип данных экшена динамически
         if (context.valueType == typeof(Vector2))
