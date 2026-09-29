@@ -1,33 +1,49 @@
 using System;
 using UnityEngine;
 
-public class PlayerMoveController : InputListener
+public class PlayerMoveController : CharapterMoveController
 {
-    private IMovable moveTarget;
+    private IInputListener _inputListener;
 
-    public void SetTarget(IMovable _movable)
+    private bool _isInitialized;
+    
+    public void SetInputListener(IInputListener inputListener)
     {
-        moveTarget = _movable;
+        _inputListener  = inputListener;
+        _inputListener.OnInputAction += OnInputAction;
     }
     
-    public override void HandleInput(string logicalActionName, InputContext context)
+    protected virtual void OnEnable()
+    {
+        if (_isInitialized && _inputListener != null)
+        {
+            _inputListener.OnInputAction += OnInputAction;
+        }
+    }
+    
+    protected virtual void OnDisable()
+    {
+        if (_isInitialized && _inputListener != null)
+        {
+            _inputListener.OnInputAction -= OnInputAction;
+        }
+    }
+    
+    private void OnInputAction(string logicalActionName, InputContext context)
     {
         if (logicalActionName == "Move")
         {
-            moveTarget.IsMoving = context.FloatValue != 0;
+            MoveTarget.IsMoving = context.FloatValue != 0;
         }
-        // else if (logicalActionName == "Spell")
-        // {
-        //     if (context.FloatValue == 0) // TODO перенести в InputRouter. Записывать в конфиг для логического действия.
-        //         spellCaster.Spell();
-        // }
+        
+        if (logicalActionName == "Rotate")
+        {
+            MoveTarget.RotationDirection = context.FloatValue;
+        }
     }
 
-    protected void Update()
+    protected new void Update()
     {
-        if (moveTarget is {IsMoving: true})
-        {
-            moveTarget.Position += moveTarget.Orientation * moveTarget.MoveSpeed * Time.deltaTime;
-        }
+        base.Update();
     }
 }

@@ -3,26 +3,31 @@ using UnityEngine;
 public class GameInitializer : MonoBehaviour
 {
     [SerializeField] private NewInputEventSource MyInputSource;
+    [SerializeField] private InputListener MyPlayerInputListener;
+    
     [SerializeField] private PlayerMoveController MyPlayerMoveController;
-    [SerializeField] private PlayerRotateController MyPlayerRotateController;
     [SerializeField] private Player MyPlayer;
     private InputRouter inputRouter;
+    
+    [SerializeField] private AIMoveController MyEnemyMoveController;
+    [SerializeField] private Enemy MyEnemy;
     
     void Start()
     {
         inputRouter = new  InputRouter();
         inputRouter.Initialize(MyInputSource);
+        MyPlayerInputListener.Initialize(inputRouter);
 
-        if (MyPlayerMoveController)
+        if (MyPlayerMoveController != null)
         {
-            MyPlayerMoveController.Initialize(inputRouter);
+            MyPlayerMoveController.SetInputListener(MyPlayerInputListener);
             MyPlayerMoveController.SetTarget(MyPlayer);
         }
         
-        if (MyPlayerRotateController)
+        if (MyEnemyMoveController != null)
         {
-            MyPlayerRotateController.Initialize(inputRouter);
-            MyPlayerRotateController.SetTarget(MyPlayer);
+            MyEnemyMoveController.SetTarget(MyEnemy);
+            MyEnemyMoveController.SetAttackable(MyPlayer);
         }
     }
 }

@@ -1,7 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using System;
+using UnityEngine.InputSystem.Users;
 
-public abstract class InputListener : MonoBehaviour, IInputListener
+public class InputListener : MonoBehaviour, IInputListener
 {
     // Наследники переопределят это свойство или настроят в инспекторе
     public virtual List<string> ActionsName => myActionsName;
@@ -37,8 +39,11 @@ public abstract class InputListener : MonoBehaviour, IInputListener
             MyInputRouter.Unregister(this);
         }
     }
-
-    // Ключевой метод интерфейса IInputListener. 
-    // abstract заставляет всех наследников обязательно его реализовать.
-    public abstract void HandleInput(string logicalActionName, InputContext context);
+    
+    public event IInputListener.InputActionHandler OnInputAction;
+    
+    public void HandleInput(string logicalActionName, InputContext context)
+    {
+        OnInputAction?.Invoke(logicalActionName, context);
+    }
 }

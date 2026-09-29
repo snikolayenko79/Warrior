@@ -48,19 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Charapters\Player\PlayerMoveController.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Enemy\AIMoveController.cs" />
     <Compile Include="Assets\Scripts\Charapters\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\LegacyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
+    <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Charapters\IMovable.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\Charapters\IRotable.cs" />
+    <Compile Include="Assets\Scripts\Charapters\CharapterMoveController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\InputListener.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Charapter.cs" />
-    <Compile Include="Assets\Scripts\Charapters\Player\PlayerRotateController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Player.cs" />

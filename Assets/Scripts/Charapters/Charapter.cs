@@ -34,6 +34,28 @@ public class Charapter : MonoBehaviour, IMovable
         get => transform.position;
         set => transform.position = value;
     }
+    
+    public Vector3 Rotation
+    {
+        get => transform.eulerAngles;
+        set  => transform.rotation = Quaternion.Euler(value);
+    }
+    
+    [SerializeField] private float MyRotateSpeed = 100;
+
+    public float RotationSpeed => MyRotateSpeed;
+
+    private float _rotateDirection = 0;
+
+    public float RotationDirection
+    {
+        get => _rotateDirection;
+        set => _rotateDirection = value;
+    }
+
+    public bool IsRotating => RotationDirection != 0;
+    
+    public Transform MyTransform => this.transform;
 
     protected void Awake()
     {

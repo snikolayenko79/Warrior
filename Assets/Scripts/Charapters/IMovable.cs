@@ -6,4 +6,9 @@ public interface IMovable
     Vector3 Orientation { get; }
     bool IsMoving { get; set; }
     Vector3 Position { get; set; }
+    Vector3 Rotation { get; set; }
+    float RotationSpeed { get; }
+    float RotationDirection { get; set; }
+    bool IsRotating { get; }
+    Transform MyTransform { get; }
 }
