@@ -56,6 +56,7 @@
     <Compile Include="Assets\Scripts\LegacyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Charapters\IMovable.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Charapters\CharapterMoveController.cs" />

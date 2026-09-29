@@ -47,9 +47,9 @@ public class AIMoveController : CharapterMoveController
             Vector3 directionToPlayer = _attackable.Position - MoveTarget.Position;
             directionToPlayer.y = 0;
 
-            float forwardDot = Vector3.Dot(-MoveTarget.MyTransform.up, directionToPlayer.normalized);
-            float sideDot = Vector3.Dot(MoveTarget.MyTransform.right, directionToPlayer.normalized);
-             float turnInput = Mathf.Clamp(sideDot, -1f, 1f);
+            float forwardDot = Vector3.Dot(MoveTarget.Orientation, directionToPlayer.normalized);
+            float sideDot = Vector3.Dot(MoveTarget.Right, directionToPlayer.normalized);
+            float turnInput = Mathf.Clamp(sideDot, -1f, 1f);
             //
             // Vector3 currentForward = MoveTarget.MyTransform.up;
             // float forwardDot = Vector3.Dot(currentForward, directionToPlayer.normalized);

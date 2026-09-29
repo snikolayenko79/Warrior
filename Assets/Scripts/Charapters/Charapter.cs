@@ -17,6 +17,12 @@ public class Charapter : MonoBehaviour, IMovable
         get => -this.transform.up;
     }
     
+    public Vector3 Right
+    {
+        // TODO. настраивать в редакторе.
+        get => this.transform.right;
+    }
+    
     private bool isMoving = false;
 
     public bool IsMoving
