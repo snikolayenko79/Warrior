@@ -6,6 +6,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private InputListener MyPlayerInputListener;
     
     [SerializeField] private PlayerMoveController MyPlayerMoveController;
+    [SerializeField] private PlayerSpellController MyPlayerSpellController;
     [SerializeField] private Player MyPlayer;
     private InputRouter inputRouter;
     
@@ -22,6 +23,12 @@ public class GameInitializer : MonoBehaviour
         {
             MyPlayerMoveController.SetInputListener(MyPlayerInputListener);
             MyPlayerMoveController.SetTarget(MyPlayer);
+        }
+        
+        if (MyPlayerSpellController != null)
+        {
+            MyPlayerSpellController.SetInputListener(MyPlayerInputListener);
+            MyPlayerSpellController.SetCaster(MyPlayer);
         }
         
         if (MyEnemyMoveController != null)
