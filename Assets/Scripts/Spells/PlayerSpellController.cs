@@ -30,14 +30,13 @@ public class PlayerSpellController : SpellController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
-        if (logicalActionName == "Spell")
+        if (logicalActionName == "Spell" && context.FloatValue == 0)
         {
             if (SpellCaster != null && SpellCaster.CurrentSpell != null)
             {
                 SpellCaster.Spell();
 
-                SpellBehaviour instantiatedSpell = Instantiate(SpellCaster.CurrentSpell.spellBehaviourPrefab,
-                    SpellCaster.SpawnPoint, Quaternion.identity);
+                SpellBehaviour instantiatedSpell = Instantiate(SpellCaster.CurrentSpell.spellBehaviourPrefab, this.transform);
                 instantiatedSpell.Execute(SpellCaster);
             }
         }

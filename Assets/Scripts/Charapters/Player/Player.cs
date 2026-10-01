@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -6,7 +7,7 @@ public class Player : Charapter, IAttackable, ISpellCaster
     [SerializeField] private List<SpellData> allSpells = new List<SpellData>();
     private List<SpellData> _availableSpells = new List<SpellData>();
     private SpellData _currentSpell;
-    [SerializeField] Vector3 spawnPoint;
+    [SerializeField] Transform spellSpawnPoint;
     
     public List<SpellData> AllSpells => allSpells;
 
@@ -22,11 +23,18 @@ public class Player : Charapter, IAttackable, ISpellCaster
         set  => _currentSpell = value;
     }
 
-    public Vector3 SpawnPoint => spawnPoint;
+    public Transform SpellSpawnPoint => spellSpawnPoint;
 
     public void Spell(SpellData spell = null)
     {
         if (MyAnimator != null)
             MyAnimator.SetTrigger("Spell");
+    }
+
+    private void Start()
+    {
+        // TODO. Временно. Удалить.
+        _availableSpells.AddRange(AllSpells);
+        CurrentSpell = _availableSpells[0];
     }
 }

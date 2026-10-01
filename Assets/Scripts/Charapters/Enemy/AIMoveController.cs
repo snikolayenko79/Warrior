@@ -7,7 +7,7 @@ public class AIMoveController : CharapterMoveController
     public void SetAttackable(IAttackable attackable)
     {
         _attackable = attackable;
-        MoveTarget.IsMoving = true;
+        //MoveTarget.IsMoving = true;
         // if (_attackable != null)
         // {
         //     Vector3 directionToPlayer = _attackable.Position - MoveTarget.Position;
