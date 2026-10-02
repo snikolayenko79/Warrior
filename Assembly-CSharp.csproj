@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Engine\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Charapter.cs" />
+    <Compile Include="Assets\Scripts\Charapters\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />

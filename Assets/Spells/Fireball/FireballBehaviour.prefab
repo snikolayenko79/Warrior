@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23da9a0f725585b4a9d80730e015dba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
-  baseDamage: 10
   projectilePrefab: {fileID: 4267434348080443192, guid: d238bedafa27dd34090796985b744cc2, type: 3}
   explosionPrefab: {fileID: 7421424542475016076, guid: c29d719eb201b234bb55af40178d8f45, type: 3}
-  speed: 3
-  distance: 2
+  speed: 5
+  distance: 3
   delay: 0.5

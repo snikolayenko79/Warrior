@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class FireBall : SpellBehaviour
 {
-    public int baseDamage;
     public GameObject projectilePrefab;
     public GameObject explosionPrefab;
     public float speed;
     public float distance;
     public float delay = 0;
     
-    public override void Execute(ISpellCaster caster)
+    public override void Execute(ISpellCaster caster, OnSpellReadyToDamage  onSpellReadyToDamage)
     {
-        StartCoroutine(ExecuteCoroutine(caster));
+        StartCoroutine(ExecuteCoroutine(caster, onSpellReadyToDamage));
     }
 
-    private IEnumerator ExecuteCoroutine(ISpellCaster caster)
+    private IEnumerator ExecuteCoroutine(ISpellCaster caster, OnSpellReadyToDamage  onSpellReadyToDamage)
     {
         yield return null;
         yield return  new WaitForSeconds(delay);
@@ -83,7 +82,9 @@ public class FireBall : SpellBehaviour
               
               yield return null;
           }
-         
-        Destroy(explosion.gameObject);
+
+          onSpellReadyToDamage(explosion.GetComponent<Collider>());
+          
+          Destroy(explosion.gameObject);
     }
 }

@@ -11,11 +11,6 @@ public class CharapterMoveController : MonoBehaviour
 
     protected void Update()
     {
-        if (MoveTarget is {IsMoving: true})
-        {
-            MoveTarget.Position += MoveTarget.Orientation.normalized * (MoveTarget.MoveSpeed * Time.deltaTime);
-        }
-        
         if (MoveTarget is { IsRotating : true})
         {
             Vector3 r = MoveTarget.Rotation;

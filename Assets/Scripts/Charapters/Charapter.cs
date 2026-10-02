@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Charapter : MonoBehaviour, IMovable
+public class Charapter : MonoBehaviour, IMovable, IDamageable
 {
     public Animator MyAnimator;
 
@@ -63,6 +63,8 @@ public class Charapter : MonoBehaviour, IMovable
     
     public Transform MyTransform => this.transform;
 
+    protected float Health = 100;
+
     protected void Awake()
     {
         if (MyAnimator == null)
@@ -75,5 +77,27 @@ public class Charapter : MonoBehaviour, IMovable
         
         if (MyAnimator != null)
             MyAnimator.SetBool("IsMoving", IsMoving);
+    }
+    
+    public bool IsDead => Health <= 0;
+    
+    public void TakeDamage(float damageAmount)
+    {
+        Debug.Log(this.name + ": -" + damageAmount + " health");
+        
+        Health -= damageAmount;
+        Health = Mathf.Clamp(Health, 0, 100);
+        
+        if (MyAnimator != null)
+            MyAnimator.SetTrigger("TakeDamage");
+
+        if (Health <= 0)
+            Dead();
+    }
+
+    private void Dead()
+    {
+        if (MyAnimator != null)
+            MyAnimator.SetTrigger("IsDead");
     }
 }

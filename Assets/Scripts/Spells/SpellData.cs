@@ -6,5 +6,6 @@ public class SpellData : ScriptableObject
 {
     public string spellName;
     public float spellCost;
+    public float spellDamage;
     public SpellBehaviour spellBehaviourPrefab;
 }

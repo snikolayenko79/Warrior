@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellDtata
   spellName: Fireball
   spellCost: 10
+  spellDamage: 50
   spellBehaviourPrefab: {fileID: -7973981225124884097, guid: a5f5c649a4658344e837bc55bed9727e, type: 3}
