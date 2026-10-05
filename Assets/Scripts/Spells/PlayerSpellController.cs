@@ -30,6 +30,9 @@ public class PlayerSpellController : SpellController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
+        if (SpellCaster == null || SpellCaster.IsDead)
+            return;
+        
         if (logicalActionName == "Spell" && context.FloatValue == 0)
         {
             DoSpellCast();

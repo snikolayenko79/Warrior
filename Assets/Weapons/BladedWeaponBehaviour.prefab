@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdda020a3a7c3848b2aa68125f246d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BladedWeapon
-  delay: 0.1
+  delay: 0.3

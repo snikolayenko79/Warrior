@@ -30,6 +30,9 @@ public class PlayerAttackController : AttackController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
+        if (Attacker == null ||  Attacker.IsDead)
+            return;
+        
         if (logicalActionName == "Attack" && context.FloatValue == 0)
         {
             DoAttack();

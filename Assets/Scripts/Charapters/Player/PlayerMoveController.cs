@@ -31,14 +31,27 @@ public class PlayerMoveController : CharapterMoveController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
+        if (MoveTarget == null || MoveTarget.IsDead)
+            return;
+        
         if (logicalActionName == "Move")
         {
-            MoveTarget.IsMoving = context.FloatValue != 0;
+            bool bMove= context.FloatValue != 0;
+            
+            if (bMove && !MoveTarget.IsMoving)
+                BeginMove();
+            else if (!bMove && MoveTarget.IsMoving)
+                StopMove();
         }
         
         if (logicalActionName == "Rotate")
         {
-            MoveTarget.RotationDirection = context.FloatValue;
+            bool bRotate = context.FloatValue != 0;
+            
+            if (bRotate && !MoveTarget.IsRotating)
+                BeginRotate(context.FloatValue);
+            else if (!bRotate && MoveTarget.IsRotating)
+                StopRotate();
         }
     }
 

@@ -58,7 +58,11 @@ public class AttackController : MonoBehaviour
                 if (enemyCollider.TryGetComponent<IDamageable>(out var damageable))
                 {
                     if (!damageable.IsDead)
+                    {
                         damageable.TakeDamage(selectedWeapon.weaponDamage);
+                        if (damageable.Health <= 0)
+                            damageable.Dead();
+                    }
                 }
             }
             

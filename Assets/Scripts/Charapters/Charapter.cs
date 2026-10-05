@@ -6,10 +6,15 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
 
     [SerializeField] private float MyMoveSpeed = 0.5f;
 
+    private float _currentMoveSpeed = 0;
+    
     public float MoveSpeed
     {
-        get => MyMoveSpeed;
+        get => _currentMoveSpeed;
+        set  => _currentMoveSpeed = value;
     }
+
+    public float MaxMoveSpeed => MyMoveSpeed;
 
     public Vector3 Orientation
     {
@@ -48,8 +53,16 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
     }
     
     [SerializeField] private float MyRotateSpeed = 100;
+    
+    private float _currentRotateSpeed = 0;
 
-    public float RotationSpeed => MyRotateSpeed;
+    public float RotationSpeed
+    {
+        get => _currentRotateSpeed;
+        set  => _currentRotateSpeed = value;
+    }
+
+    public float MaxRotationSpeed => MyRotateSpeed;
 
     private float _rotateDirection = 0;
 
@@ -63,41 +76,44 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
     
     public Transform MyTransform => this.transform;
 
-    protected float Health = 100;
+    protected float health = 100;
 
     protected void Awake()
     {
-        if (MyAnimator == null)
+        if (!MyAnimator)
             MyAnimator = this.GetComponent<Animator>();
     }
     
     void OnMoveChange()
     {
-        //Debug.Log("Move change to " + IsMoving.ToString());
-        
-        if (MyAnimator != null)
+        if (MyAnimator)
             MyAnimator.SetBool("IsMoving", IsMoving);
     }
     
-    public bool IsDead => Health <= 0;
+    public bool IsDead => health <= 0;
+
+    public float Health => health;
     
     public void TakeDamage(float damageAmount)
     {
         Debug.Log(this.name + ": -" + damageAmount + " health points");
         
-        Health -= damageAmount;
-        Health = Mathf.Clamp(Health, 0, 100);
+        health -= damageAmount;
+        health = Mathf.Clamp(Health, 0, 100);
         
-        if (MyAnimator != null)
+        if (MyAnimator)
             MyAnimator.SetTrigger("TakeDamage");
 
         if (Health <= 0)
             Dead();
     }
 
-    private void Dead()
+    public void Dead()
     {
-        if (MyAnimator != null)
+        if (MyAnimator)
+        {
+            MyAnimator.SetBool("IsMoving", false);
             MyAnimator.SetTrigger("IsDead");
+        }
     }
 }

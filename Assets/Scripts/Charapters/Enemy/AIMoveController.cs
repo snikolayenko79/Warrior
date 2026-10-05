@@ -7,7 +7,7 @@ public class AIMoveController : CharapterMoveController
     public void SetAttackable(IAttackable attackable)
     {
         _attackable = attackable;
-        //MoveTarget.IsMoving = true;
+        MoveTarget.IsMoving = true;
         // if (_attackable != null)
         // {
         //     Vector3 directionToPlayer = _attackable.Position - MoveTarget.Position;
@@ -42,6 +42,9 @@ public class AIMoveController : CharapterMoveController
     
     protected new void Update()
     {
+        if (MoveTarget == null || MoveTarget.IsDead)
+            return;
+        
         if (_attackable != null)
         {
             Vector3 directionToPlayer = _attackable.Position - MoveTarget.Position;
@@ -70,7 +73,7 @@ public class AIMoveController : CharapterMoveController
                 //Debug.Log(angle);
                 Vector3 r = MoveTarget.Rotation;
                 r.y += angle * turnInput;
-                MoveTarget.Rotation = Vector3.Lerp(MoveTarget.Rotation, r, Time.deltaTime * MoveTarget.RotationSpeed);
+                MoveTarget.Rotation = Vector3.Lerp(MoveTarget.Rotation, r, Time.deltaTime * MoveTarget.MaxRotationSpeed);
             }
         }
         base.Update();

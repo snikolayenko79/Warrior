@@ -9,4 +9,5 @@ public interface IAttacker
     Transform WeaponPoint { get; }
     GameObject CurrentWeaponObject { get; set; }
     void Attack();
+    bool IsDead { get; }
 }

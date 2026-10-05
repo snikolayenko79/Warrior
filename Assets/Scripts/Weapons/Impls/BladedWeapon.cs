@@ -20,7 +20,7 @@ public class BladedWeapon : WeaponBehaviour
     {
         Collider weaponCollider = caster.CurrentWeaponObject.GetComponent<Collider>();
         
-        yield   return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay);
         
         onWeaponReadyToDamage(weaponCollider);
         _isEnded = true;
