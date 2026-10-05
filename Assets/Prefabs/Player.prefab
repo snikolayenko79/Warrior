@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3284428524473527520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3444118038263464537}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3444118038263464537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3284428524473527520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.70710677, y: -0.00000011362131, z: 0.00000022825034, w: 0.7071069}
+  m_LocalPosition: {x: -0.02, y: 0.022999687, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 406045789174979550}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &8132793664699339867
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +128,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8447368732712295509}
+    - targetCorrespondingSourceObject: {fileID: -8385284853143594893, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3444118038263464537}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
@@ -125,6 +159,16 @@ MonoBehaviour:
   allSpells:
   - {fileID: 11400000, guid: f106d02ef4b0dbd4297acfa41668aaef, type: 2}
   spellSpawnPoint: {fileID: 8447368732712295509}
+  allWeapons:
+  - {fileID: 11400000, guid: 3e8224bd975138a4e8f488b3313593e4, type: 2}
+  - {fileID: 11400000, guid: 920ce7d0cbb293e49aba52a7b6bf2c89, type: 2}
+  - {fileID: 11400000, guid: 250f012339a8fb44cb658667f58ca90e, type: 2}
+  weaponPoint: {fileID: 3444118038263464537}
+--- !u!4 &406045789174979550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8385284853143594893, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
+  m_PrefabInstance: {fileID: 1009909831499826093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &687171511840515142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}

@@ -83,7 +83,7 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
     
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log(this.name + ": -" + damageAmount + " health");
+        Debug.Log(this.name + ": -" + damageAmount + " health points");
         
         Health -= damageAmount;
         Health = Mathf.Clamp(Health, 0, 100);

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9720b74ca933e4da48927938fdb464, type: 3}
+  m_Name: MagicSword
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Magic sword
+  weaponCost: 20
+  weaponDamage: 70
+  weaponPrefab: {fileID: 6619665905455153442, guid: 0f0a4e224448b6b4093cdd3e9934be2d, type: 3}
+  weaponBehaviourPrefab: {fileID: 6847787490664856508, guid: 441f18659c1ddf14199d71dcdc66f49b, type: 3}

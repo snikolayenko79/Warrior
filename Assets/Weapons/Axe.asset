@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9720b74ca933e4da48927938fdb464, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Axe
+  weaponCost: 10
+  weaponDamage: 50
+  weaponPrefab: {fileID: 1669355998548074928, guid: 35a667ce736904542adca7ec59a5cc52, type: 3}
+  weaponBehaviourPrefab: {fileID: 6847787490664856508, guid: 441f18659c1ddf14199d71dcdc66f49b, type: 3}

@@ -48,8 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Charapters\Player\PlayerMoveController.cs" />
+    <Compile Include="Assets\Scripts\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\AIMoveController.cs" />
-    <Compile Include="Assets\Scripts\Charapters\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
@@ -59,6 +59,8 @@
     <Compile Include="Assets\Scripts\LegacyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
+    <Compile Include="Assets\Scripts\Spells\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\Charapters\IMovable.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
@@ -68,8 +70,12 @@
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Charapter.cs" />
     <Compile Include="Assets\Scripts\Charapters\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\Attack\AttackController.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponBehaviour.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
+    <Compile Include="Assets\Scripts\Attack\PlayerAttackController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Player.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
