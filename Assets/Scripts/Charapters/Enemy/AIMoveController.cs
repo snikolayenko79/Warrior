@@ -11,44 +11,48 @@ public class AIMoveController : CharapterMoveController
     
     protected new void Update()
     {
-        if (MoveTarget == null || MoveTarget.IsDead)
-            return;
+        foreach (var movable in Movables)
+        {
+            if (movable == null || movable.IsDead)
+                continue;
 
-        if (MoveTarget.CurrentPath == null)
-        {
-            StopMove();
-            return;
-        }
+            if (movable.CurrentPath == null)
+            {
+                StopMove(movable);
+                continue;
+            }
 
-        Vector3? targetPosition = MoveTarget.CurrentPath.GetCurrentTarget();
-        if (!targetPosition.HasValue)
-        {
-            StopMove();
-            return;
+            Vector3? targetPosition = movable.CurrentPath.GetCurrentTarget();
+            if (!targetPosition.HasValue)
+            {
+                StopMove(movable);
+                continue;
+            }
+        
+            if (!movable.IsMoving)
+                BeginMove(movable);
+        
+            if (Vector3.Distance(movable.Position, targetPosition.Value) <= 0.5f)
+            {
+                // Дошли до точки на маршруте
+                movable.CurrentPath.NextTarget();
+            }
+        
+            // Вращение в направлении точки на маршруте
+            RotateTowards(movable, targetPosition.Value);
+            
+            Move(movable);
+            Rotate(movable);
         }
-        
-        if (!MoveTarget.IsMoving)
-            BeginMove();
-        
-        if (Vector3.Distance(MoveTarget.Position, targetPosition.Value) <= 0.5f)
-        {
-            // Дошли до точки на маршруте
-            MoveTarget.CurrentPath.NextTarget();
-        }
-        
-        // Вращение в направлении точки на маршруте
-        RotateTowards(MoveTarget, targetPosition.Value);
-        
-        base.Update();
     }
 
     private void RotateTowards(IMovable target, Vector3 targetPos)
     {
-        Vector3 directionToPlayer = targetPos - MoveTarget.Position;
+        Vector3 directionToPlayer = targetPos - target.Position;
         directionToPlayer.y = 0;
 
-        float forwardDot = Vector3.Dot(MoveTarget.Orientation, directionToPlayer.normalized);
-        float sideDot = Vector3.Dot(MoveTarget.Right, directionToPlayer.normalized);
+        float forwardDot = Vector3.Dot(target.Orientation, directionToPlayer.normalized);
+        float sideDot = Vector3.Dot(target.Right, directionToPlayer.normalized);
         float turnInput = Mathf.Clamp(sideDot, -1f, 1f);
         float angle = Mathf.Acos(forwardDot) * Mathf.Rad2Deg;
         if (angle > 1)
@@ -58,13 +62,13 @@ public class AIMoveController : CharapterMoveController
             // r.y += angle * turnInput;
             // MoveTarget.Rotation = Vector3.Lerp(MoveTarget.Rotation, r, Time.deltaTime * MoveTarget.MaxRotationSpeed);
             float direction = Mathf.Sign(angle * turnInput);
-            if (!MoveTarget.IsRotating || MoveTarget.RotationDirection != direction)
-                BeginRotate(direction);
+            if (!target.IsRotating || target.RotationDirection != direction)
+                BeginRotate(target, direction);
         }
         else
         {
-            if (MoveTarget.IsRotating)
-                StopRotate();
+            if (target.IsRotating)
+                StopRotate(target);
         }
     }
 }

@@ -1,58 +1,73 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 
 public class CharapterMoveController : MonoBehaviour
 {
-    protected IMovable MoveTarget;
+    protected List<IMovable> Movables = new List<IMovable>();
 
-    public void SetTarget(IMovable movable)
+    public void AddMovable(IMovable movable)
     {
-        MoveTarget = movable;
+        if (!Movables.Contains(movable))
+            Movables.Add(movable);
+        
         movable.MoveSpeed = 0;
         movable.IsMoving = false;
     }
 
-    protected void BeginMove()
+    protected void BeginMove(IMovable  movable)
     {
-        MoveTarget.MoveSpeed = 0;
-        MoveTarget.IsMoving = true;
+        movable.MoveSpeed = 0;
+        movable.IsMoving = true;
     }
     
-    protected void StopMove()
+    protected void StopMove(IMovable  movable)
     {
-        MoveTarget.MoveSpeed = 0;
-        MoveTarget.IsMoving = false;
+        movable.MoveSpeed = 0;
+        movable.IsMoving = false;
+    }
+
+    protected void Move(IMovable movable)
+    {
+        movable.MoveSpeed = Mathf.Lerp(movable.MoveSpeed, movable.MaxMoveSpeed, 20 * Time.deltaTime);
+        movable.Position += movable.Orientation.normalized * (movable.MoveSpeed * 50 * Time.deltaTime);
     }
     
-    protected void BeginRotate(float direction)
+    protected void BeginRotate(IMovable  movable, float direction)
     {
-        MoveTarget.RotationSpeed = 0;
-        MoveTarget.RotationDirection = direction;
+        movable.RotationSpeed = 0;
+        movable.RotationDirection = direction;
     }
     
-    protected void StopRotate()
+    protected void StopRotate(IMovable  movable)
     {
-        MoveTarget.RotationSpeed = 0;
-        MoveTarget.RotationDirection = 0;
+        movable.RotationSpeed = 0;
+        movable.RotationDirection = 0;
+    }
+    
+    protected void Rotate(IMovable movable)
+    {
+        Vector3 r = movable.Rotation;
+        movable.RotationSpeed = Mathf.Lerp(movable.RotationSpeed, movable.MaxRotationSpeed, 1 * Time.deltaTime);
+        r.z += movable.RotationSpeed * movable.RotationDirection * Time.deltaTime;
+        movable.Rotation = r;
     }
 
     protected void Update()
     {
-        if (MoveTarget == null || MoveTarget.IsDead)
-            return;
-        
-        if (MoveTarget is {IsMoving: true})
+        foreach (var movable in Movables)
         {
-            MoveTarget.MoveSpeed = Mathf.Lerp(MoveTarget.MoveSpeed, MoveTarget.MaxMoveSpeed, 20 * Time.deltaTime);
-            MoveTarget.Position += MoveTarget.Orientation.normalized * (MoveTarget.MoveSpeed * 50 * Time.deltaTime);
-        }
+            if (movable == null || movable.IsDead)
+                continue;
         
-        if (MoveTarget is { IsRotating : true})
-        {
-            Vector3 r = MoveTarget.Rotation;
-            MoveTarget.RotationSpeed = Mathf.Lerp(MoveTarget.RotationSpeed, MoveTarget.MaxRotationSpeed, 1 * Time.deltaTime);
-            r.z += MoveTarget.RotationSpeed * MoveTarget.RotationDirection * Time.deltaTime;
-            MoveTarget.Rotation = r;
+            if (movable is {IsMoving: true})
+            {
+                Move(movable);
+            }
+        
+            if (movable is { IsRotating : true})
+            {
+                Rotate(movable);
+            }
         }
     }
 }

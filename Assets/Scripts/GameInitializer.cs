@@ -13,6 +13,7 @@ public class GameInitializer : MonoBehaviour
     
     [SerializeField] private AIMoveController MyEnemyMoveController;
     [SerializeField] private Enemy MyEnemy;
+    [SerializeField] private Enemy MyEnemy2;
     
     void Start()
     {
@@ -23,7 +24,7 @@ public class GameInitializer : MonoBehaviour
         if (MyPlayerMoveController != null)
         {
             MyPlayerMoveController.SetInputListener(MyPlayerInputListener);
-            MyPlayerMoveController.SetTarget(MyPlayer);
+            MyPlayerMoveController.AddMovable(MyPlayer);
         }
         
         if (MyPlayerSpellController != null)
@@ -40,8 +41,9 @@ public class GameInitializer : MonoBehaviour
         
         if (MyEnemyMoveController != null)
         {
-            MyEnemyMoveController.SetTarget(MyEnemy);
+            MyEnemyMoveController.AddMovable(MyEnemy);
             MyEnemyMoveController.SetAttackable(MyPlayer);
+            MyEnemyMoveController.AddMovable(MyEnemy2);
         }
     }
 }

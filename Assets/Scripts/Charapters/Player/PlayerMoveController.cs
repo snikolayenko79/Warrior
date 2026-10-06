@@ -31,32 +31,32 @@ public class PlayerMoveController : CharapterMoveController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
-        if (MoveTarget == null || MoveTarget.IsDead)
+        if (Movables.Count <= 0)
+            return;
+        
+        IMovable player = Movables[0];
+        
+        if (player == null || player.IsDead)
             return;
         
         if (logicalActionName == "Move")
         {
             bool bMove= context.FloatValue != 0;
             
-            if (bMove && !MoveTarget.IsMoving)
-                BeginMove();
-            else if (!bMove && MoveTarget.IsMoving)
-                StopMove();
+            if (bMove && !player.IsMoving)
+                BeginMove(player);
+            else if (!bMove && player.IsMoving)
+                StopMove(player);
         }
         
         if (logicalActionName == "Rotate")
         {
             bool bRotate = context.FloatValue != 0;
             
-            if (bRotate && !MoveTarget.IsRotating)
-                BeginRotate(context.FloatValue);
-            else if (!bRotate && MoveTarget.IsRotating)
-                StopRotate();
+            if (bRotate && !player.IsRotating)
+                BeginRotate(player, context.FloatValue);
+            else if (!bRotate && player.IsRotating)
+                StopRotate(player);
         }
-    }
-
-    protected new void Update()
-    {
-        base.Update();
     }
 }
