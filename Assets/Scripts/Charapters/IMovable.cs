@@ -8,6 +8,7 @@ public interface IMovable
     Vector3 Right { get; }
     bool IsMoving { get; set; }
     Vector3 Position { get; set; }
+    INavigationPath CurrentPath { get; set; }
     Vector3 Rotation { get; set; }
     float RotationSpeed { get; set; }
     float MaxRotationSpeed { get; }

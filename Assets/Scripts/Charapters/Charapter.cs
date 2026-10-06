@@ -46,6 +46,14 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
         set => transform.position = value;
     }
     
+    private INavigationPath path;
+
+    public INavigationPath CurrentPath
+    {
+        get => path;
+        set => path = value;
+    }
+    
     public Vector3 Rotation
     {
         get => transform.eulerAngles;
@@ -82,6 +90,9 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
     {
         if (!MyAnimator)
             MyAnimator = this.GetComponent<Animator>();
+        
+        if (CurrentPath == null)
+            CurrentPath = GetComponent<INavigationPath>();
     }
     
     void OnMoveChange()

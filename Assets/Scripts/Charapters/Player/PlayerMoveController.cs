@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class PlayerMoveController : CharapterMoveController
-{
+{ 
     private IInputListener _inputListener;
 
     private bool _isInitialized;
