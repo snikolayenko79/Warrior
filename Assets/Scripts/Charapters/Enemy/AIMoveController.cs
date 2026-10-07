@@ -11,10 +11,15 @@ public class AIMoveController : CharapterMoveController
     
     protected new void Update()
     {
-        foreach (var movable in Movables)
+        for (int i = MovableEntities.Count - 1; i >= 0; i--)
         {
+            IMovable movable = MovableEntities[i];
+            
             if (movable == null || movable.IsDead)
+            {
+                MovableEntities.RemoveAt(i);
                 continue;
+            }
 
             if (movable.CurrentPath == null)
             {

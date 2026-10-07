@@ -3,16 +3,10 @@ using System.Collections.Generic;
 
 public class CharapterMoveController : MonoBehaviour
 {
-    protected List<IMovable> Movables = new List<IMovable>();
-
-    public void AddMovable(IMovable movable)
-    {
-        if (!Movables.Contains(movable))
-            Movables.Add(movable);
-        
-        movable.MoveSpeed = 0;
-        movable.IsMoving = false;
-    }
+    protected List<IMovable> MovableEntities = new List<IMovable>();
+    
+    public void RegisterEntity(IMovable movable) => MovableEntities.Add(movable);
+    public void UnregisterEntity(IMovable movable) => MovableEntities.Remove(movable);
 
     protected void BeginMove(IMovable  movable)
     {
@@ -54,10 +48,15 @@ public class CharapterMoveController : MonoBehaviour
 
     protected void Update()
     {
-        foreach (var movable in Movables)
+        for (int i = MovableEntities.Count - 1; i >= 0; i--)
         {
+            IMovable movable = MovableEntities[i];
+            
             if (movable == null || movable.IsDead)
+            {
+                MovableEntities.RemoveAt(i);
                 continue;
+            }
         
             if (movable is {IsMoving: true})
             {

@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MyAnimator: {fileID: 2784061010632844528}
-  MyMoveSpeed: 0.5
+  MyMoveSpeed: 0.01
   MyRotateSpeed: 150
 --- !u!135 &449054906607413096
 SphereCollider:

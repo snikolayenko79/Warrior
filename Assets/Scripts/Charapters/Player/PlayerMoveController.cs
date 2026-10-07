@@ -31,10 +31,10 @@ public class PlayerMoveController : CharapterMoveController
     
     private void OnInputAction(string logicalActionName, InputContext context)
     {
-        if (Movables.Count <= 0)
+        if (MovableEntities.Count <= 0)
             return;
         
-        IMovable player = Movables[0];
+        IMovable player = MovableEntities[0];
         
         if (player == null || player.IsDead)
             return;

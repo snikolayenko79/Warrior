@@ -11,10 +11,6 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Player MyPlayer;
     private InputRouter inputRouter;
     
-    [SerializeField] private AIMoveController MyEnemyMoveController;
-    [SerializeField] private Enemy MyEnemy;
-    [SerializeField] private Enemy MyEnemy2;
-    
     void Start()
     {
         inputRouter = new  InputRouter();
@@ -24,13 +20,7 @@ public class GameInitializer : MonoBehaviour
         if (MyPlayerMoveController != null)
         {
             MyPlayerMoveController.SetInputListener(MyPlayerInputListener);
-            MyPlayerMoveController.AddMovable(MyPlayer);
-        }
-        
-        if (MyPlayerSpellController != null)
-        {
-            MyPlayerSpellController.SetInputListener(MyPlayerInputListener);
-            MyPlayerSpellController.SetCaster(MyPlayer);
+            MyPlayerMoveController.RegisterEntity(MyPlayer);
         }
         
         if (myPlayerAttackController != null)
@@ -39,11 +29,10 @@ public class GameInitializer : MonoBehaviour
             myPlayerAttackController.SetAttacker(MyPlayer);
         }
         
-        if (MyEnemyMoveController != null)
+        if (MyPlayerSpellController != null)
         {
-            MyEnemyMoveController.AddMovable(MyEnemy);
-            MyEnemyMoveController.SetAttackable(MyPlayer);
-            MyEnemyMoveController.AddMovable(MyEnemy2);
+            MyPlayerSpellController.SetInputListener(MyPlayerInputListener);
+            MyPlayerSpellController.SetCaster(MyPlayer);
         }
     }
 }

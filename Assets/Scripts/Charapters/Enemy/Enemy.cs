@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Charapter, IAttackable
+public class Enemy : Character, IAttackable
 {
     
 }

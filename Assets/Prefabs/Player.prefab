@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   MyAnimator: {fileID: 6875164904256994876}
-  MyMoveSpeed: 0.75
-  MyRotateSpeed: 150
+  MyMoveSpeed: 0.01
+  MyRotateSpeed: 300
   allSpells:
   - {fileID: 11400000, guid: f106d02ef4b0dbd4297acfa41668aaef, type: 2}
   spellSpawnPoint: {fileID: 8447368732712295509}

@@ -1,6 +1,7 @@
 using UnityEngine;
+using System;
 
-public class Charapter : MonoBehaviour, IMovable, IDamageable
+public class Character : MonoBehaviour, IMovable, IDamageable
 {
     public Animator MyAnimator;
 
@@ -119,6 +120,8 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
             Dead();
     }
 
+    public Action<Character> OnDead;
+    
     public void Dead()
     {
         if (MyAnimator)
@@ -126,5 +129,7 @@ public class Charapter : MonoBehaviour, IMovable, IDamageable
             MyAnimator.SetBool("IsMoving", false);
             MyAnimator.SetTrigger("IsDead");
         }
+        
+        OnDead?.Invoke(this);
     }
 }

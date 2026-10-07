@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : Charapter, IAttacker, ISpellCaster, IAttackable
+public class Player : Character, IAttacker, ISpellCaster, IAttackable
 {
     [SerializeField] private List<SpellData> allSpells = new List<SpellData>();
     private List<SpellData> _availableSpells = new List<SpellData>();

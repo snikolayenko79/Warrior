@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PatrolPath : MonoBehaviour, INavigationPath
+public class SpecifiedPath : MonoBehaviour, INavigationPath
 {
     [Header("Настройки маршрута")]
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
     [SerializeField] private float waitTime = 2f;
+    [SerializeField] private bool looped = false;
     
     private int _currentWaypointIndex = 0;
     private float _waitTimer = 0f;
@@ -23,14 +24,19 @@ public class PatrolPath : MonoBehaviour, INavigationPath
             if (_waitTimer >= waitTime)
             {
                 _isWaiting = false;
-                _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Count;
+                _currentWaypointIndex += 1;
+                if (_currentWaypointIndex >= waypoints.Count && looped)
+                    _currentWaypointIndex = 0;
             }
             else
             {
                 return null; // Ждем на точке, контроллер остановит объект
             }
         }
-
+        
+        if (_currentWaypointIndex >= waypoints.Count) // прошли весь маршрут, он не зациклен
+            return null;
+        
         Transform currentWp = waypoints[_currentWaypointIndex];
         return currentWp != null ? currentWp.position : null;
     }
