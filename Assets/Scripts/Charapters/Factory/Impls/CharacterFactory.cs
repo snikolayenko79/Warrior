@@ -6,15 +6,23 @@ public class CharacterFactory : MonoBehaviour, ICharacterFactory
     public CharapterMoveController characterMoveController;
     public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
     
-    private ObjectPool _objectPool = null;
+    private IObjectPool _objectPool = null;
 
     public GameObject SpawnCharapter(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         if (prefab == null)
             return null;
-        
+
         if (_objectPool == null)
-            _objectPool = new ObjectPool();
+        {
+            gameObject.TryGetComponent<IObjectPool>(out _objectPool);
+
+            if (_objectPool == null)
+            {
+                Debug.LogError($"На объекте фабрики {gameObject.name} отсутствует компонент наследующий интерфейс IObjectPool!", gameObject);
+                return null;
+            }
+        }
 
         // 1. Извлекаем объект из пула (или инстанцируем, если пул пуст)
         GameObject enemyInstance = _objectPool.Get(prefab);

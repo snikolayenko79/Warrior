@@ -13,7 +13,13 @@ public class World1_Scenario : MonoBehaviour
     public SpecifiedPath enemy2Path;
     
     public GameObject villagerPrefab;
+    public Transform villagerSpawnPoint;
+    public SpecifiedPath villagerPath;
+    
     public GameObject sellerPrefab;
+    public Transform sellerSpawnPoint;
+    public SpecifiedPath sellerPath;
+    
     public CharacterFactory characterFactory;
     
     void Start()
@@ -28,7 +34,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject enemy1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
         Character character1 = enemy1.GetComponent<Character>();
         character1.CurrentPath = enemy1Path;
-
+        
         while (!character1.IsDead)
             yield return null;
         
@@ -37,6 +43,22 @@ public class World1_Scenario : MonoBehaviour
         character2.CurrentPath = enemy2Path;
         
         while (!character2.IsDead)
+            yield return null;
+        
+        GameObject villager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
+        Character characterVillager = villager.GetComponent<Character>();
+        characterVillager.CurrentPath = villagerPath;
+        
+        yield return null;
+        while (characterVillager.IsMoving)
+            yield return null;
+        
+        GameObject seller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
+        Character characterSeller = seller.GetComponent<Character>();
+        characterSeller.CurrentPath = sellerPath;
+        
+        yield return null;
+        while (characterSeller.IsMoving)
             yield return null;
     }
 }

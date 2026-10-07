@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ObjectPool : IObjectPool
+public class ObjectPool : MonoBehaviour, IObjectPool
 {
     private Dictionary<GameObject, Queue<GameObject>> _pooledObjects = new Dictionary<GameObject, Queue<GameObject>>();
 
