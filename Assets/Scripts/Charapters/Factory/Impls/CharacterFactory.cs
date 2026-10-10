@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharacterFactory : MonoBehaviour, ICharacterFactory
 {
-    public CharapterMoveController characterMoveController;
+    public CharacterStateController characterStateController;
     public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
     
     private IObjectPool _objectPool = null;
@@ -58,9 +58,9 @@ public class CharacterFactory : MonoBehaviour, ICharacterFactory
         }
 
         // 5. Регистрируем сущность в глобальной системе симуляции движения
-        if (characterMoveController != null)
+        if (characterStateController != null)
         {
-            characterMoveController.RegisterEntity(character);
+            characterStateController.RegisterEntity(character);
         }
 
         return enemyInstance;
@@ -71,9 +71,9 @@ public class CharacterFactory : MonoBehaviour, ICharacterFactory
         character.OnDead -= OnCharapterDead;
         
         // 1. Сообщаем контроллеру ИИ, что этого персонажа больше не нужно обновлять
-        if (characterMoveController)
+        if (characterStateController)
         {
-            characterMoveController.UnregisterEntity(character);
+            characterStateController.UnregisterEntity(character);
         }
 
         StartCoroutine(DelayedDespawnRoutine((character)));

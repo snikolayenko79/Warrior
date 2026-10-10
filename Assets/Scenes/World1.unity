@@ -723,6 +723,10 @@ MonoBehaviour:
   sellerSpawnPoint: {fileID: 1755354819}
   sellerPath: {fileID: 1763397615}
   characterFactory: {fileID: 1009138829}
+  characterStateController: {fileID: 1844014701}
+  characterStatePlayerInputMove: {fileID: 1442226686}
+  characterStatePathMove: {fileID: 1601553566}
+  player: {fileID: 1002305717}
 --- !u!4 &506529202
 Transform:
   m_ObjectHideFlags: 0
@@ -793,8 +797,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   MyInputSource: {fileID: 716001904}
-  MyPlayerInputListener: {fileID: 956851288}
-  MyPlayerMoveController: {fileID: 956851289}
+  MyPlayerInputListener: {fileID: 1442226687}
+  MyPlayerMoveController: {fileID: 0}
   MyPlayerSpellController: {fileID: 956851290}
   myPlayerAttackController: {fileID: 956851291}
   MyPlayer: {fileID: 1002305717}
@@ -993,8 +997,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 956851287}
-  - component: {fileID: 956851288}
-  - component: {fileID: 956851289}
   - component: {fileID: 956851290}
   - component: {fileID: 956851291}
   m_Layer: 0
@@ -1019,35 +1021,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &956851288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956851284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50dd5619aa46df747ab91dd439d62d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputListener
-  myActionsName:
-  - Move
-  - Rotate
-  - Attack
-  - Spell
---- !u!114 &956851289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956851284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786015cf5462f5e4dbd8716e86321a33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveController
 --- !u!114 &956851290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba2c6d5f11b2054eaf634e734d5becf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharapterFactory
-  characterMoveController: {fileID: 1844014699}
+  characterStateController: {fileID: 1844014701}
   timeBeforeDespawn: 4
 --- !u!4 &1009138830
 Transform:
@@ -1209,6 +1182,68 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1507986975}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1442226685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1442226688}
+  - component: {fileID: 1442226686}
+  - component: {fileID: 1442226687}
+  m_Layer: 0
+  m_Name: PlayerInputMove
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1442226686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442226685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90308cbd9705db438881ba4485c929d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharapterState_InputMove
+--- !u!114 &1442226687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442226685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dd5619aa46df747ab91dd439d62d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputListener
+  myActionsName:
+  - Move
+  - Rotate
+  - Attack
+  - Spell
+--- !u!4 &1442226688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442226685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1844014700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456693120
 GameObject:
@@ -1325,6 +1360,50 @@ MonoBehaviour:
   - {fileID: 877597616}
   waitTime: 0
   looped: 1
+--- !u!1 &1601553565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601553567}
+  - component: {fileID: 1601553566}
+  m_Layer: 0
+  m_Name: CharacterPathMove
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1601553566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601553565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc47df6cbb4f8f04586e31ebb21e58f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharapterState_PathMove
+--- !u!4 &1601553567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601553565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1844014700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755354818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1493,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1844014700}
-  - component: {fileID: 1844014699}
+  - component: {fileID: 1844014701}
+  - component: {fileID: 1844014704}
   m_Layer: 0
   m_Name: CharaptersControllers
   m_TagString: Untagged
@@ -1422,18 +1502,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1844014699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844014698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406df730dccf6314cb36f0befe5566d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIMoveController
 --- !u!4 &1844014700
 Transform:
   m_ObjectHideFlags: 0
@@ -1446,9 +1514,36 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1442226688}
+  - {fileID: 1601553567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1844014701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844014698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cecbb22853194c4d8a2bbd3a7a4e650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStateController
+  statesBehaviours: []
+--- !u!114 &1844014704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844014698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb6605f7bdc22c4aaf8240a3b30edce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharapterState_Attack
 --- !u!1 &2004297551
 GameObject:
   m_ObjectHideFlags: 0
