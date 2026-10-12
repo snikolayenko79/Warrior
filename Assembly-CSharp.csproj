@@ -47,10 +47,11 @@
     <Analyzer Include="C:\Program Files\Unity 6000.3.23f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\ICharapterState.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Impls\Behaviours\CharacterStateBehaviourPathMove.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Attack\AttackController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Impls\Behaviours\CharacterStateBehaviourPlayerInput.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Character.cs" />
@@ -63,12 +64,12 @@
     <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
-    <Compile Include="Assets\Scripts\Charapters\Move\CharapterMoveController.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Impls\Behaviours\CharacterStateBehaviourBase.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Move\IMoveController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\ICharacterStateBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Attack\EnemyAttackController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\Impls\InputListener.cs" />
@@ -76,20 +77,18 @@
     <Compile Include="Assets\Scripts\ObjectPool\Impls\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\IDamageable.cs" />
-    <Compile Include="Assets\Scripts\Attack\AttackController.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBehaviour.cs" />
     <Compile Include="Assets\Scripts\Scenario\World1_Scenario.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Impls\Behaviours\CharacterStateBehaviourAttack.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\ICharacterStateController.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Move\MoveController.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
-    <Compile Include="Assets\Scripts\Attack\PlayerAttackController.cs" />
     <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\IMovable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Common\Impls\Behaviours\MovableStateBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
-    <Compile Include="Assets\Scripts\Charapters\Move\ICharacterMoveController.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Player.cs" />

@@ -1,16 +1,17 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
 {
     public Animator MyAnimator;
 
-    private ICharacterStateBehaviour _stateBehaviour;
+    private List<ICharacterStateBehaviour> _stateBehaviours = new List<ICharacterStateBehaviour>();
 
-    public ICharacterStateBehaviour CurrentStateBehaviour
+    public List<ICharacterStateBehaviour> StateBehaviours
     {
-        get => _stateBehaviour;
-        set => _stateBehaviour = value;
+        get => _stateBehaviours;
+        set => _stateBehaviours = value;
     }
     
     [SerializeField] private float MyMoveSpeed = 0.5f;

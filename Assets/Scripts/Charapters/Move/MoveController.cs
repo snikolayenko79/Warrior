@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CharapterMoveController : MonoBehaviour, ICharacterMoveController
+public class MoveController : MonoBehaviour, IMoveController
 {
     public void BeginMove(IMovable  movable)
     {

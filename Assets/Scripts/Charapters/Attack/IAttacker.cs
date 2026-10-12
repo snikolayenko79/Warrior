@@ -8,6 +8,8 @@ public interface IAttacker
     WeaponData CurrentWeapon { get; set; }
     Transform WeaponPoint { get; }
     GameObject CurrentWeaponObject { get; set; }
+    bool IsAttacking { get; set; }
+    bool IsAttackStarted { get; set; }
     void Attack();
     bool IsDead { get; }
 }

@@ -842,9 +842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   MyInputSource: {fileID: 716001904}
   MyPlayerInputListener: {fileID: 1537528162}
-  MyPlayerSpellController: {fileID: 956851290}
-  myPlayerAttackController: {fileID: 956851291}
-  MyPlayer: {fileID: 1002305717}
 --- !u!114 &716001903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,7 +1038,6 @@ GameObject:
   m_Component:
   - component: {fileID: 956851287}
   - component: {fileID: 956851290}
-  - component: {fileID: 956851291}
   m_Layer: 0
   m_Name: PlayerControllers
   m_TagString: Untagged
@@ -1076,21 +1072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c1240091b94af438c781b532103521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpellController
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &956851291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956851284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ebd4fabe4600244bad7afdc394015b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1494,6 +1475,7 @@ GameObject:
   - component: {fileID: 1844014700}
   - component: {fileID: 1844014701}
   - component: {fileID: 1844014702}
+  - component: {fileID: 1844014703}
   m_Layer: 0
   m_Name: CharaptersControllers
   m_TagString: Untagged
@@ -1545,6 +1527,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf63fd9496f01b44a1be78aaf6a7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharapterMoveController
+--- !u!114 &1844014703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844014698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c597d8ac9373f164c9972dd72ffa7dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackController
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2004297551
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,5 +6,6 @@ public interface ICharacterStateController
     public void UnregisterEntity(ICharapterState characterState);
     void StateStart(ICharapterState entity, ICharacterStateBehaviour stateBehaviour);
     void StateEnd(ICharapterState entity, ICharacterStateBehaviour stateBehaviour);
-    ICharacterMoveController characterMoveController  { get; set; }
+    IMoveController moveController  { get; set; }
+    IAttackController attackController  { get; set; }
 }

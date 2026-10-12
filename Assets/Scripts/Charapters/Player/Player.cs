@@ -57,6 +57,20 @@ public class Player : Character, IAttacker, ISpellCaster, IAttackable
         get => _currentWeaponObject;
         set  => _currentWeaponObject = value;
     }
+
+    private bool _isAttacking  = false;
+    public bool IsAttacking
+    {
+        get => _isAttacking;
+        set => _isAttacking = value;
+    }
+    
+    private bool _isAttackStarted  = false;
+    public bool IsAttackStarted
+    {
+        get => _isAttackStarted;
+        set => _isAttackStarted = value;
+    }
     
     public void Attack()
     {

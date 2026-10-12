@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ICharacterMoveController
+public interface IMoveController
 {
     void BeginMove(IMovable movable);
     void StopMove(IMovable movable);

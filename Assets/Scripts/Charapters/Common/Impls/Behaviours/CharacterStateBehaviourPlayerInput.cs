@@ -3,17 +3,17 @@ using UnityEngine;
 public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
 {
     private IMovable _movable;
+    private IAttacker _attacker;
     private IInputListener _inputListener;
     
     public void SetInputListener(IInputListener inputListener)
     {
-        _inputListener  = inputListener;
-        _inputListener.OnInputAction += OnInputAction;
     }
     
     public override void StateStart(ICharapterState characterState)
     {
         _movable = characterState as IMovable;
+        _attacker = characterState as IAttacker;
         
         TryGetComponent<IInputListener>(out _inputListener);
 
@@ -37,11 +37,11 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
 
     private void OnInputAction(string logicalActionName, InputContext context)
     {
-        if (_movable == null || _movable.IsDead)
-            return;
-                
         if (logicalActionName == "Move")
         {
+            if (_movable == null || _movable.IsDead)
+                return;
+            
             bool bMove= context.FloatValue != 0;
 
             if (bMove && !_movable.IsMoving)
@@ -57,6 +57,9 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
             
         if (logicalActionName == "Rotate")
         {
+            if (_movable == null || _movable.IsDead)
+                return;
+            
             bool bRotate = context.FloatValue != 0;
 
             if (bRotate && !_movable.IsRotating)
@@ -67,6 +70,17 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
             else if (!bRotate && _movable.IsRotating)
             {
                 _movable.RotationDirection = 0;
+            }
+        }
+        
+        if (logicalActionName == "Attack" && context.FloatValue == 0)
+        {
+            if (_attacker == null || _attacker.IsDead)
+                return;
+
+            if (!_attacker.IsAttacking && !_attacker.IsAttackStarted)
+            {
+                _attacker.IsAttacking = true;
             }
         }
     }

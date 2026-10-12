@@ -12,20 +12,14 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
 
     public void StateStart(ICharapterState entity, ICharacterStateBehaviour stateBehaviour)
     {
-        if (entity.CurrentStateBehaviour != null)
-            entity.CurrentStateBehaviour.StateEnd(entity);
-
-        entity.CurrentStateBehaviour = stateBehaviour;
-        entity.CurrentStateBehaviour.StateStart(entity);
+        entity.StateBehaviours.Add(stateBehaviour);
+        stateBehaviour.StateStart(entity);
     }
 
     public void StateEnd(ICharapterState entity, ICharacterStateBehaviour stateBehaviour)
     {
-        if (entity.CurrentStateBehaviour != null)
-        {
-            entity.CurrentStateBehaviour.StateEnd(entity);
-            entity.CurrentStateBehaviour = null;
-        }
+        stateBehaviour.StateEnd(entity);
+        entity.StateBehaviours.Add(stateBehaviour);
     }
 
     void UpdateStates()
@@ -39,29 +33,42 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
                 Entities.RemoveAt(i);
                 continue;
             }
-            
-            if (entity.CurrentStateBehaviour != null)
+
+            for (int j = entity.StateBehaviours.Count - 1; j >= 0; j--)
             {
-                entity.CurrentStateBehaviour.StateUpdate(entity);
+                ICharacterStateBehaviour behaviour = entity.StateBehaviours[j];
+                behaviour.StateUpdate(entity);
             }
             
             if (entity is IMovable movable)
             {
-                characterMoveController.UpdateMovement(movable);
+                moveController.UpdateMovement(movable);
+            }
+            if (entity is IAttacker attacker)
+            {
+                attackController.UpdateAttack(attacker);
             }
         }
     }
 
-    private ICharacterMoveController _characterMoveController;
-    public ICharacterMoveController characterMoveController
+    private IMoveController _moveController;
+    public IMoveController moveController
     {
-        get => _characterMoveController;
-        set  => _characterMoveController = value;
+        get => _moveController;
+        set  => _moveController = value;
+    }
+    
+    private IAttackController _attackController;
+    public IAttackController attackController
+    {
+        get => _attackController;
+        set  => _attackController = value;
     }
 
     void Awake()
     {
-        TryGetComponent<ICharacterMoveController>(out _characterMoveController);
+        TryGetComponent<IMoveController>(out _moveController);
+        TryGetComponent<IAttackController>(out _attackController);
     }
     
     void Update()

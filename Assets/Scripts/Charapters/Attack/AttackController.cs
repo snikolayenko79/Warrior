@@ -1,27 +1,31 @@
 using UnityEngine;
 
-public class AttackController : MonoBehaviour
+public class AttackController : MonoBehaviour, IAttackController
 {
     [Tooltip("Леер врагов (противоположной стороны).")]
     public LayerMask enemyLayer;
 
     private WeaponBehaviour instantiatedWeaponBehaviour = null;
-    
-    protected IAttacker Attacker;
 
-    public void SetAttacker(IAttacker attacker)
+    public void UpdateAttack(IAttacker attacker)
     {
-        Attacker = attacker;
-        
-        // TODO. Временно. Удалить. Выбор заклинания.
-        Attacker.AvailableWeapons.AddRange(Attacker.AllWeapons);
-        SelectWeapon(Attacker.AvailableWeapons[0]);
+        if (attacker is { IsAttacking: true})
+        {
+            DoAttack(attacker);
+            attacker.IsAttacking = false;
+        }
     }
 
-    protected void DoAttack()
+    protected void DoAttack(IAttacker attacker)
     {
-        if (Attacker == null || Attacker.CurrentWeapon == null)
+        if (attacker is { IsAttackStarted: true})
             return;
+            
+        if (attacker.CurrentWeapon == null)
+        {
+            attacker.AvailableWeapons.AddRange(attacker.AllWeapons);
+            SelectWeapon(attacker, attacker.AvailableWeapons[0]);
+        }
 
         if (instantiatedWeaponBehaviour is { IsEnded : false})
             return;
@@ -34,13 +38,14 @@ public class AttackController : MonoBehaviour
             Destroy(instantiatedWeaponBehaviour.gameObject);
             instantiatedWeaponBehaviour = null;
         }
-        
-        Attacker.Attack();
 
-        WeaponData selectedWeapon = Attacker.CurrentWeapon;
-        instantiatedWeaponBehaviour = Instantiate(selectedWeapon.weaponBehaviourPrefab, Attacker.WeaponPoint.position, selectedWeapon.weaponBehaviourPrefab.transform.rotation);
-        instantiatedWeaponBehaviour.transform.SetParent(Attacker.WeaponPoint, true);
-        instantiatedWeaponBehaviour.Execute(Attacker, (Collider damageZone) =>
+        attacker.IsAttackStarted = true;
+        attacker.Attack();
+
+        WeaponData selectedWeapon = attacker.CurrentWeapon;
+        instantiatedWeaponBehaviour = Instantiate(selectedWeapon.weaponBehaviourPrefab, attacker.WeaponPoint.position, selectedWeapon.weaponBehaviourPrefab.transform.rotation);
+        instantiatedWeaponBehaviour.transform.SetParent(attacker.WeaponPoint, true);
+        instantiatedWeaponBehaviour.Execute(attacker, (Collider damageZone) =>
         {
             // 1. Получаем размеры и координаты зоны
             Vector3 center = damageZone.bounds.center;
@@ -68,16 +73,18 @@ public class AttackController : MonoBehaviour
             
             Destroy(instantiatedWeaponBehaviour.gameObject);
             instantiatedWeaponBehaviour = null;
+            if (attacker != null)
+                attacker.IsAttackStarted = false;
         });
     }
 
-    private void SelectWeapon(WeaponData weapon)
+    private void SelectWeapon(IAttacker attacker, WeaponData weapon)
     {
-        Attacker.CurrentWeapon = weapon;
+        attacker.CurrentWeapon = weapon;
         
-        if (Attacker.CurrentWeaponObject)
-            Destroy(Attacker.CurrentWeaponObject);
+        if (attacker.CurrentWeaponObject)
+            Destroy(attacker.CurrentWeaponObject);
         
-        Attacker.CurrentWeaponObject = Instantiate(Attacker.CurrentWeapon.weaponPrefab, Attacker.WeaponPoint);
+        attacker.CurrentWeaponObject = Instantiate(attacker.CurrentWeapon.weaponPrefab, attacker.WeaponPoint);
     }
 }
