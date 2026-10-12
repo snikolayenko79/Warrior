@@ -8,5 +8,7 @@ public interface ISpellCaster
     SpellData CurrentSpell { get; set; }
     Transform SpellSpawnPoint { get; }
     void Spell(SpellData spell = null);
+    bool IsSpellCast { get; set; }
+    bool IsSpellCastStarted { get; set; }
     bool IsDead { get; }
 }

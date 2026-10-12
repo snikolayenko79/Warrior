@@ -1,31 +1,39 @@
 using UnityEngine;
 
-public class SpellController : MonoBehaviour
+public class SpellController : MonoBehaviour, ISpellController
 {   
     [Tooltip("Леер врагов (противоположной стороны).")]
     public LayerMask enemyLayer;
-    
-    protected ISpellCaster SpellCaster;
 
-    public void SetCaster(ISpellCaster caster)
+    public void UpdateSpellCast(ISpellCaster caster)
     {
-        SpellCaster = caster;
-        
-        // TODO. Временно. Удалить. Выбор заклинания.
-        SpellCaster.AvailableSpells.AddRange(SpellCaster.AllSpells);
-        SpellCaster.CurrentSpell = SpellCaster.AvailableSpells[0];
+        if (caster is { IsSpellCast: true})
+        {
+            DoSpellCast(caster);
+            caster.IsSpellCast = false;
+        }
     }
-    
-    protected void DoSpellCast()
+
+    protected void DoSpellCast(ISpellCaster caster)
     {
-        if (SpellCaster == null || SpellCaster.CurrentSpell == null)
+        if (caster is { IsSpellCastStarted: true})
             return;
         
-        SpellCaster.Spell();
+        if (caster.CurrentSpell == null)
+        {
+            caster.AvailableSpells.AddRange(caster.AllSpells);
+            caster.CurrentSpell = caster.AvailableSpells[0];
+        }
+        
+        if (caster.CurrentSpell == null)
+            return;
+        
+        caster.IsSpellCastStarted = true;
+        caster.Spell();
 
-        SpellData selectedSpell = SpellCaster.CurrentSpell;
+        SpellData selectedSpell = caster.CurrentSpell;
         SpellBehaviour instantiatedSpell = Instantiate(selectedSpell.spellBehaviourPrefab, this.transform);
-        instantiatedSpell.Execute(SpellCaster, (Collider damageZone) =>
+        instantiatedSpell.Execute(caster, (Collider damageZone) =>
         {
             // 1. Получаем размеры и координаты зоны
             Vector3 center = damageZone.bounds.center;
@@ -46,6 +54,9 @@ public class SpellController : MonoBehaviour
                         damageable.TakeDamage(selectedSpell.spellDamage);
                 }
             }
+            
+            if (caster != null)
+                caster.IsSpellCastStarted = false;
         });
     }
 }

@@ -1028,53 +1028,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 506529202}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &956851284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 956851287}
-  - component: {fileID: 956851290}
-  m_Layer: 0
-  m_Name: PlayerControllers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &956851287
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956851284}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &956851290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956851284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c1240091b94af438c781b532103521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpellController
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &1002305717 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4792788919547551050, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
@@ -1476,6 +1429,7 @@ GameObject:
   - component: {fileID: 1844014701}
   - component: {fileID: 1844014702}
   - component: {fileID: 1844014703}
+  - component: {fileID: 1844014704}
   m_Layer: 0
   m_Name: CharaptersControllers
   m_TagString: Untagged
@@ -1539,6 +1493,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c597d8ac9373f164c9972dd72ffa7dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackController
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &1844014704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844014698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbadf034393297e4bbc9e745fddb90c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellController
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1699,7 +1668,6 @@ SceneRoots:
   - {fileID: 414409319}
   - {fileID: 716001900}
   - {fileID: 7288607820904639581}
-  - {fileID: 956851287}
   - {fileID: 1844014700}
   - {fileID: 1009138830}
   - {fileID: 506529202}

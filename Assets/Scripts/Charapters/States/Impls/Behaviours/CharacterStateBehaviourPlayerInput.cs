@@ -4,6 +4,7 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
 {
     private IMovable _movable;
     private IAttacker _attacker;
+    private ISpellCaster _spellcaster;
     private IInputListener _inputListener;
     
     public void SetInputListener(IInputListener inputListener)
@@ -14,6 +15,7 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
     {
         _movable = characterState as IMovable;
         _attacker = characterState as IAttacker;
+        _spellcaster  = characterState as ISpellCaster;
         
         TryGetComponent<IInputListener>(out _inputListener);
 
@@ -78,9 +80,20 @@ public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
             if (_attacker == null || _attacker.IsDead)
                 return;
 
-            if (!_attacker.IsAttacking && !_attacker.IsAttackStarted)
+            if (!_attacker.IsAttacking)
             {
                 _attacker.IsAttacking = true;
+            }
+        }
+        
+        if (logicalActionName == "Spell" && context.FloatValue == 0)
+        {
+            if (_spellcaster == null || _spellcaster.IsDead)
+                return;
+
+            if (!_spellcaster.IsSpellCast)
+            {
+                _spellcaster.IsSpellCast = true;
             }
         }
     }

@@ -54,6 +54,8 @@ public class World1_Scenario : MonoBehaviour
         
         while (!character2.IsDead)
             yield return null;
+
+        yield return new WaitForSeconds(5);
         
         GameObject villager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
         Character characterVillager = villager.GetComponent<Character>();

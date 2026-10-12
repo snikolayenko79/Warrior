@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1010
     height: 613
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 15}
@@ -246,8 +246,8 @@ MonoBehaviour:
     y: 613
     width: 1411
     height: 328
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
@@ -691,12 +691,12 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -1338
+      - m_Data: 38148
       m_LastClickedID:
-        m_Data: -1338
+        m_Data: 0
       m_ExpandedIDs:
       - m_Data: -1336
-      - m_Data: 47766
+      - m_Data: 47760
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1377,7 +1377,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Charapters/Move
+    - Assets/Scripts/Charapters/Navigation/Impls
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1387,33 +1387,31 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Charapters/Move
+  - Assets/Scripts/Charapters/Navigation/Impls
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 182}
+    scrollPos: {x: 0, y: 198}
     m_SelectedIDs:
-    - m_Data: 49676
+    - m_Data: 51074
     m_LastClickedID:
-      m_Data: 49676
+      m_Data: 51074
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49316
+    - m_Data: 49312
+    - m_Data: 49314
     - m_Data: 49318
-    - m_Data: 49320
     - m_Data: 49322
-    - m_Data: 49324
     - m_Data: 49326
     - m_Data: 49328
-    - m_Data: 49330
     - m_Data: 49332
-    - m_Data: 49334
-    - m_Data: 49336
-    - m_Data: 49670
-    - m_Data: 49908
+    - m_Data: 49674
+    - m_Data: 49682
+    - m_Data: 49694
+    - m_Data: 49826
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1432,7 +1430,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 10}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1447,6 +1445,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 49312
+    - m_Data: 49314
     - m_Data: 49316
     - m_Data: 49318
     - m_Data: 49320
@@ -1456,8 +1456,6 @@ MonoBehaviour:
     - m_Data: 49328
     - m_Data: 49330
     - m_Data: 49332
-    - m_Data: 49334
-    - m_Data: 49336
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1485,8 +1483,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -1338
-    m_LastClickedInstanceID: -1338
+    - m_Data: 38148
+    m_LastClickedInstanceID: 38148
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 0

@@ -48,6 +48,10 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
             {
                 attackController.UpdateAttack(attacker);
             }
+            if (entity is ISpellCaster caster)
+            {
+                spellController.UpdateSpellCast(caster);
+            }
         }
     }
 
@@ -64,11 +68,19 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
         get => _attackController;
         set  => _attackController = value;
     }
+    
+    private ISpellController _spellController;
+    public ISpellController spellController
+    {
+        get => _spellController;
+        set  => _spellController = value;
+    }
 
     void Awake()
     {
         TryGetComponent<IMoveController>(out _moveController);
         TryGetComponent<IAttackController>(out _attackController);
+        TryGetComponent<ISpellController>(out _spellController);
     }
     
     void Update()

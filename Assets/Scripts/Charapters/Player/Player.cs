@@ -31,6 +31,20 @@ public class Player : Character, IAttacker, ISpellCaster, IAttackable
             MyAnimator.SetTrigger("Spell");
     }
     
+    private bool _isSpellCast = false;
+    public bool IsSpellCast
+    {
+        get => _isSpellCast;
+        set => _isSpellCast = value;
+    }
+
+    private bool _isSpellCastStarted  = false;
+    public bool IsSpellCastStarted
+    {
+        get => _isSpellCastStarted;
+        set => _isSpellCastStarted = value;
+    }
+    
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
     private List<WeaponData> _availableWeapons = new List<WeaponData>();
     private WeaponData _currentWeapon;

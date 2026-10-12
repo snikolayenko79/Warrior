@@ -8,4 +8,5 @@ public interface ICharacterStateController
     void StateEnd(ICharapterState entity, ICharacterStateBehaviour stateBehaviour);
     IMoveController moveController  { get; set; }
     IAttackController attackController  { get; set; }
+    ISpellController spellController  { get; set; }
 }

@@ -8,9 +8,13 @@ public class CharacterStateBehaviourPathMove : MovableStateBehaviourBase
 
     protected override void MovableUpdate(IMovable movable)
     {
+        if (movable.IsDead)
+            return;
+        
         if (movable.CurrentPath == null)
         {
             movable.IsMoving = false;
+            movable.RotationDirection = 0;
             return;
         }
 
@@ -18,6 +22,7 @@ public class CharacterStateBehaviourPathMove : MovableStateBehaviourBase
         if (!targetPosition.HasValue)
         {
             movable.IsMoving = false;
+            movable.RotationDirection = 0;
             return;
         }
 

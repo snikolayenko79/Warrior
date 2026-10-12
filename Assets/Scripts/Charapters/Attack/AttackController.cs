@@ -5,8 +5,6 @@ public class AttackController : MonoBehaviour, IAttackController
     [Tooltip("Леер врагов (противоположной стороны).")]
     public LayerMask enemyLayer;
 
-    private WeaponBehaviour instantiatedWeaponBehaviour = null;
-
     public void UpdateAttack(IAttacker attacker)
     {
         if (attacker is { IsAttacking: true})
@@ -18,8 +16,10 @@ public class AttackController : MonoBehaviour, IAttackController
 
     protected void DoAttack(IAttacker attacker)
     {
-        if (attacker is { IsAttackStarted: true})
+        if (attacker is { IsAttackStarted: true })
+        {
             return;
+        }
             
         if (attacker.CurrentWeapon == null)
         {
@@ -27,23 +27,14 @@ public class AttackController : MonoBehaviour, IAttackController
             SelectWeapon(attacker, attacker.AvailableWeapons[0]);
         }
 
-        if (instantiatedWeaponBehaviour is { IsEnded : false})
+        if (attacker.CurrentWeapon == null)
             return;
         
-        if (instantiatedWeaponBehaviour)
-        {
-            if (!instantiatedWeaponBehaviour.IsEnded)
-                return;
-            
-            Destroy(instantiatedWeaponBehaviour.gameObject);
-            instantiatedWeaponBehaviour = null;
-        }
-
         attacker.IsAttackStarted = true;
         attacker.Attack();
 
         WeaponData selectedWeapon = attacker.CurrentWeapon;
-        instantiatedWeaponBehaviour = Instantiate(selectedWeapon.weaponBehaviourPrefab, attacker.WeaponPoint.position, selectedWeapon.weaponBehaviourPrefab.transform.rotation);
+        WeaponBehaviour instantiatedWeaponBehaviour = Instantiate(selectedWeapon.weaponBehaviourPrefab, attacker.WeaponPoint.position, selectedWeapon.weaponBehaviourPrefab.transform.rotation);
         instantiatedWeaponBehaviour.transform.SetParent(attacker.WeaponPoint, true);
         instantiatedWeaponBehaviour.Execute(attacker, (Collider damageZone) =>
         {
@@ -73,6 +64,7 @@ public class AttackController : MonoBehaviour, IAttackController
             
             Destroy(instantiatedWeaponBehaviour.gameObject);
             instantiatedWeaponBehaviour = null;
+            
             if (attacker != null)
                 attacker.IsAttackStarted = false;
         });
