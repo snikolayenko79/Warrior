@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
+public class Character : MonoBehaviour, IMovable, IDamageable
 {
     public Animator MyAnimator;
 
@@ -131,13 +131,5 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
         }
         
         OnDead?.Invoke(this);
-    }
-
-    private ICharacterStateBehaviour _stateBehaviour;
-
-    public ICharacterStateBehaviour CurrentStateBehaviour
-    {
-        get => _stateBehaviour;
-        set => _stateBehaviour = value;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Users;
 
 public class InputListener : MonoBehaviour, IInputListener
 {
+    // Наследники переопределят это свойство или настроят в инспекторе
     public virtual List<string> ActionsName => myActionsName;
     
     [SerializeField] private List<string> myActionsName;
