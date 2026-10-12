@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 public class CharapterMoveController : MonoBehaviour, ICharacterMoveController
 {
-    protected List<IMovable> MovableEntities = new List<IMovable>();
-    
-    public void RegisterEntity(IMovable movable) => MovableEntities.Add(movable);
-    public void UnregisterEntity(IMovable movable) => MovableEntities.Remove(movable);
-
     public void BeginMove(IMovable  movable)
     {
         movable.MoveSpeed = 0;

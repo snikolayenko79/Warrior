@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStateBehaviourPlayerInputMove : CharacterStateBehaviourBase
+public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
 {
     private IMovable _movable;
     private IInputListener _inputListener;

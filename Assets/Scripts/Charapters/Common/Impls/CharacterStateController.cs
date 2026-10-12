@@ -58,6 +58,11 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
         get => _characterMoveController;
         set  => _characterMoveController = value;
     }
+
+    void Awake()
+    {
+        TryGetComponent<ICharacterMoveController>(out _characterMoveController);
+    }
     
     void Update()
     {

@@ -22,6 +22,11 @@ public class World1_Scenario : MonoBehaviour
     
     public CharacterFactory characterFactory;
     
+    public CharacterStateController characterStateController;
+    public CharacterStateBehaviourBase characterStatePlayerInput;
+    public CharacterStateBehaviourPathMove characterStatePathMove;
+    public Player player = null;
+    
     void Start()
     {
         StartCoroutine(World1_Scenario_Coroutine());
@@ -31,9 +36,13 @@ public class World1_Scenario : MonoBehaviour
     {
         yield return null;
 
+        characterStateController.RegisterEntity(player);
+        characterStateController.StateStart(player, characterStatePlayerInput);
+        
         GameObject enemy1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
         Character character1 = enemy1.GetComponent<Character>();
         character1.CurrentPath = enemy1Path;
+        characterStateController.StateStart(character1, characterStatePathMove);
         
         while (!character1.IsDead)
             yield return null;
@@ -41,6 +50,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject enemy2 = characterFactory.SpawnCharapter(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation * enemy2Prefab.transform.rotation);
         Character character2 = enemy2.GetComponent<Character>();
         character2.CurrentPath = enemy2Path;
+        characterStateController.StateStart(character2, characterStatePathMove);
         
         while (!character2.IsDead)
             yield return null;
@@ -48,6 +58,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject villager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
         Character characterVillager = villager.GetComponent<Character>();
         characterVillager.CurrentPath = villagerPath;
+        characterStateController.StateStart(characterVillager, characterStatePathMove);
         
         yield return null;
         while (characterVillager.IsMoving)
@@ -56,6 +67,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject seller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
         Character characterSeller = seller.GetComponent<Character>();
         characterSeller.CurrentPath = sellerPath;
+        characterStateController.StateStart(characterSeller, characterStatePathMove);
         
         yield return null;
         while (characterSeller.IsMoving)
