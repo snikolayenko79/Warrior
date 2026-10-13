@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public interface IAttacker
 {
+    Vector3 Position { get; set; }
     List<WeaponData> AllWeapons { get; }
     List<WeaponData> AvailableWeapons { get; set; }
     WeaponData CurrentWeapon { get; set; }

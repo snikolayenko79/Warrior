@@ -1,17 +1,22 @@
 using UnityEngine;
 
-public class FollowTargetPath : MonoBehaviour, INavigationPath
+public class FollowTargetPath : INavigationPath
 {
-    public Player target;
+    private IAttackable _target;
 
+    public FollowTargetPath(IAttackable target)
+    {
+        _target = target;
+    }
+    
     public Vector3? GetCurrentTarget()
     {
         // Если игрок погиб или удален, навигатор возвращает null
-        if (target == null || target.IsDead)
+        if (_target == null || _target.IsDead)
             return null;
 
         // Постоянно возвращаем свежие координаты игрока
-        return target.Position;
+        return _target.Position;
     }
 
     public void NextTarget()

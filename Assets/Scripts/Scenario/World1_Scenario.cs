@@ -25,6 +25,8 @@ public class World1_Scenario : MonoBehaviour
     public CharacterStateController characterStateController;
     public CharacterStateBehaviourBase characterStatePlayerInput;
     public CharacterStateBehaviourPathMove characterStatePathMove;
+    public CharacterStateBehaviourAttackPlayer attackPlayer;
+    public BehaviourStartFollowPlayer startFollowPlayer;
     public Player player = null;
     
     void Start()
@@ -41,8 +43,10 @@ public class World1_Scenario : MonoBehaviour
         
         GameObject enemy1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
         Character character1 = enemy1.GetComponent<Character>();
-        character1.CurrentPath = enemy1Path;
+        character1.CurrentPath = new RandomPath(character1);
         characterStateController.StateStart(character1, characterStatePathMove);
+        characterStateController.StateStart(character1, startFollowPlayer);
+        characterStateController.StateStart(character1, attackPlayer);
         
         while (!character1.IsDead)
             yield return null;

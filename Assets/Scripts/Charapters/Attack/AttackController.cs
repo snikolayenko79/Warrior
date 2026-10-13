@@ -3,6 +3,7 @@ using UnityEngine;
 public class AttackController : MonoBehaviour, IAttackController
 {
     [Tooltip("Леер врагов (противоположной стороны).")]
+    public LayerMask playerLayer;
     public LayerMask enemyLayer;
 
     public void UpdateAttack(IAttacker attacker)
@@ -44,7 +45,7 @@ public class AttackController : MonoBehaviour, IAttackController
             Quaternion orientation = damageZone.transform.rotation;
 
             // 2. Находим все коллайдеры врагов в зоне
-            Collider[] hitColliders = Physics.OverlapBox(center, halfExtents, orientation, enemyLayer);
+            Collider[] hitColliders = Physics.OverlapBox(center, halfExtents, orientation, attacker is Enemy ? playerLayer : enemyLayer);
 
             // 3. Перебираем им и наносим урон через интерфейс
             foreach (Collider enemyCollider in hitColliders)
