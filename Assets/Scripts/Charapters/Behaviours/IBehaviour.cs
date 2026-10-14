@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ICharacterStateBehaviour
+public interface IBehaviour
 {
     void StateStart(ICharapterState characterState);
     void StateUpdate(ICharapterState characterState);

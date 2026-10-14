@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class World1_Scenario : MonoBehaviour
 {
@@ -23,10 +24,10 @@ public class World1_Scenario : MonoBehaviour
     public CharacterFactory characterFactory;
     
     public CharacterStateController characterStateController;
-    public CharacterStateBehaviourBase characterStatePlayerInput;
-    public CharacterStateBehaviourPathMove characterStatePathMove;
-    public CharacterStateBehaviourAttackPlayer attackPlayer;
-    public BehaviourStartFollowPlayer startFollowPlayer;
+    [FormerlySerializedAs("characterStatePlayerInput")] public BehaviourBase playerInput;
+    [FormerlySerializedAs("characterPathMove")] [FormerlySerializedAs("characterStatePathMove")] public BehaviourFollowPath followPath;
+    public BehaviourAttackPlayer attackPlayer;
+    [FormerlySerializedAs("startFollowPlayer")] public BehaviourFollowPlayer followPlayer;
     public Player player = null;
     
     void Start()
@@ -39,13 +40,13 @@ public class World1_Scenario : MonoBehaviour
         yield return null;
 
         characterStateController.RegisterEntity(player);
-        characterStateController.StateStart(player, characterStatePlayerInput);
+        characterStateController.StateStart(player, playerInput);
         
         GameObject enemy1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
         Character character1 = enemy1.GetComponent<Character>();
         character1.CurrentPath = new RandomPath(character1);
-        characterStateController.StateStart(character1, characterStatePathMove);
-        characterStateController.StateStart(character1, startFollowPlayer);
+        characterStateController.StateStart(character1, followPath);
+        characterStateController.StateStart(character1, followPlayer);
         characterStateController.StateStart(character1, attackPlayer);
         
         while (!character1.IsDead)
@@ -54,7 +55,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject enemy2 = characterFactory.SpawnCharapter(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation * enemy2Prefab.transform.rotation);
         Character character2 = enemy2.GetComponent<Character>();
         character2.CurrentPath = enemy2Path;
-        characterStateController.StateStart(character2, characterStatePathMove);
+        characterStateController.StateStart(character2, followPath);
         
         while (!character2.IsDead)
             yield return null;
@@ -64,7 +65,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject villager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
         Character characterVillager = villager.GetComponent<Character>();
         characterVillager.CurrentPath = villagerPath;
-        characterStateController.StateStart(characterVillager, characterStatePathMove);
+        characterStateController.StateStart(characterVillager, followPath);
         
         yield return null;
         while (characterVillager.IsMoving)
@@ -73,7 +74,7 @@ public class World1_Scenario : MonoBehaviour
         GameObject seller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
         Character characterSeller = seller.GetComponent<Character>();
         characterSeller.CurrentPath = sellerPath;
-        characterStateController.StateStart(characterSeller, characterStatePathMove);
+        characterStateController.StateStart(characterSeller, followPath);
         
         yield return null;
         while (characterSeller.IsMoving)

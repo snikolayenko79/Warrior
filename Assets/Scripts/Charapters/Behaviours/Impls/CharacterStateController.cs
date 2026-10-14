@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 public class CharacterStateController : MonoBehaviour, ICharacterStateController
 {
-    [SerializeField] List<CharacterStateBehaviourBase> statesBehaviours = new List<CharacterStateBehaviourBase>();
+    [SerializeField] List<BehaviourBase> statesBehaviours = new List<BehaviourBase>();
     
     protected List<ICharapterState> Entities = new List<ICharapterState>();
     
     public void RegisterEntity(ICharapterState characterState) => Entities.Add(characterState);
     public void UnregisterEntity(ICharapterState characterState) => Entities.Remove(characterState);
 
-    public void StateStart(ICharapterState entity, ICharacterStateBehaviour stateBehaviour)
+    public void StateStart(ICharapterState entity, IBehaviour stateBehaviour)
     {
         entity.StateBehaviours.Add(stateBehaviour);
         stateBehaviour.StateStart(entity);
     }
 
-    public void StateEnd(ICharapterState entity, ICharacterStateBehaviour stateBehaviour)
+    public void StateEnd(ICharapterState entity, IBehaviour stateBehaviour)
     {
         stateBehaviour.StateEnd(entity);
         entity.StateBehaviours.Add(stateBehaviour);
@@ -36,7 +36,7 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
 
             for (int j = entity.StateBehaviours.Count - 1; j >= 0; j--)
             {
-                ICharacterStateBehaviour behaviour = entity.StateBehaviours[j];
+                IBehaviour behaviour = entity.StateBehaviours[j];
                 behaviour.StateUpdate(entity);
             }
             

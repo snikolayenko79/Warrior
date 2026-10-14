@@ -13,4 +13,6 @@ public interface IAttacker
     bool IsAttackStarted { get; set; }
     void Attack();
     bool IsDead { get; }
+    int Experience { get; set; } // 0-100
+    float LockAttackCounter { get; set; }
 }

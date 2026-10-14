@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStateBehaviourMoveToAttack
   players:
   - {fileID: 1002305717}
-  attackDistance: 2
+  attackDistance: 0.6
 --- !u!1 &135160260
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +347,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844014700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &222615771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7724975449159301609, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
+  m_PrefabInstance: {fileID: 414409319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &222615773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222615771}
+  m_Material: {fileID: 13400000, guid: 3040980839d0d434bba7d68616e2fad1, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1, y: 4.2, z: 1.0761296}
+  m_Center: {x: 2.8, y: 5, z: 0.43806177}
 --- !u!1 &287927270
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6582832710539975457, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6089861822807923775, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
@@ -568,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332128610023248233, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3011973918412744311, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
@@ -580,7 +606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7724975449159301609, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7966851575154679342, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
       propertyPath: m_IsActive
@@ -589,7 +615,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7724975449159301609, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 222615773}
   m_SourcePrefab: {fileID: 100100000, guid: d9ad7e8555fea284d9522a178ead8a7a, type: 3}
 --- !u!1 &436055142
 GameObject:
@@ -813,10 +842,10 @@ MonoBehaviour:
   sellerPath: {fileID: 1763397615}
   characterFactory: {fileID: 1009138829}
   characterStateController: {fileID: 1844014701}
-  characterStatePlayerInput: {fileID: 1537528160}
-  characterStatePathMove: {fileID: 135160261}
+  playerInput: {fileID: 1537528160}
+  followPath: {fileID: 135160261}
   attackPlayer: {fileID: 118452102}
-  startFollowPlayer: {fileID: 1501112512}
+  followPlayer: {fileID: 1501112512}
   player: {fileID: 1002305717}
 --- !u!4 &506529202
 Transform:
@@ -1315,7 +1344,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BehaviourStartFollowPlayer
   players:
   - {fileID: 1002305717}
-  startFollowDistance: 4
+  startFollowDistanceMin: 0.7
+  startFollowDistanceMax: 3
+  stopFollowDistance: 0.6
 --- !u!1 &1507986974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4792788919547551050, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
       propertyPath: MyMoveSpeed
-      value: 0.01
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4792788919547551050, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
       propertyPath: MyRotateSpeed
@@ -1870,6 +1901,14 @@ PrefabInstance:
     - target: {fileID: 7336464227420829509, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442628728495409567, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
+      propertyPath: m_Mass
+      value: 9000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442628728495409567, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7500805523285786668, guid: d7a0aefb9fbe70548bc3de2822a48891, type: 3}
       propertyPath: m_Layer

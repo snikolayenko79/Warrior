@@ -91,4 +91,22 @@ public class Player : Character, IAttacker, ISpellCaster, IAttackable
         if (MyAnimator != null)
             MyAnimator.SetTrigger("Attack");
     }
+    
+    [SerializeField] private int _experience = 10;
+    
+    public int Experience
+    {
+        get => _experience;
+        set  => _experience = value;
+        
+    }
+    
+    private float _lockAttackCounter = 0;
+    
+    public float LockAttackCounter
+    {
+        get => _lockAttackCounter;
+        set  => _lockAttackCounter = value;
+        
+    }
 }

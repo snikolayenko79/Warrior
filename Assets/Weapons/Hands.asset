@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: Sword
   weaponCost: 10
-  weaponDamage: 50
+  weaponDamage: 10
   weaponPrefab: {fileID: 6652270961022038391, guid: 4decb9c5aaea0e442a1cf941f1e5a0e8, type: 3}
   weaponBehaviourPrefab: {fileID: 6847787490664856508, guid: 441f18659c1ddf14199d71dcdc66f49b, type: 3}

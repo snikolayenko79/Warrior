@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStateBehaviourPathMove : MovableStateBehaviourBase
+public class BehaviourFollowPath : MovableBehaviourBase
 {
     public override void StateStart(ICharapterState characterState)
     {

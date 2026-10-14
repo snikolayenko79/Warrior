@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStateBehaviourPlayerInput : CharacterStateBehaviourBase
+public class BehaviourPlayerInput : BehaviourBase
 {
     private IMovable _movable;
     private IAttacker _attacker;

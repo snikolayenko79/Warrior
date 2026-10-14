@@ -137,7 +137,10 @@ PrefabInstance:
       addedObject: {fileID: 4792788919547551050}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4352088241490968645}
+      addedObject: {fileID: 7442628728495409567}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2593736471114701131}
   m_SourcePrefab: {fileID: 100100000, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
 --- !u!1 &198864776837070588 stripped
 GameObject:
@@ -157,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   MyAnimator: {fileID: 6875164904256994876}
+  MyRigidbody: {fileID: 0}
   MyMoveSpeed: 0.01
   MyRotateSpeed: 300
   allSpells:
@@ -167,14 +171,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 920ce7d0cbb293e49aba52a7b6bf2c89, type: 2}
   - {fileID: 11400000, guid: 250f012339a8fb44cb658667f58ca90e, type: 2}
   weaponPoint: {fileID: 3444118038263464537}
---- !u!135 &4352088241490968645
-SphereCollider:
+  _experience: 10
+--- !u!54 &7442628728495409567
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198864776837070588}
-  m_Material: {fileID: 0}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 20
+  m_AngularDamping: 20
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!65 &2593736471114701131
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198864776837070588}
+  m_Material: {fileID: 13400000, guid: 3040980839d0d434bba7d68616e2fad1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -186,8 +218,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0.33}
+  m_Size: {x: 0.2, y: 0.2, z: 0.7}
+  m_Center: {x: 0, y: 0, z: 0.35}
 --- !u!4 &406045789174979550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8385284853143594893, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}

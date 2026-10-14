@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AttackerBehaviourBase : CharacterStateBehaviourBase
+public abstract class AttackerBehaviourBase : BehaviourBase
 {
     public override void StateUpdate(ICharapterState characterState)
     {

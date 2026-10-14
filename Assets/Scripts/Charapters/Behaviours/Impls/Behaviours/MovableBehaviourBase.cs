@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class MovableStateBehaviourBase : CharacterStateBehaviourBase
+public abstract class MovableBehaviourBase : BehaviourBase
 {
     public override void StateUpdate(ICharapterState characterState)
     {
