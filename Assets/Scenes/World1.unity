@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BehaviourStartFollowPlayer
   players:
   - {fileID: 1002305717}
-  startFollowDistanceMin: 0.7
+  startFollowDistanceMin: 0.6
   startFollowDistanceMax: 3
   stopFollowDistance: 0.6
 --- !u!1 &1507986974
