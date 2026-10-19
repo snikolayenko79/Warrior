@@ -74,3 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994645864122de7478c99001fd9ebe19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectInstaller
+  sceneUIConfigs:
+  - SceneName: MainMenu
+    uiPrefab: {fileID: 8799763980553876401, guid: 1a5082b4e91e229449e357a564eae4eb, type: 3}
+  - SceneName: World1
+    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+  pauseMenuPrefab: {fileID: 8799763980553876401, guid: a6b7130df1072104b8f3d540250f4a70, type: 3}

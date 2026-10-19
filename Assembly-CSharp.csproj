@@ -50,44 +50,54 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharacterStateController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharapterState.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Character.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Input\IInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Input\Impls\InputListener.cs" />
+    <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource_CustomActions.cs" />
+    <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />
+    <Compile Include="Assets\Scripts\UI\Impls\UIManager.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\AttackController.cs" />
+    <Compile Include="Assets\Scripts\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\IInputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\MovableBehaviourBase.cs" />
-    <Compile Include="Assets\Resources\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\IBehaviour.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\SpellController.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Button_Resume.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\IMoveController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellCaster.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Button_Start.cs" />
+    <Compile Include="Assets\Scripts\SceneManagament\ISceneLoader.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourPlayerInput.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\Impls\InputListener.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\RandomPath.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Impls\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Charapters\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\UI\IUIView.cs" />
+    <Compile Include="Assets\Scripts\UI\Impls\UIView.cs" />
+    <Compile Include="Assets\Scripts\Zenject\CoroutineRunner.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponBehaviour.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Button_Pause.cs" />
     <Compile Include="Assets\Scripts\Scenario\World1_Scenario.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\AttackerBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\MoveController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellController.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\CharacterStateController.cs" />
+    <Compile Include="Assets\Scripts\Input\IInputRouter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourAttackPlayer.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\IInputEventSource.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\IMovable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
@@ -95,9 +105,34 @@
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPath.cs" />
+    <Compile Include="Assets\Scripts\Input\IInputListener.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\Engine\Input\IInputListener.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Button_MainMenu.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\INavigationPath.cs" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity 6000.3.23f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -497,32 +532,32 @@
     <Reference Include="UnityEditor.XRModule">
       <HintPath>C:\Program Files\Unity 6000.3.23f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Zenject-usage">
+      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.collections@84e8eb3fc12e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.visualscripting@4edfcc09512f\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff\Mono.Cecil.dll</HintPath>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
       <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject-usage">
-      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.visualscripting@4edfcc09512f\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
       <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>D:\Work\GitHub\Warrior\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+      <HintPath>D:\Work\GitHub\Warrior\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity 6000.3.23f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -929,11 +964,11 @@
     <Reference Include="Unity.AI.Navigation.Editor">
       <HintPath>D:\Work\GitHub\Warrior\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="PPv2URPConverters">
-      <HintPath>D:\Work\GitHub\Warrior\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>D:\Work\GitHub\Warrior\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="PPv2URPConverters">
+      <HintPath>D:\Work\GitHub\Warrior\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>D:\Work\GitHub\Warrior\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
