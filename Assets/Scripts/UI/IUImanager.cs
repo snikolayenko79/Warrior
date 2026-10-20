@@ -14,7 +14,7 @@ public interface IUIManager
     /// </summary>
     /// <param name="popupPrefab">Префаб окна, содержащий компонент UIScreenView.</param>
     /// <returns>Экземпляр созданного окна типа UIView.</returns>
-    IUIView OpenPopup(IUIView popupPrefab);
+    IUIView OpenPopup(IUIView popupPrefab, params object[] args);
 
     /// <summary>
     /// Закрывает текущее активное верхнее окно. 

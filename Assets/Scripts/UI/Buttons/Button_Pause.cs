@@ -15,7 +15,6 @@ public class Button_Pause : MonoBehaviour
 
     public void OnClick()
     {
-        Time.timeScale = 0;
         _uiManager.OpenPopup(_pauseMenuPrefab);
     }
 }

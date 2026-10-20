@@ -13,7 +13,6 @@ public class Button_Resume : MonoBehaviour
 
     public void OnClick()
     {
-        Time.timeScale = 1;
         _uiManager.CloseCurrentPopup();
     }
 }
