@@ -10,7 +10,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     private readonly Dictionary<string, IUIView> _uiConfigs;
     
     private readonly Stack<IUIView> _screenStack = new Stack<IUIView>();
-    private IUIView _currentScreen;
+    private IUIView _currentPopup;
     private string _currentSceneName;
 
     public UIManager(
@@ -51,7 +51,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
         if (_uiConfigs.TryGetValue(sceneName, out IUIView prefab))
         {
-            _currentScreen = _container.InstantiatePrefabForComponent<IUIView>(prefab.GameObject);
+            _currentPopup = _container.InstantiatePrefabForComponent<UIView>((prefab as UIView).gameObject);
             
             if (sceneName.Contains("Menu"))
             {
@@ -61,56 +61,62 @@ public class UIManager : IUIManager, IInitializable, IDisposable
         }
     }
     
-    public IUIView OpenPopup(IUIView popupPrefab, params object[] args)
+    public IUIView OpenPopup(GameObject popupPrefab, params object[] args)
     {
+        // TODO. переделать IsModal и timeScale. Могут динамически меняться в старт окна.
+        // Может в окнах менять. Или вообще отказаться. 
+        
         if (popupPrefab == null)
         {
             Debug.LogError("[UIManager] Попытка открыть пустой префаб окна!");
             return null;
         }
 
-        if (_currentScreen != null)
+        if (_currentPopup != null)
         {
-            // Если новое окно модальное — выключаем кликабельность у старого окна
-            if (popupPrefab.IsModal)
-                _currentScreen.SetInteractable(false);
-            
-            _screenStack.Push(_currentScreen);
+            _screenStack.Push(_currentPopup);
         }
 
-        _currentScreen = _container.InstantiatePrefabForComponent<IUIView>(popupPrefab.GameObject, (Transform)null, args);
+        IUIView viewInPrefab = popupPrefab.GetComponent<IUIView>();
         
+        IUIView newView = viewInPrefab.Create(popupPrefab, args);
+        
+        if (newView.IsModal)
+            _currentPopup.SetInteractable(false);
+            
         // Если новое окно требует паузу — останавливаем время
-        if (_currentScreen.PauseTime)
+        if (newView.PauseTime)
             Time.timeScale = 0f;
+
+        _currentPopup = newView;
         
-        return _currentScreen;
+        return _currentPopup;
     }
 
     public void CloseCurrentPopup()
     {
-        if (_currentScreen == null)
+        if (_currentPopup == null)
             return;
 
         // Запоминаем, было ли закрывающееся окно модальным, чтобы знать, разблокировать ли нижнее
-        bool closedWasModal = _currentScreen.IsModal;
+        bool closedWasModal = _currentPopup.IsModal;
 
         // Уничтожаем текущий попап
-        UnityEngine.Object.Destroy(_currentScreen.GameObject);
-        _currentScreen = null;
+        _currentPopup.Destroy();
+        _currentPopup = null;
 
         // Если в истории (стеке) что-то есть — достаем предыдущее окно
         if (_screenStack.Count > 0)
         {
-            _currentScreen = _screenStack.Pop();
+            _currentPopup = _screenStack.Pop();
         
             // Возвращаем интерактивность нижнему окну, только если закрытое окно его блокировало
             if (closedWasModal)
-                _currentScreen.SetInteractable(true);
+                _currentPopup.SetInteractable(true);
         }
 
         // Если на экране осталось окно, и оно ТРЕБУЕТ паузу
-        if (_currentScreen != null && _currentScreen.PauseTime)
+        if (_currentPopup != null && _currentPopup.PauseTime)
         {
             Time.timeScale = 0f;
         }
@@ -124,9 +130,9 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
     public void ClearCurrentUI()
     {
-        if (_currentScreen != null)
+        if (_currentPopup != null)
         {
-            UnityEngine.Object.Destroy(_currentScreen.GameObject);
+            _currentPopup.Destroy();
         }
 
         while (_screenStack.Count > 0)
@@ -134,11 +140,11 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             var screen = _screenStack.Pop();
             if (screen != null)
             {
-                UnityEngine.Object.Destroy(screen.GameObject);
+                screen.Destroy();
             }
         }
 
-        _currentScreen = null;
+        _currentPopup = null;
         Time.timeScale = 1f; // Гарантируем сброс паузы при смене сцены
     }
 }

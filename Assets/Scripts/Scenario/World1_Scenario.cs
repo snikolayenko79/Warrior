@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 public class World1_Scenario : MonoBehaviour
 {
@@ -30,6 +31,16 @@ public class World1_Scenario : MonoBehaviour
     [FormerlySerializedAs("startFollowPlayer")] public BehaviourFollowPlayer followPlayer;
     public Player player = null;
     
+    private IDialogManager _dialogManager = null;
+
+    public Dialogue DialogueEntrance = null;
+    
+    [Inject]
+    public void Construct(IDialogManager dialogManager)
+    {
+        _dialogManager = dialogManager;
+    }
+    
     void Start()
     {
         StartCoroutine(World1_Scenario_Coroutine());
@@ -37,7 +48,12 @@ public class World1_Scenario : MonoBehaviour
 
     private IEnumerator World1_Scenario_Coroutine()
     {
-        yield return null;
+        yield return new WaitForSeconds(1);
+        
+        _dialogManager.StartDialogue(DialogueEntrance);
+        
+        while (_dialogManager.IsDialogueRunning)
+            yield return null;
 
         characterStateController.RegisterEntity(player);
         characterStateController.StateStart(player, playerInput);

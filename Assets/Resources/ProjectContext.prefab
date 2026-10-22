@@ -76,15 +76,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectInstaller
   sceneUIConfigs:
   - SceneName: MainMenu
-    uiPrefab: {fileID: 8799763980553876401, guid: 1a5082b4e91e229449e357a564eae4eb, type: 3}
+    uiPrefab: {fileID: 2468859210731900367, guid: 1a5082b4e91e229449e357a564eae4eb, type: 3}
   - SceneName: World1
-    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+    uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
   - SceneName: World2
-    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+    uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
   - SceneName: World3
-    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+    uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
   - SceneName: World4
-    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+    uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
   - SceneName: World5
-    uiPrefab: {fileID: 8799763980553876401, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
-  pauseMenuPrefab: {fileID: 3774711465326445949, guid: bd53d8ccd0ee81046b842d70400392d2, type: 3}
+    uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
+  pauseMenuPrefab: {fileID: 6873533455863789100, guid: bd53d8ccd0ee81046b842d70400392d2, type: 3}
+  dialoguePrefab: {fileID: 1427428768529139360, guid: 5c51f783c83af6e42ac22a2050e6eb7a, type: 3}

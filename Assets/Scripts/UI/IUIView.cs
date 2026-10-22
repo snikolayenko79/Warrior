@@ -5,5 +5,7 @@ public interface IUIView
     bool IsModal { get; }
     bool PauseTime { get; }
     void SetInteractable(bool isInteractable);
-    GameObject GameObject { get; }
+    void Init(params object[] args);
+    IUIView Create(GameObject prefab, params object[] args);
+    void Destroy();
 }

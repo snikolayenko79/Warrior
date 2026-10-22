@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 6555041241070123541}
   - component: {fileID: 4346739138774120764}
   - component: {fileID: 7129940731008448648}
-  - component: {fileID: 3774711465326445949}
   - component: {fileID: 7205553293567290564}
+  - component: {fileID: 6873533455863789100}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -137,7 +137,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -183,20 +183,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3774711465326445949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380968456019443682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3959f3df64897384299d63b5a667c294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIView
-  IsViewModal: 1
-  IsViewPauseTime: 1
 --- !u!225 &7205553293567290564
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -209,6 +195,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6873533455863789100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380968456019443682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15430a20abe83954cbed01bfd4110259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIViewPause
+  IsViewModal: 1
+  IsViewPauseTime: 1
 --- !u!1 &3518555796022397816
 GameObject:
   m_ObjectHideFlags: 0

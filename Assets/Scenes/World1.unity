@@ -717,6 +717,7 @@ MonoBehaviour:
   attackPlayer: {fileID: 118452102}
   followPlayer: {fileID: 1501112512}
   player: {fileID: 1002305717}
+  DialogueEntrance: {fileID: 11400000, guid: f260ef3616ff97c44961ca6aa7f40e49, type: 2}
 --- !u!4 &506529202
 Transform:
   m_ObjectHideFlags: 0

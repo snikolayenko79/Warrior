@@ -17,6 +17,9 @@ public class ProjectInstaller : MonoInstaller
 
     [Header("Префаб окна паузы")]
     [SerializeField] private UIView pauseMenuPrefab;
+    
+    [Header("Префаб окна диалогов")]
+    [SerializeField] private UIView dialoguePrefab;
 
     public override void InstallBindings()
     {
@@ -30,6 +33,14 @@ public class ProjectInstaller : MonoInstaller
             Debug.LogError("[ProjectInstaller] На префабе паузы отсутствует компонент IUIView!");
         }
         Container.Bind<IUIView>().WithId("PauseMenuPrefab").FromInstance(pauseInterface);
+        
+        IUIView dialogueInterface = dialoguePrefab as IUIView;
+        if (dialogueInterface == null)
+        {
+            Debug.LogError("[ProjectInstaller] На префабе диалогов отсутствует компонент IUIView!");
+        }
+        
+        Container.Bind<GameObject>().WithId("DialoguePrefab").FromInstance(dialoguePrefab.gameObject);
         
         // 2. Формируем строго интерфейсный словарь
         var uiDictionary = new Dictionary<string, IUIView>();
@@ -50,5 +61,7 @@ public class ProjectInstaller : MonoInstaller
             .AsSingle()
             .WithArguments(uiDictionary)
             .NonLazy();
+        
+        Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
     }
 }
