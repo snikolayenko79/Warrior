@@ -71,4 +71,9 @@ public class NewInputEventSource_CustomActions : MonoBehaviour, IInputEventSourc
         float value = context.performed ? 1f : 0f;
         OnInputAction?.Invoke(context.action.name, new InputContext(value));
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
 }
