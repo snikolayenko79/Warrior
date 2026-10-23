@@ -43,6 +43,8 @@ public class DialogueManager : IDialogManager
         if (_currentNodeIndex < _currentDialogue.DialogueNodes.Count())
         {
             _currentNode = _currentDialogue.DialogueNodes.ElementAt(_currentNodeIndex);
+            // TODO. Убедиться, что закрываем именно окно диалога.
+            _uiManager.CloseActiveView();
             DisplayCurrentNode();
         }
         else

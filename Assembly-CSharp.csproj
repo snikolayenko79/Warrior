@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Zenject\World1Installer.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />

@@ -19,7 +19,7 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
     public void StateEnd(ICharapterState entity, IBehaviour stateBehaviour)
     {
         stateBehaviour.StateEnd(entity);
-        entity.StateBehaviours.Add(stateBehaviour);
+        entity.StateBehaviours.Remove(stateBehaviour);
     }
 
     void UpdateStates()
