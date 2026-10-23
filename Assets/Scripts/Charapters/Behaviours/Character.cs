@@ -121,7 +121,7 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
         if (CurrentPath == null)
             CurrentPath = GetComponent<INavigationPath>();
     }
-    
+
     void OnMoveChange()
     {
         if (MyAnimator)
@@ -155,6 +155,8 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
             MyAnimator.SetBool("IsMoving", false);
             MyAnimator.SetTrigger("IsDead");
         }
+
+        MyRigidbody.isKinematic = true;
         
         OnDead?.Invoke(this);
     }

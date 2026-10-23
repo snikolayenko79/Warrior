@@ -9,6 +9,7 @@ public class World1_Scenario : MonoBehaviour
     public GameObject playerPrefab;
     public Transform playerSpawnPoint;
     public SpecifiedPath playerPath1;
+    public SpecifiedPath playerPath2;
     
     public GameObject enemy1Prefab;
     public Transform enemy1SpawnPoint;
@@ -38,9 +39,13 @@ public class World1_Scenario : MonoBehaviour
 
     public Dialogue DialogueEntrance = null;
     public Dialogue DialogueYodan1 = null;
+    public Dialogue DialogueVillager = null;
+    public Dialogue DialogueSeller = null;
 
     private BehaviourAttackPlayer _behaviourAttackPlayer;
     private BehaviourFollowPlayer _behaviourFollowPlayer;
+
+    public Camera camera;
     
     [Inject]
     public void Construct(
@@ -70,6 +75,9 @@ public class World1_Scenario : MonoBehaviour
         _behaviourAttackPlayer.players.Add(chPlayer as Player);
         _behaviourFollowPlayer.players.Add(chPlayer as Player);
         
+        GameObject goYodan1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
+        Character chYodan1 = goYodan1.GetComponent<Character>();
+        
         yield return null;
         
         while (chPlayer.IsMoving)
@@ -77,15 +85,15 @@ public class World1_Scenario : MonoBehaviour
         
         characterStateController.StateEnd(chPlayer, followPath);
         
-        yield return new WaitForSeconds(1.0f);
+        camera.transform.SetParent(goPlayer.transform, true);
+        
+        yield return new WaitForSeconds(0.50f);
         
         _dialogManager.StartDialogue(DialogueEntrance);
         
         while (_dialogManager.IsDialogueRunning)
             yield return null;
         
-         GameObject goYodan1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
-         Character chYodan1 = goYodan1.GetComponent<Character>();
          chYodan1.CurrentPath = enemy1Path;
          characterStateController.StateStart(chYodan1, followPath);
         
@@ -94,7 +102,7 @@ public class World1_Scenario : MonoBehaviour
          while (chYodan1.IsMoving)
              yield return null;
         
-         yield return new WaitForSeconds(1.0f);
+         yield return new WaitForSeconds(0.50f);
          
          _dialogManager.StartDialogue(DialogueYodan1);
         
@@ -116,25 +124,35 @@ public class World1_Scenario : MonoBehaviour
          
          while (!chYodan1.IsDead || !chYodan2.IsDead)
             yield return null;
-
-        yield return new WaitForSeconds(3);
         
-        GameObject villager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
-        Character characterVillager = villager.GetComponent<Character>();
-        characterVillager.CurrentPath = villagerPath;
-        characterStateController.StateStart(characterVillager, followPath);
+        yield return new WaitForSeconds(2);
+        
+        GameObject goVillager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
+        Character chVillager = goVillager.GetComponent<Character>();
+        chVillager.CurrentPath = villagerPath;
+        characterStateController.StateStart(chVillager, followPath);
+        
+        characterStateController.StateEnd(chPlayer, playerInput);
+        chPlayer.CurrentPath = playerPath2;
+        characterStateController.StateStart(chPlayer, followPath);
+        
+        GameObject goSeller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
+        Character chSeller = goSeller.GetComponent<Character>();
+        chSeller.CurrentPath = sellerPath;
+        characterStateController.StateStart(chSeller, followPath);
         
         yield return null;
-        while (characterVillager.IsMoving)
+        while (chVillager.IsMoving || chPlayer.IsMoving)
             yield return null;
         
-        GameObject seller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
-        Character characterSeller = seller.GetComponent<Character>();
-        characterSeller.CurrentPath = sellerPath;
-        characterStateController.StateStart(characterSeller, followPath);
+        yield return new WaitForSeconds(1.0f);
+         
+        _dialogManager.StartDialogue(DialogueVillager);
         
-        yield return null;
-        while (characterSeller.IsMoving)
+        while (_dialogManager.IsDialogueRunning)
             yield return null;
+        
+        characterStateController.StateEnd(chPlayer, followPath);
+        characterStateController.StateStart(chPlayer, playerInput);
     }
 }

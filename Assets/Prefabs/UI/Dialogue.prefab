@@ -411,6 +411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f931c2006bff9454b8b760e556e0bf90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIViewDialogue
-  IsViewModal: 1
-  IsViewPauseTime: 1
+  isViewModal: 1
+  isViewPauseTime: 1
   textControl: {fileID: 1833332811905162064}

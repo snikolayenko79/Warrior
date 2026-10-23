@@ -673,7 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   MyAnimator: {fileID: 2784061010632844528}
   MyRigidbody: {fileID: 0}
-  MyMoveSpeed: 0.01
+  MyMoveSpeed: 0.012
   MyRotateSpeed: 150
   allWeapons:
   - {fileID: 11400000, guid: cf21529a7b8334a48a60698c33aaaab6, type: 2}

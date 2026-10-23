@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15430a20abe83954cbed01bfd4110259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIViewPause
-  IsViewModal: 1
-  IsViewPauseTime: 1
+  isViewModal: 1
+  isViewPauseTime: 1
 --- !u!1 &3518555796022397816
 GameObject:
   m_ObjectHideFlags: 0
