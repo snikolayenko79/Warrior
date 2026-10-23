@@ -4,10 +4,10 @@ using Zenject;
 public class Button_Pause : MonoBehaviour
 {
     private IUIManager _uiManager;
-    private IUIView _pauseMenuPrefab;
+    private GameObject _pauseMenuPrefab;
 
     [Inject]
-    public void Construct(IUIManager uiManager, [Inject(Id = "PauseMenuPrefab")] IUIView pauseMenuPrefab)
+    public void Construct(IUIManager uiManager, [Inject(Id = "PauseMenuPrefab")] GameObject pauseMenuPrefab)
     {
         _uiManager = uiManager;
         _pauseMenuPrefab  = pauseMenuPrefab;
@@ -15,6 +15,6 @@ public class Button_Pause : MonoBehaviour
 
     public void OnClick()
     {
-        //_uiManager.OpenPopup(_pauseMenuPrefab);
+        _uiManager.OpenPopup(_pauseMenuPrefab);
     }
 }

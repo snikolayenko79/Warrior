@@ -39,15 +39,13 @@ public class DialogueManager : IDialogManager
             return;
         
         _currentNodeIndex++;
-        
-        if (_currentNodeIndex < _currentDialogue.DialogueNodes.Count())
-            _currentNode = _currentDialogue.DialogueNodes.ElementAt(_currentNodeIndex);
-        else
-        {
-            DialogueEnd();
-        }
 
-        if (_currentNode == null)
+        if (_currentNodeIndex < _currentDialogue.DialogueNodes.Count())
+        {
+            _currentNode = _currentDialogue.DialogueNodes.ElementAt(_currentNodeIndex);
+            DisplayCurrentNode();
+        }
+        else
         {
             DialogueEnd();
         }
@@ -56,7 +54,7 @@ public class DialogueManager : IDialogManager
     public void DialogueEnd()
     {
         // TODO. Убедиться, что закрываем именно окно диалога.
-        _uiManager.CloseCurrentPopup();
+        _uiManager.CloseActiveView();
         
         _currentDialogue = null;
         _currentNode = null;

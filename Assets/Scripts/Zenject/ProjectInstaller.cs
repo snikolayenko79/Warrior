@@ -25,6 +25,8 @@ public class ProjectInstaller : MonoInstaller
     {
          Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
          Container.Bind<GameSceneLoader>().AsSingle().NonLazy();
+         
+         Container.Bind<IUIViewFactory>().To<UIViewFactory>().AsSingle();
         
         // 1. Биндим префаб паузы как чистый интерфейс IUIView
         IUIView pauseInterface = pauseMenuPrefab as IUIView;
@@ -32,7 +34,7 @@ public class ProjectInstaller : MonoInstaller
         {
             Debug.LogError("[ProjectInstaller] На префабе паузы отсутствует компонент IUIView!");
         }
-        Container.Bind<IUIView>().WithId("PauseMenuPrefab").FromInstance(pauseInterface);
+        Container.Bind<GameObject>().WithId("PauseMenuPrefab").FromInstance(pauseMenuPrefab.gameObject);
         
         IUIView dialogueInterface = dialoguePrefab as IUIView;
         if (dialogueInterface == null)
@@ -43,12 +45,12 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<GameObject>().WithId("DialoguePrefab").FromInstance(dialoguePrefab.gameObject);
         
         // 2. Формируем строго интерфейсный словарь
-        var uiDictionary = new Dictionary<string, IUIView>();
+        var uiDictionary = new Dictionary<string, GameObject>();
         foreach (var config in sceneUIConfigs)
         {
             if (!string.IsNullOrEmpty(config.SceneName) && config.uiPrefab != null)
             {
-                uiDictionary[config.SceneName] = config.uiPrefab;
+                uiDictionary[config.SceneName] = config.uiPrefab.gameObject;
             }
             else if (config.uiPrefab == null)
             {

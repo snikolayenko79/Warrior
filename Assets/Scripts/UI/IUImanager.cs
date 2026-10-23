@@ -21,5 +21,5 @@ public interface IUIManager
     /// Если в истории (стеке) есть предыдущие окна, они автоматически разблокируются.
     /// Если окон в истории нет, но мы находимся в игре — активирует меню паузы.
     /// </summary>
-    void CloseCurrentPopup();
+    void CloseActiveView();
 }

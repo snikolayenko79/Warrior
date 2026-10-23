@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIViewHud : UIView
 {
-    public override void Init(params object[] args)
+    public override void OnCreate(params object[] args)
     {
         
     }

@@ -5,20 +5,20 @@ using Zenject;
 
 public class UIManager : IUIManager, IInitializable, IDisposable
 {
-    private readonly DiContainer _container;
+    private readonly IUIViewFactory _factory;
     private readonly GameSceneLoader _sceneLoader;
-    private readonly Dictionary<string, IUIView> _uiConfigs;
+    private readonly Dictionary<string, GameObject> _uiConfigs;
     
     private readonly Stack<IUIView> _screenStack = new Stack<IUIView>();
-    private IUIView _currentPopup;
+    private IUIView _activeView;
     private string _currentSceneName;
 
     public UIManager(
-        DiContainer container, 
+        IUIViewFactory factory, 
         GameSceneLoader sceneLoader, 
-        Dictionary<string, IUIView> uiConfigs)
+        Dictionary<string, GameObject> uiConfigs)
     {
-        _container = container;
+        _factory = factory;
         _sceneLoader = sceneLoader;
         _uiConfigs = uiConfigs;
     }
@@ -49,10 +49,11 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     {
         ClearCurrentUI();
 
-        if (_uiConfigs.TryGetValue(sceneName, out IUIView prefab))
+        if (_uiConfigs.TryGetValue(sceneName, out GameObject prefab))
         {
-            _currentPopup = _container.InstantiatePrefabForComponent<UIView>((prefab as UIView).gameObject);
+            _activeView = _factory.CreateView(prefab, null);
             
+            // TODO
             if (sceneName.Contains("Menu"))
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -72,51 +73,49 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             return null;
         }
 
-        if (_currentPopup != null)
+        if (_activeView != null)
         {
-            _screenStack.Push(_currentPopup);
+            _screenStack.Push(_activeView);
         }
-
-        IUIView viewInPrefab = popupPrefab.GetComponent<IUIView>();
         
-        IUIView newView = viewInPrefab.Create(popupPrefab, args);
+        IUIView newView = _factory.CreateView(popupPrefab, null, args);
         
         if (newView.IsModal)
-            _currentPopup.SetInteractable(false);
+            _activeView.SetInteractable(false);
             
         // Если новое окно требует паузу — останавливаем время
         if (newView.PauseTime)
             Time.timeScale = 0f;
 
-        _currentPopup = newView;
+        _activeView = newView;
         
-        return _currentPopup;
+        return _activeView;
     }
 
-    public void CloseCurrentPopup()
+    public void CloseActiveView()
     {
-        if (_currentPopup == null)
+        if (_activeView == null)
             return;
 
         // Запоминаем, было ли закрывающееся окно модальным, чтобы знать, разблокировать ли нижнее
-        bool closedWasModal = _currentPopup.IsModal;
+        bool closedWasModal = _activeView.IsModal;
 
         // Уничтожаем текущий попап
-        _currentPopup.Destroy();
-        _currentPopup = null;
+        _activeView.Destroy();
+        _activeView = null;
 
         // Если в истории (стеке) что-то есть — достаем предыдущее окно
         if (_screenStack.Count > 0)
         {
-            _currentPopup = _screenStack.Pop();
+            _activeView = _screenStack.Pop();
         
             // Возвращаем интерактивность нижнему окну, только если закрытое окно его блокировало
             if (closedWasModal)
-                _currentPopup.SetInteractable(true);
+                _activeView.SetInteractable(true);
         }
 
         // Если на экране осталось окно, и оно ТРЕБУЕТ паузу
-        if (_currentPopup != null && _currentPopup.PauseTime)
+        if (_activeView != null && _activeView.PauseTime)
         {
             Time.timeScale = 0f;
         }
@@ -130,9 +129,9 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
     public void ClearCurrentUI()
     {
-        if (_currentPopup != null)
+        if (_activeView != null)
         {
-            _currentPopup.Destroy();
+            _activeView.Destroy();
         }
 
         while (_screenStack.Count > 0)
@@ -144,7 +143,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             }
         }
 
-        _currentPopup = null;
+        _activeView = null;
         Time.timeScale = 1f; // Гарантируем сброс паузы при смене сцены
     }
 }

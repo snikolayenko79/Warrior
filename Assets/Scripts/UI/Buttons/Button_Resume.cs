@@ -13,6 +13,6 @@ public class Button_Resume : MonoBehaviour
 
     public void OnClick()
     {
-        _uiManager.CloseCurrentPopup();
+        _uiManager.CloseActiveView();
     }
 }

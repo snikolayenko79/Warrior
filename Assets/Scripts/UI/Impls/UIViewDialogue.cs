@@ -17,7 +17,7 @@ public class UIViewDialogue : UIView
         }
     }
 
-    public override void Init(params object[] args)
+    public override void OnCreate(params object[] args)
     {
         _text = args[0] as string;
     }
