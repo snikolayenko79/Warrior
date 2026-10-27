@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Yodan2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Yodan2
-  speakerId: 
+  speakerId: Yodan1
   dialogueText: Fool!!! You're going to die now... Ha...ha...ha

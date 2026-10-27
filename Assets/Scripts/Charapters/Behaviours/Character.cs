@@ -122,6 +122,10 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
             CurrentPath = GetComponent<INavigationPath>();
     }
 
+    protected void OnEnable() { }
+    
+    protected void OnDisable() { }
+
     void OnMoveChange()
     {
         if (MyAnimator)

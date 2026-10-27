@@ -65,5 +65,6 @@ public class ProjectInstaller : MonoInstaller
             .NonLazy();
         
         Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
     }
 }

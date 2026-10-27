@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Enemy : Character, IAttacker, IAttackable
+public class Enemy : ActorCharapter, IAttacker, IAttackable
 {
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
     private List<WeaponData> _availableWeapons = new List<WeaponData>();

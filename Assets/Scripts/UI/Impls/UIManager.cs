@@ -77,7 +77,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
         {
             _screenStack.Push(_activeView);
         }
-        
+
         IUIView newView = _factory.CreateView(popupPrefab, null, args);
         
         if (newView.IsModal)

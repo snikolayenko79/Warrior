@@ -1,10 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Zenject;
 
 public class ObjectPool : MonoBehaviour, IObjectPool
 {
     private Dictionary<GameObject, Queue<GameObject>> _pooledObjects = new Dictionary<GameObject, Queue<GameObject>>();
 
+    private DiContainer _container;
+
+    // Внедряем сам контейнер Zenject
+    [Inject]
+    public void Construct(DiContainer container)
+    {
+        _container = container;
+    }
+    
     // Получить объект из пула
     public GameObject Get(GameObject prefab)
     {
@@ -23,7 +33,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         }
         else
         {
-            obj = Object.Instantiate(prefab);
+            obj = _container.InstantiatePrefab(prefab);
             var poolMember = obj.AddComponent<PoolMember>();
             poolMember.OriginPrefab = prefab;
             poolMember.MyPool = this;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Yodan1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Yodan1
-  speakerId: 
+  speakerId: Yodan1
   dialogueText: Hmm... Human! Have you come to test your strength?

@@ -10,16 +10,19 @@ public class DialogueManager : IDialogManager
     
     private IUIManager _uiManager;
     private GameObject _dialoguePrefab;
+    private DiContainer _container;
 
     [Inject]
-    public void Construct(IUIManager uiManager, [Inject(Id = "DialoguePrefab")] GameObject dialoguePrefab)
+    public void Construct(IUIManager uiManager, [Inject(Id = "DialoguePrefab")] GameObject dialoguePrefab, DiContainer container)
     {
         _uiManager = uiManager;
         _dialoguePrefab = dialoguePrefab;
+        _container  = container;
     }
-    
-    public IDialogue CurrentDialogue { get; }
-    public IDialogueNode CurrentNode { get; }
+
+    public IDialogue CurrentDialogue => _currentDialogue;
+    public IDialogueNode CurrentNode => _currentNode;
+    public IDialogueActorsRegistry ActorsRegistry => _container.Resolve<IDialogueActorsRegistry>();
 
     public void StartDialogue(IDialogue dialogue)
     {
@@ -66,6 +69,12 @@ public class DialogueManager : IDialogManager
 
     private void DisplayCurrentNode()
     {
-        _uiManager.OpenPopup(_dialoguePrefab, _currentNode.DialogueText);
+        // Ресолвим, именно так, а не через конструктор. Т.к. сам менеджер в глоб. контексте, а регистр - в локальном для сцены.
+        IDialogueActor currentActor = null;
+        IDialogueActorsRegistry registry = _container.Resolve<IDialogueActorsRegistry>();
+        if (registry != null)
+            currentActor = registry.GetActor(_currentNode.SpeakerId);
+        
+        _uiManager.OpenPopup(_dialoguePrefab, _currentNode.DialogueText, currentActor);
     }
 }

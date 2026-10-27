@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 406045789174979550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6114065785089817764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1392574285553782705}
+  m_Layer: 7
+  m_Name: DialogueAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1392574285553782705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114065785089817764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.044, z: 0.737}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 687171511840515142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8132793664699339867
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +327,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8447368732712295509}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1392574285553782705}
     - targetCorrespondingSourceObject: {fileID: -8385284853143594893, guid: ee86e52a0f0d9b347adfd44f8bacad7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3444118038263464537}
@@ -328,9 +362,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   MyAnimator: {fileID: 6875164904256994876}
-  MyRigidbody: {fileID: 0}
+  MyRigidbody: {fileID: 7442628728495409567}
   MyMoveSpeed: 0.015
   MyRotateSpeed: 300
+  dialogueActorName: Player
+  speechBubbleAnchor: {fileID: 1392574285553782705}
   allSpells:
   - {fileID: 11400000, guid: f106d02ef4b0dbd4297acfa41668aaef, type: 2}
   spellSpawnPoint: {fileID: 8447368732712295509}

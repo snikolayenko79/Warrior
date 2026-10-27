@@ -47,6 +47,7 @@
     <Analyzer Include="C:\Program Files\Unity 6000.3.23f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Dialogues\IDialogueActor.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharacterStateController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharapterState.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Character.cs" />
@@ -68,13 +69,16 @@
     <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Dialogues\Impls\UITrianglePointer.cs" />
     <Compile Include="Assets\Scripts\Zenject\World1Installer.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\MovableBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\UI\IUIViewFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\IBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Behaviours\ActorCharapter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\SpellController.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourPlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueActorsRegistry.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\RandomPath.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Impls\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewPause.cs" />

@@ -13,5 +13,6 @@ public class World1Installer : MonoInstaller
     {
         Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);
         Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
+        
     }
 }
