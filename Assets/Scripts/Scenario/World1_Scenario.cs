@@ -42,20 +42,37 @@ public class World1_Scenario : MonoBehaviour
     public Dialogue DialogueVillager = null;
     public Dialogue DialogueSeller = null;
 
+    private AttackController _attackController;
+    private SpellController _spellController;
     private BehaviourAttackPlayer _behaviourAttackPlayer;
     private BehaviourFollowPlayer _behaviourFollowPlayer;
 
     public Camera camera;
+
+    public List<WeaponData> allWeapons = new List<WeaponData>();
+    public List<SpellData> allSpells = new List<SpellData>();
+
+    public WeaponData defaultPlayerWeapon = null;
+    
+    private IUIManager _uiManager;
+
+    public UIView TextView;
     
     [Inject]
     public void Construct(
-        IDialogManager dialogManager, 
+        IDialogManager dialogManager,
+        AttackController attackController,
+        SpellController spellController,
         BehaviourAttackPlayer behaviourAttackPlayer,
-        BehaviourFollowPlayer behaviourFollowPlayer)
+        BehaviourFollowPlayer behaviourFollowPlayer,
+        IUIManager uiManager)
     {
         _dialogManager = dialogManager;
+        _attackController = attackController;
+        _spellController = spellController;
         _behaviourAttackPlayer = behaviourAttackPlayer;
         _behaviourFollowPlayer = behaviourFollowPlayer;
+        _uiManager = uiManager;
     }
     
     void Start()
@@ -66,10 +83,14 @@ public class World1_Scenario : MonoBehaviour
     private IEnumerator World1_Scenario_Coroutine()
     {
         GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
+        
         Character chPlayer = goPlayer.GetComponent<Character>();
         chPlayer.CurrentPath = playerPath1;
-        
         characterStateController.StateStart(chPlayer, followPath);
+        
+        Player player = chPlayer as Player;
+        _attackController.AddWeapon(player, defaultPlayerWeapon);
+        _attackController.SelectWeapon(player, defaultPlayerWeapon);
         
         // TODO. Как минимум отказаться от добавления прямо в список.
         _behaviourAttackPlayer.players.Add(chPlayer as Player);
@@ -77,6 +98,10 @@ public class World1_Scenario : MonoBehaviour
         
         GameObject goYodan1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
         Character chYodan1 = goYodan1.GetComponent<Character>();
+        
+        Enemy enemy1 = chYodan1 as Enemy;
+        _attackController.AddWeapon(enemy1, allWeapons[0]);
+        _attackController.SelectWeapon(enemy1, allWeapons[0]);
         
         yield return null;
         
@@ -122,6 +147,10 @@ public class World1_Scenario : MonoBehaviour
          characterStateController.StateStart(chYodan2, followPlayer);
          characterStateController.StateStart(chYodan2, attackPlayer);
          
+         Enemy enemy2 = chYodan2 as Enemy;
+         _attackController.AddWeapon(enemy2, allWeapons[0]);
+         _attackController.SelectWeapon(enemy2, allWeapons[0]);
+         
          while (!chYodan1.IsDead || !chYodan2.IsDead)
             yield return null;
         
@@ -151,6 +180,10 @@ public class World1_Scenario : MonoBehaviour
         
         while (_dialogManager.IsDialogueRunning)
             yield return null;
+        
+        _spellController.AddSpell(player, allSpells[0]);
+         Vector3 screenPos = camera.WorldToScreenPoint(player.Position);
+         _uiManager.OpenPopup(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
         
         characterStateController.StateEnd(chPlayer, followPath);
         characterStateController.StateStart(chPlayer, playerInput);

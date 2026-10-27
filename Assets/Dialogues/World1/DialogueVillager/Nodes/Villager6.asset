@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Villager6
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager6
-  speakerId: 
+  speakerId: Villager
   dialogueText: You must destroy the dark lord and his minions...

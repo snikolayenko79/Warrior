@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Villager2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager2
-  speakerId: 
+  speakerId: Villager
   dialogueText: You freed our village from these monsters...

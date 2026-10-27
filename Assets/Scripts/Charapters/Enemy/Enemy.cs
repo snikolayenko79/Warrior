@@ -17,7 +17,7 @@ public class Enemy : ActorCharapter, IAttacker, IAttackable
         set  => _availableWeapons = value;
     }
     
-    public WeaponData CurrentWeapon
+    public WeaponData SelectedWeapon
     {
         get => _currentWeapon;
         set  => _currentWeapon = value;

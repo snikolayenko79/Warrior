@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Charapters\Move\IMoveController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellCaster.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewFactory.cs" />
+    <Compile Include="Assets\Scripts\UI\Impls\UIViewText.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_Start.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\ISceneLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\Dialogue.cs" />

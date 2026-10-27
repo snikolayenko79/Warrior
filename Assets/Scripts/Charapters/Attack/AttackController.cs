@@ -21,20 +21,14 @@ public class AttackController : MonoBehaviour, IAttackController
         {
             return;
         }
-            
-        if (attacker.CurrentWeapon == null)
-        {
-            attacker.AvailableWeapons.AddRange(attacker.AllWeapons);
-            SelectWeapon(attacker, attacker.AvailableWeapons[0]);
-        }
 
-        if (attacker.CurrentWeapon == null)
+        if (attacker.SelectedWeapon == null)
             return;
         
         attacker.IsAttackStarted = true;
         attacker.Attack();
 
-        WeaponData selectedWeapon = attacker.CurrentWeapon;
+        WeaponData selectedWeapon = attacker.SelectedWeapon;
         WeaponBehaviour instantiatedWeaponBehaviour = Instantiate(selectedWeapon.weaponBehaviourPrefab, attacker.WeaponPoint.position, selectedWeapon.weaponBehaviourPrefab.transform.rotation);
         instantiatedWeaponBehaviour.transform.SetParent(attacker.WeaponPoint, true);
         instantiatedWeaponBehaviour.Execute(attacker, (Collider damageZone) =>
@@ -71,13 +65,22 @@ public class AttackController : MonoBehaviour, IAttackController
         });
     }
 
-    private void SelectWeapon(IAttacker attacker, WeaponData weapon)
+    public void AddWeapon(IAttacker attacker, WeaponData weapon)
     {
-        attacker.CurrentWeapon = weapon;
+        if (!attacker.AvailableWeapons.Contains(weapon))
+            attacker.AvailableWeapons.Add(weapon);
+    }
+    
+    public void SelectWeapon(IAttacker attacker, WeaponData weapon)
+    {
+        if (!attacker.AvailableWeapons.Contains(weapon))
+            return;
+        
+        attacker.SelectedWeapon = weapon;
         
         if (attacker.CurrentWeaponObject)
             Destroy(attacker.CurrentWeaponObject);
         
-        attacker.CurrentWeaponObject = Instantiate(attacker.CurrentWeapon.weaponPrefab, attacker.WeaponPoint);
+        attacker.CurrentWeaponObject = Instantiate(attacker.SelectedWeapon.weaponPrefab, attacker.WeaponPoint);
     }
 }

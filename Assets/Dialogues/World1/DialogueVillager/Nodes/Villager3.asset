@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Villager3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager3
-  speakerId: 
+  speakerId: Villager
   dialogueText: These are the servants of the dark lord. They have taken over the
     entire surrounding area...

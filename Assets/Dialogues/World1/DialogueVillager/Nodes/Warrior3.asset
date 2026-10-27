@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Warrior3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Warrior3
-  speakerId: 
+  speakerId: Player
   dialogueText: Where can I find this lord?

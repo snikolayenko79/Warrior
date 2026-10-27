@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Villager7
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager7
-  speakerId: 
+  speakerId: Villager
   dialogueText: He lives in an old castle, go north, through the forest and the village.

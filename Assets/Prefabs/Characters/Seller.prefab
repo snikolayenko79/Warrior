@@ -191,6 +191,7 @@ MonoBehaviour:
   MyRigidbody: {fileID: 5498445192315834764}
   MyMoveSpeed: 0.015
   MyRotateSpeed: 300
+  dialogueActorName: Seller
   speechBubbleAnchor: {fileID: 619942989939617516}
 --- !u!4 &406045789174979550 stripped
 Transform:

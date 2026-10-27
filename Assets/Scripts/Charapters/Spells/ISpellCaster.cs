@@ -3,12 +3,11 @@ using System.Collections.Generic;
 
 public interface ISpellCaster
 {
-    List<SpellData> AllSpells { get; }
     List<SpellData> AvailableSpells { get; set; }
-    SpellData CurrentSpell { get; set; }
     Transform SpellSpawnPoint { get; }
     void Spell(SpellData spell = null);
     bool IsSpellCast { get; set; }
+    SpellData SelectedSpell { get; set; }
     bool IsSpellCastStarted { get; set; }
     bool IsDead { get; }
 }

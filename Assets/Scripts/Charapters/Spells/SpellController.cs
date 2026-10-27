@@ -4,35 +4,26 @@ public class SpellController : MonoBehaviour, ISpellController
 {   
     [Tooltip("Леер врагов (противоположной стороны).")]
     public LayerMask enemyLayer;
-
+    
     public void UpdateSpellCast(ISpellCaster caster)
     {
         if (caster is { IsSpellCast: true})
         {
-            DoSpellCast(caster);
+            DoSpellCast(caster, caster.SelectedSpell);
             caster.IsSpellCast = false;
+            caster.SelectedSpell = null;
         }
     }
 
-    protected void DoSpellCast(ISpellCaster caster)
+    protected void DoSpellCast(ISpellCaster caster, SpellData spell)
     {
         if (caster is { IsSpellCastStarted: true})
             return;
         
-        if (caster.CurrentSpell == null)
-        {
-            caster.AvailableSpells.AddRange(caster.AllSpells);
-            caster.CurrentSpell = caster.AvailableSpells[0];
-        }
-        
-        if (caster.CurrentSpell == null)
-            return;
-        
         caster.IsSpellCastStarted = true;
         caster.Spell();
-
-        SpellData selectedSpell = caster.CurrentSpell;
-        SpellBehaviour instantiatedSpell = Instantiate(selectedSpell.spellBehaviourPrefab, this.transform);
+        
+        SpellBehaviour instantiatedSpell = Instantiate(spell.spellBehaviourPrefab, this.transform);
         instantiatedSpell.Execute(caster, (Collider damageZone) =>
         {
             // 1. Получаем размеры и координаты зоны
@@ -51,12 +42,20 @@ public class SpellController : MonoBehaviour, ISpellController
                 if (enemyCollider.TryGetComponent<IDamageable>(out var damageable))
                 {
                     if (!damageable.IsDead)
-                        damageable.TakeDamage(selectedSpell.spellDamage);
+                        damageable.TakeDamage(spell.spellDamage);
                 }
             }
             
             if (caster != null)
                 caster.IsSpellCastStarted = false;
         });
+    }
+    
+    public void AddSpell(ISpellCaster caster, SpellData spell)
+    {
+        if (!caster.AvailableSpells.Contains(spell))
+        {
+            caster.AvailableSpells.Add(spell);
+        }
     }
 }

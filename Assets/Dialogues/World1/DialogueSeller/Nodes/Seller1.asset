@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Seller1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Seller1
-  speakerId: 
+  speakerId: Seller
   dialogueText: Let me cure you!

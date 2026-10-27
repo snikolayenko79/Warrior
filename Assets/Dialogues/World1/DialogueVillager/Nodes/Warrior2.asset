@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Warrior2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Warrior2
-  speakerId: 
+  speakerId: Player
   dialogueText: What should I do?

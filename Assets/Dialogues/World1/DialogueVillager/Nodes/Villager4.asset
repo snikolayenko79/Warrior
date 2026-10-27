@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Villager4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager4
-  speakerId: 
+  speakerId: Villager
   dialogueText: Many people were killed, the survivors are in captivity...

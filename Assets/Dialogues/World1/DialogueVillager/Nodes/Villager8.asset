@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Villager8
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager8
-  speakerId: 
+  speakerId: Villager
   dialogueText: I'll teach you the Fireball spell. I hope it comes in handy on your
     journey.

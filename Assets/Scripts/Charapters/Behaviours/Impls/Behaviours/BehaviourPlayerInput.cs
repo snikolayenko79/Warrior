@@ -88,12 +88,13 @@ public class BehaviourPlayerInput : BehaviourBase
         
         if (logicalActionName == "Spell" && context.FloatValue == 0)
         {
-            if (_spellcaster == null || _spellcaster.IsDead)
+            if (_spellcaster == null || _spellcaster.IsDead || _spellcaster.AvailableSpells.Count == 0)
                 return;
 
             if (!_spellcaster.IsSpellCast)
             {
                 _spellcaster.IsSpellCast = true;
+                _spellcaster.SelectedSpell = _spellcaster.AvailableSpells[0];
             }
         }
     }

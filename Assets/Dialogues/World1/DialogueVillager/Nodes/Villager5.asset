@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Villager5
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   nodeId: Villager5
-  speakerId: 
+  speakerId: Villager
   dialogueText: You are strong and brave! Therefore, I beg you for help...
