@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472b48ac6bca3a449a65dd9665590b4e, type: 3}
   m_Name: MagicSword
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
-  name: Magic sword
-  price: 30
+  productName: Magic sword
+  price: 150
   icon: {fileID: 580304011752998546, guid: 1bd4e723112ab5846ad3c9060381210b, type: 3}

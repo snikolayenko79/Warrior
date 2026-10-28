@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472b48ac6bca3a449a65dd9665590b4e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
-  name: Sword
-  price: 20
+  productName: Sword
+  price: 100
   icon: {fileID: 712035800519618848, guid: 2922c46ada4fe6b468b8d495879ad58d, type: 3}

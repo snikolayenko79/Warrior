@@ -47,7 +47,7 @@ public class World1_Scenario : MonoBehaviour
     private BehaviourAttackPlayer _behaviourAttackPlayer;
     private BehaviourFollowPlayer _behaviourFollowPlayer;
 
-    public Camera camera;
+    public Camera levelCamera;
 
     public List<WeaponData> allWeapons = new List<WeaponData>();
     public List<SpellData> allSpells = new List<SpellData>();
@@ -57,6 +57,7 @@ public class World1_Scenario : MonoBehaviour
     private IUIManager _uiManager;
 
     public UIView TextView;
+    public UIView ShopUI;
     
     [Inject]
     public void Construct(
@@ -107,10 +108,12 @@ public class World1_Scenario : MonoBehaviour
         
         while (chPlayer.IsMoving)
             yield return null;
+
+        _uiManager.OpenPopup(ShopUI.gameObject, player as ICustomer);
         
         characterStateController.StateEnd(chPlayer, followPath);
         
-        camera.transform.SetParent(goPlayer.transform, true);
+        levelCamera.transform.SetParent(goPlayer.transform, true);
         
         yield return new WaitForSeconds(0.50f);
         
@@ -182,7 +185,7 @@ public class World1_Scenario : MonoBehaviour
             yield return null;
         
         _spellController.AddSpell(player, allSpells[0]);
-         Vector3 screenPos = camera.WorldToScreenPoint(player.Position);
+         Vector3 screenPos = levelCamera.WorldToScreenPoint(player.Position);
          _uiManager.OpenPopup(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
         
         characterStateController.StateEnd(chPlayer, followPath);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472b48ac6bca3a449a65dd9665590b4e, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
-  name: Potion
-  price: 10
+  productName: Potion
+  price: 20
   icon: {fileID: -2880734798192188640, guid: e3c77816894432b4dbe5d906aeb112b3, type: 3}

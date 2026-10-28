@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using Zenject;
 
 public class Store : MonoBehaviour, IStore
@@ -9,17 +10,17 @@ public class Store : MonoBehaviour, IStore
     public IReadOnlyList<IPurchasable> Products => _products;
 
     [Inject]
-    public void Construct(List<IPurchasable> products)
+    public void Construct(StoreConfig config)
     {
         _products.Clear();
-        _products.AddRange(products);
+        _products.AddRange(config.Products);
     }
     
     public void Purchase(ICustomer customer, IPurchasable item)
     {
-        if (customer.CanAfford(item.Price))
+        if (customer.Coins >= item.Price)
         {
-            customer.DeductCoins(item.Price);
+            customer.Coins -= item.Price;
             item.OnPurchase(customer);
         }
     }

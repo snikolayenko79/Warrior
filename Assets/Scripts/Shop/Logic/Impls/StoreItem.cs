@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class StoreItem : ScriptableObject, IPurchasable
 {
-    public string name;
+    public string productName;
     public int price;
     public Sprite icon;
 
-    public string Name => name;
+    public string Name => productName;
     public int Price => price;
     public Sprite Icon => icon;
     
