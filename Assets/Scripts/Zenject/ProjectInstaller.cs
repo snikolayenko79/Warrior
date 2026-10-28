@@ -20,6 +20,11 @@ public class ProjectInstaller : MonoInstaller
     
     [Header("Префаб окна диалогов")]
     [SerializeField] private UIView dialoguePrefab;
+    
+    [SerializeField] private StoreConfig _storeConfig;
+    
+    // Ссылка на компонент магазина на сцене (если он уже там висит)
+    [SerializeField] private Store _storeInstance;
 
     public override void InstallBindings()
     {
@@ -66,5 +71,8 @@ public class ProjectInstaller : MonoInstaller
         
         Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
+
+        Container.BindInstance(_storeConfig).AsSingle();
+        Container.Bind<IStore>().FromComponentInNewPrefab(_storeInstance).AsSingle();
     }
 }

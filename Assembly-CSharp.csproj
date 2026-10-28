@@ -57,8 +57,11 @@
     <Compile Include="Assets\Scripts\UI\Impls\UIViewHud.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogue.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource_CustomActions.cs" />
+    <Compile Include="Assets\Scripts\Shop\Impls\StoreItem.cs" />
+    <Compile Include="Assets\Scripts\Shop\IPurchasable.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
+    <Compile Include="Assets\Scripts\Shop\IStore.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIManager.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\AttackController.cs" />
@@ -68,9 +71,11 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPlayer.cs" />
     <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Shop\Impls\Store.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\UITrianglePointer.cs" />
     <Compile Include="Assets\Scripts\Zenject\World1Installer.cs" />
+    <Compile Include="Assets\Scripts\Shop\Impls\StoreConfig.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\MovableBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\UI\IUIViewFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\IBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Shop\Impls\InventoryStoreItem.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ActorCharapter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
@@ -92,6 +98,7 @@
     <Compile Include="Assets\Scripts\UI\Buttons\Button_Start.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\ISceneLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\Dialogue.cs" />
+    <Compile Include="Assets\Scripts\Shop\ICustomer.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourPlayerInput.cs" />
