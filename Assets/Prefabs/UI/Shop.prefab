@@ -560,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopWindowUI
   isViewModal: 1
   isViewPauseTime: 1
-  _container: {fileID: 8802753066471662075}
+  _layoutGroup: {fileID: 8802753066471662075}
   _slotPrefab: {fileID: 4670052829517355254, guid: f77cee73e0a22a743ba5635c9efcee05, type: 3}
 --- !u!1001 &3893846307636509707
 PrefabInstance:

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICustomer
+public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICustomer, IContainerInteractor
 {
     private List<SpellData> _availableSpells = new List<SpellData>();
     [SerializeField] Transform spellSpawnPoint;

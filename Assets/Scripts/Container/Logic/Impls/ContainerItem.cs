@@ -8,6 +8,4 @@ public abstract class ContainerItem: ScriptableObject, IContainerItem
 
     public string Name => itemName;
     public Sprite Icon => icon;
-    
-    public abstract void OnInteract(IContainerInteractor interactor);
 }

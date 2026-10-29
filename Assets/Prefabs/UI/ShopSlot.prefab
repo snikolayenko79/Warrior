@@ -234,8 +234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopSlotUI
   _iconImage: {fileID: 287101577234117524}
   _nameText: {fileID: 9129944501945666504}
+  _clickButton: {fileID: 3048364680398177637}
   _priceText: {fileID: 3986544214182840663}
-  _buyButton: {fileID: 3048364680398177637}
 --- !u!1 &6676333510695445464
 GameObject:
   m_ObjectHideFlags: 0

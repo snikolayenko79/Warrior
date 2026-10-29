@@ -23,7 +23,7 @@ public class ProjectInstaller : MonoInstaller
     
     [SerializeField] private StoreConfig _storeConfig;
     
-    // Ссылка на компонент магазина на сцене (если он уже там висит)
+    // Ссылка на компонент магазина в префабе
     [SerializeField] private Store _storeInstance;
 
     public override void InstallBindings()
@@ -72,7 +72,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
 
-        Container.BindInstance(_storeConfig).AsSingle();
-        Container.Bind<IStore>().FromComponentInNewPrefab(_storeInstance).AsSingle();
+        Container.BindInstance(_storeConfig as ContainerConfig).AsSingle();
+        Container.Bind<IContainer>().FromComponentInNewPrefab(_storeInstance).AsSingle();
     }
 }

@@ -7,5 +7,5 @@ public interface IStore
     IReadOnlyList<IPurchasable> Products { get; }
     
     // Метод совершения покупки
-    void Purchase(ICustomer customer, IPurchasable item);
+    void OnPurchase(ICustomer customer, IPurchasable item);
 }

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActor.cs" />
+    <Compile Include="Assets\Scripts\Container\Visual\ContainerSlotUI.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharacterStateController.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ICharapterState.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Character.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Assets\Scripts\Container\Logic\Impls\Container.cs" />
     <Compile Include="Assets\Scripts\Shop\Logic\IPurchasable.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource.cs" />
+    <Compile Include="Assets\Scripts\Container\Visual\ContainerWindowUI.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\InputListener.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewHud.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogue.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellController.cs" />
     <Compile Include="Assets\Scripts\Shop\Logic\Impls\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
+    <Compile Include="Assets\Scripts\Container\Logic\Impls\ContainerConfig.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\CharacterStateController.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueNode.cs" />
     <Compile Include="Assets\Scripts\Input\IInputRouter.cs" />
