@@ -36,7 +36,7 @@ public class ShopWindowUI : UIView
         Debug.Log(_store);
         foreach (var item in _store.Products)
         {
-            Debug.Log(item);
+            //Debug.Log(item);
             ShopSlotUI newSlot = Instantiate(_slotPrefab, _container);
             
             newSlot.Setup(item, OnBuyClick);

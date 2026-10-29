@@ -47,7 +47,7 @@ public class DialogueManager : IDialogManager
         {
             _currentNode = _currentDialogue.DialogueNodes.ElementAt(_currentNodeIndex);
             // TODO. Убедиться, что закрываем именно окно диалога.
-            _uiManager.CloseActiveView();
+            _uiManager.CloseActiveWindow();
             DisplayCurrentNode();
         }
         else
@@ -59,7 +59,7 @@ public class DialogueManager : IDialogManager
     public void DialogueEnd()
     {
         // TODO. Убедиться, что закрываем именно окно диалога.
-        _uiManager.CloseActiveView();
+        _uiManager.CloseActiveWindow();
         
         _currentDialogue = null;
         _currentNode = null;
@@ -75,6 +75,6 @@ public class DialogueManager : IDialogManager
         if (registry != null)
             currentActor = registry.GetActor(_currentNode.SpeakerId);
         
-        _uiManager.OpenPopup(_dialoguePrefab, _currentNode.DialogueText, currentActor);
+        _uiManager.OpenWindow(_dialoguePrefab, _currentNode.DialogueText, currentActor);
     }
 }

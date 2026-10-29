@@ -10,7 +10,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     private readonly Dictionary<string, GameObject> _uiConfigs;
     
     private readonly Stack<IUIView> _screenStack = new Stack<IUIView>();
-    private IUIView _activeView;
+    private IUIView _activeWindow;
     private string _currentSceneName;
 
     public UIManager(
@@ -51,7 +51,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
         if (_uiConfigs.TryGetValue(sceneName, out GameObject prefab))
         {
-            _activeView = _factory.CreateView(prefab, null);
+            _activeWindow = _factory.CreateView(prefab, null);
             
             // TODO
             if (sceneName.Contains("Menu"))
@@ -61,8 +61,13 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             }
         }
     }
+
+    public IUIView CreateView(GameObject popupPrefab, params object[] args)
+    {
+        return _factory.CreateView(popupPrefab, null, args);
+    }
     
-    public IUIView OpenPopup(GameObject popupPrefab, params object[] args)
+    public IUIView OpenWindow(GameObject popupPrefab, params object[] args)
     {
         // TODO. переделать IsModal и timeScale. Могут динамически меняться в старт окна.
         // Может в окнах менять. Или вообще отказаться. 
@@ -73,49 +78,49 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             return null;
         }
 
-        if (_activeView != null)
+        if (_activeWindow != null)
         {
-            _screenStack.Push(_activeView);
+            _screenStack.Push(_activeWindow);
         }
 
-        IUIView newView = _factory.CreateView(popupPrefab, null, args);
+        IUIView newView = CreateView(popupPrefab, args);
         
         if (newView.IsModal)
-            _activeView.SetInteractable(false);
+            _activeWindow.SetInteractable(false);
             
         // Если новое окно требует паузу — останавливаем время
         if (newView.PauseTime)
             Time.timeScale = 0f;
 
-        _activeView = newView;
+        _activeWindow = newView;
         
-        return _activeView;
+        return _activeWindow;
     }
 
-    public void CloseActiveView()
+    public void CloseActiveWindow()
     {
-        if (_activeView == null)
+        if (_activeWindow == null)
             return;
 
         // Запоминаем, было ли закрывающееся окно модальным, чтобы знать, разблокировать ли нижнее
-        bool closedWasModal = _activeView.IsModal;
+        bool closedWasModal = _activeWindow.IsModal;
 
         // Уничтожаем текущий попап
-        _activeView.Destroy();
-        _activeView = null;
+        _activeWindow.Destroy();
+        _activeWindow = null;
 
         // Если в истории (стеке) что-то есть — достаем предыдущее окно
         if (_screenStack.Count > 0)
         {
-            _activeView = _screenStack.Pop();
+            _activeWindow = _screenStack.Pop();
         
             // Возвращаем интерактивность нижнему окну, только если закрытое окно его блокировало
             if (closedWasModal)
-                _activeView.SetInteractable(true);
+                _activeWindow.SetInteractable(true);
         }
 
         // Если на экране осталось окно, и оно ТРЕБУЕТ паузу
-        if (_activeView != null && _activeView.PauseTime)
+        if (_activeWindow != null && _activeWindow.PauseTime)
         {
             Time.timeScale = 0f;
         }
@@ -129,9 +134,9 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
     public void ClearCurrentUI()
     {
-        if (_activeView != null)
+        if (_activeWindow != null)
         {
-            _activeView.Destroy();
+            _activeWindow.Destroy();
         }
 
         while (_screenStack.Count > 0)
@@ -143,7 +148,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
             }
         }
 
-        _activeView = null;
+        _activeWindow = null;
         Time.timeScale = 1f; // Гарантируем сброс паузы при смене сцены
     }
 }

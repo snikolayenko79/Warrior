@@ -109,7 +109,7 @@ public class World1_Scenario : MonoBehaviour
         while (chPlayer.IsMoving)
             yield return null;
 
-        _uiManager.OpenPopup(ShopUI.gameObject, player as ICustomer);
+        _uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
         
         characterStateController.StateEnd(chPlayer, followPath);
         
@@ -186,7 +186,7 @@ public class World1_Scenario : MonoBehaviour
         
         _spellController.AddSpell(player, allSpells[0]);
          Vector3 screenPos = levelCamera.WorldToScreenPoint(player.Position);
-         _uiManager.OpenPopup(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
+         _uiManager.OpenWindow(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
         
         characterStateController.StateEnd(chPlayer, followPath);
         characterStateController.StateStart(chPlayer, playerInput);
