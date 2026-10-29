@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b797b6899062446b2806e36401dc20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Store
+  config: {fileID: 11400000, guid: 654092977134f3544885ee4a152d40c8, type: 2}

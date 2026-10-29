@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICustomer, IContainerInteractor
+public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, IContainerInteractor, ICustomer, IInventoryOwner
 {
     private List<SpellData> _availableSpells = new List<SpellData>();
     [SerializeField] Transform spellSpawnPoint;
@@ -110,5 +110,13 @@ public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICus
     {
         get => _coins;
         set => _coins = value;
+    }
+    
+    private IInventory _inventory;
+    
+    public IInventory CurrentInventory
+    {
+        get => _inventory;
+        set => _inventory = value;
     }
 }

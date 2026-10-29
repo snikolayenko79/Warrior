@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IInventory
+public interface IInventory
 {
-    
+    void OnUse(IInventoryOwner inventoryOwner, IInventoryItem inventoryItem);
 }

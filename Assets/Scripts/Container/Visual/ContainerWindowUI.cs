@@ -6,18 +6,13 @@ public class ContainerWindowUI : UIView
 {
     [SerializeField] private Transform _layoutGroup; // Объект с компонентом Grid/Vertical Layout Group
     [SerializeField] private ContainerSlotUI _slotPrefab;
-
-    private IContainer _container;
+    [SerializeField] private Container _container;
+    
     protected IContainerInteractor _interactor;
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
 
     public delegate void OnClickDelegate(IContainerItem item);
     
-    [Inject]
-        public void Construct(IContainer container)
-    {
-        _container = container;
-    }    
     public override void OnCreate(params object[] args)
     {
         _interactor = args[0] as IContainerInteractor;
@@ -64,7 +59,7 @@ public class ContainerWindowUI : UIView
 
     private void OnSlotClick(IContainerItem item)
     {
-        _container.Interact(_interactor, item);
+        _container.OnInteract(_interactor, item);
     }
     
     protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}

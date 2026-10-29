@@ -7,5 +7,5 @@ public interface IContainer
     IReadOnlyList<IContainerItem> Items { get; }
     
     // Метод совершения действия с айтемами из контейнера
-    void Interact(IContainerInteractor interactor, IContainerItem item);
+    void OnInteract(IContainerInteractor interactor, IContainerItem item);
 }

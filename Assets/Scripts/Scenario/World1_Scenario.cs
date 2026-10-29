@@ -58,6 +58,7 @@ public class World1_Scenario : MonoBehaviour
 
     public UIView TextView;
     public UIView ShopUI;
+    public UIView InventoryUI;
     
     [Inject]
     public void Construct(
@@ -109,7 +110,8 @@ public class World1_Scenario : MonoBehaviour
         while (chPlayer.IsMoving)
             yield return null;
 
-        _uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
+        //_uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
+        _uiManager.OpenWindow(InventoryUI.gameObject, player as ICustomer);
         
         characterStateController.StateEnd(chPlayer, followPath);
         

@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188544447dd9565468433fde9f639efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIViewHud
-  IsViewModal: 0
-  IsViewPauseTime: 0
+  isViewModal: 0
+  isViewPauseTime: 0
 --- !u!1001 &7280956644442646015
 PrefabInstance:
   m_ObjectHideFlags: 0

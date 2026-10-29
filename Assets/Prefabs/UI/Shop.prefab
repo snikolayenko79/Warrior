@@ -562,6 +562,7 @@ MonoBehaviour:
   isViewPauseTime: 1
   _layoutGroup: {fileID: 8802753066471662075}
   _slotPrefab: {fileID: 4670052829517355254, guid: f77cee73e0a22a743ba5635c9efcee05, type: 3}
+  _container: {fileID: 9069462934148719172, guid: 6dfbd887d1b072548b3f50ef55b0c709, type: 3}
 --- !u!1001 &3893846307636509707
 PrefabInstance:
   m_ObjectHideFlags: 0

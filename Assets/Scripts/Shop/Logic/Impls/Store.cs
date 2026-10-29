@@ -9,10 +9,9 @@ public class Store : Container, IStore
     
     public IReadOnlyList<IPurchasable> Products => _products;
     
-    [Inject]
-    public new void Construct(ContainerConfig config)
+    new void Awake()
     {
-        base.Construct(config);
+        base.Awake();
         
         foreach (var item in config.Items)
         {
@@ -21,7 +20,7 @@ public class Store : Container, IStore
         }
     }
 
-    public override void Interact(IContainerInteractor interactor, IContainerItem item)
+    public override void OnInteract(IContainerInteractor interactor, IContainerItem item)
     {
         if (interactor is ICustomer customer && item is IPurchasable purchasable)
         {
