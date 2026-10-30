@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, IContainerInteractor, ICustomer, IInventoryOwner
+public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner
 {
     private List<SpellData> _availableSpells = new List<SpellData>();
     [SerializeField] Transform spellSpawnPoint;
@@ -42,16 +42,9 @@ public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICon
         set => _isSpellCastStarted = value;
     }
     
-    private List<WeaponData> _availableWeapons = new List<WeaponData>();
     private WeaponData _selectedWeapon;
     [SerializeField] Transform weaponPoint;
     private GameObject _currentWeaponObject;
-
-    public List<WeaponData> AvailableWeapons
-    {
-        get => _availableWeapons;
-        set  => _availableWeapons = value;
-    }
     
     public WeaponData SelectedWeapon
     {

@@ -64,18 +64,9 @@ public class AttackController : MonoBehaviour, IAttackController
                 attacker.IsAttackStarted = false;
         });
     }
-
-    public void AddWeapon(IAttacker attacker, WeaponData weapon)
-    {
-        if (!attacker.AvailableWeapons.Contains(weapon))
-            attacker.AvailableWeapons.Add(weapon);
-    }
     
     public void SelectWeapon(IAttacker attacker, WeaponData weapon)
     {
-        if (!attacker.AvailableWeapons.Contains(weapon))
-            return;
-        
         attacker.SelectedWeapon = weapon;
         
         if (attacker.CurrentWeaponObject)

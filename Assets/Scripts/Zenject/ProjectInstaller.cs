@@ -73,11 +73,15 @@ public class ProjectInstaller : MonoInstaller
             .NonLazy();
         
         Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
+        
+        // TODO. Контекст сцены.
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
 
         Container.BindInstance(storeConfig).AsSingle();
-        Container.Bind<Store>().FromComponentInNewPrefab(storeInstance).AsSingle();
+        Container.BindInterfacesAndSelfTo<Store>().FromComponentInNewPrefab(storeInstance).AsSingle();
         Container.BindInstance(inventoryConfig).AsSingle();
         Container.BindInterfacesAndSelfTo<Inventory>().FromComponentInNewPrefab(inventoryInstance).AsSingle();
+        
+        Container.Bind<IGameManager>().To<GameManager>().AsSingle();
     }
 }

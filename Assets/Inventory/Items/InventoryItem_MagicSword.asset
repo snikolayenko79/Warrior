@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem_Weapon
   itemName: Magic sword
   icon: {fileID: 580304011752998546, guid: 1bd4e723112ab5846ad3c9060381210b, type: 3}
+  weapon: {fileID: 11400000, guid: 920ce7d0cbb293e49aba52a7b6bf2c89, type: 2}

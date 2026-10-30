@@ -21,20 +21,12 @@ public abstract class Container : MonoBehaviour, IContainer
     public void AddItemToContainer(IContainerItem item)
     {
         _items.Add(item);
-        OnItemAdded(item);
     }
     
     public void RemoveItemFromContainer(IContainerItem item)
     {
         _items.Remove(item);
-        OnItemRemoved(item);
     }
-
-    protected virtual void OnItemAdded(IContainerItem item) {}
-    protected virtual void OnItemRemoved(IContainerItem item) {}
     
-    public virtual void OnInteract(IContainerInteractor interactor, IContainerItem item) {}
-
-    protected void Awake() {}
-    protected void Start() {}
+    public virtual void OnInteract(IContainerItem item) {}
 }

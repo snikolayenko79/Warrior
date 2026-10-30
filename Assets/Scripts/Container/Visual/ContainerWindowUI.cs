@@ -2,24 +2,20 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public class ContainerWindowUI : UIView
+public class ContainerWindowUI : MonoBehaviour
 {
     [SerializeField] private Transform _layoutGroup; // Объект с компонентом Grid/Vertical Layout Group
     [SerializeField] private ContainerSlotUI _slotPrefab;
     
     protected IContainer _container;
     
-    protected IContainerInteractor _interactor;
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
 
     public delegate void OnClickDelegate(IContainerItem item);
     
-    public override void OnCreate(params object[] args)
-    {
-        _interactor = args[0] as IContainerInteractor;
-    }
     
-    void Start()
+    
+    protected void Start()
     {
         RefreshWindow();
     }
@@ -62,7 +58,7 @@ public class ContainerWindowUI : UIView
 
     private void OnSlotClick(IContainerItem item)
     {
-        _container.OnInteract(_interactor, item);
+        _container.OnInteract(item);
     }
     
     protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}

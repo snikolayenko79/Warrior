@@ -9,49 +9,56 @@ public class Store : Container, IStore
     public IReadOnlyList<IPurchasable> Products => _products;
     
     private StoreConfig _config;
+    private ICustomer _customer;
 
     [Inject]
     public void Construct(StoreConfig config)
     {
         _config = config;
+        Initialize(config.Items);
     }
     
-    protected new void Start()
+    public override void Initialize(IReadOnlyList<IContainerItem> items)
     {
-        base.Start();
+        if (items == null)
+            return;
         
-        foreach (var item in _config.Items)
+        foreach (var item in items)
         {
-            AddItemToContainer(item);
-            _products.Add(item);
+            if (item is IPurchasable purchasable)
+            {
+                AddItemToStore(purchasable);
+            }
         }
+    }
+
+    public void AddItemToStore(IPurchasable purchasable)
+    {
+        _products.Add(purchasable);
+        
+        if (purchasable is IContainerItem containerItem)
+            AddItemToContainer(containerItem);
+    }
+
+    public void RemoveItemFromStore(IPurchasable purchasable)
+    {
+        _products.Remove(purchasable);
+        
+        if (purchasable is IContainerItem containerItem)
+            RemoveItemFromContainer(containerItem);
+    }
+
+    public ICustomer Customer
+    {
+        get => _customer;
+        set => _customer = value;
     }
     
-    protected override void OnItemAdded(IContainerItem item)
+    public override void OnInteract(IContainerItem item)
     {
-        base.OnItemAdded(item);
-
-        if (item is IPurchasable purchasable)
+        if (Customer != null && item is IPurchasable purchasable)
         {
-            _products.Add(purchasable);
-        }
-    }
-    
-    protected override void OnItemRemoved(IContainerItem item)
-    {
-        base.OnItemAdded(item);
-
-        if (item is IPurchasable purchasable)
-        {
-            _products.Remove(purchasable);
-        }
-    }
-
-    public override void OnInteract(IContainerInteractor interactor, IContainerItem item)
-    {
-        if (interactor is ICustomer customer && item is IPurchasable purchasable)
-        {
-            OnPurchase(customer, purchasable);
+            OnPurchase(Customer, purchasable);
         }
     }
     

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\MovableBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\IInventory.cs" />
+    <Compile Include="Assets\Scripts\GameManager\IGameManager.cs" />
     <Compile Include="Assets\Scripts\Shop\Logic\Impls\InventoryStoreItem.cs" />
     <Compile Include="Assets\Scripts\UI\IUIViewFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\IBehaviour.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ActorCharapter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
+    <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\SpellController.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_DialogueNext.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueManager.cs" />
@@ -145,7 +147,6 @@
     <Compile Include="Assets\Scripts\Inventory\Logic\IInventoryItem.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\IMovable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
-    <Compile Include="Assets\Scripts\Container\Logic\IContainerInteractor.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />

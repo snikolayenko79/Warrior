@@ -12,5 +12,5 @@ public interface IContainer
     void RemoveItemFromContainer(IContainerItem item);
     
     // Метод совершения действия с айтемами из контейнера
-    void OnInteract(IContainerInteractor interactor, IContainerItem item);
+    void OnInteract(IContainerItem item);
 }

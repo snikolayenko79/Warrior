@@ -17,9 +17,11 @@ public class ContainerSlotUI : MonoBehaviour
     public void Setup(IContainerItem item, ContainerWindowUI.OnClickDelegate onClick)
     {
         _item = item;
-        _onClick = onClick;        
-        _nameText.text = item.Name;
-        _iconImage.sprite = item.Icon;
+        _onClick = onClick;
+        if (_nameText)
+            _nameText.text = item.Name;
+        if (_iconImage)
+            _iconImage.sprite = item.Icon;
 
         // Подписываемся на клик кнопки
         _clickButton.onClick.RemoveAllListeners();

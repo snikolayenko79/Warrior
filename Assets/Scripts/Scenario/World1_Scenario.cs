@@ -42,6 +42,7 @@ public class World1_Scenario : MonoBehaviour
     public Dialogue DialogueVillager = null;
     public Dialogue DialogueSeller = null;
 
+    private IGameManager _gameManager;
     private AttackController _attackController;
     private SpellController _spellController;
     private BehaviourAttackPlayer _behaviourAttackPlayer;
@@ -57,8 +58,7 @@ public class World1_Scenario : MonoBehaviour
     private IUIManager _uiManager;
 
     public UIView TextView;
-    public UIView ShopUI;
-    public UIView InventoryUI;
+    public ShopWindowUI ShopUI;
 
     private IInventory _inventory;
     public InventoryItem axe;
@@ -66,6 +66,7 @@ public class World1_Scenario : MonoBehaviour
     [Inject]
     public void Construct(
         IDialogManager dialogManager,
+        IGameManager gameManager,
         AttackController attackController,
         SpellController spellController,
         BehaviourAttackPlayer behaviourAttackPlayer,
@@ -74,6 +75,7 @@ public class World1_Scenario : MonoBehaviour
         IInventory inventory)
     {
         _dialogManager = dialogManager;
+        _gameManager = gameManager;
         _attackController = attackController;
         _spellController = spellController;
         _behaviourAttackPlayer = behaviourAttackPlayer;
@@ -89,16 +91,19 @@ public class World1_Scenario : MonoBehaviour
 
     private IEnumerator World1_Scenario_Coroutine()
     {
-        _inventory.AddItemToInventory(axe);
-        
         GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
         
         Character chPlayer = goPlayer.GetComponent<Character>();
+
+        _gameManager.Player = chPlayer;
+
+        _inventory.Owner = chPlayer as IInventoryOwner;
+        _inventory.AddItemToInventory(axe);
+            
         chPlayer.CurrentPath = playerPath1;
         characterStateController.StateStart(chPlayer, followPath);
         
         Player player = chPlayer as Player;
-        _attackController.AddWeapon(player, defaultPlayerWeapon);
         _attackController.SelectWeapon(player, defaultPlayerWeapon);
         
         // TODO. Как минимум отказаться от добавления прямо в список.
@@ -109,7 +114,6 @@ public class World1_Scenario : MonoBehaviour
         Character chYodan1 = goYodan1.GetComponent<Character>();
         
         Enemy enemy1 = chYodan1 as Enemy;
-        _attackController.AddWeapon(enemy1, allWeapons[0]);
         _attackController.SelectWeapon(enemy1, allWeapons[0]);
         
         yield return null;
@@ -117,8 +121,8 @@ public class World1_Scenario : MonoBehaviour
         while (chPlayer.IsMoving)
             yield return null;
 
-        //_uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
-        _uiManager.OpenWindow(InventoryUI.gameObject, player as ICustomer);
+        _uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
+        //_uiManager.OpenWindow(InventoryUI.gameObject, player as ICustomer);
         
         characterStateController.StateEnd(chPlayer, followPath);
         
@@ -160,7 +164,6 @@ public class World1_Scenario : MonoBehaviour
          characterStateController.StateStart(chYodan2, attackPlayer);
          
          Enemy enemy2 = chYodan2 as Enemy;
-         _attackController.AddWeapon(enemy2, allWeapons[0]);
          _attackController.SelectWeapon(enemy2, allWeapons[0]);
          
          while (!chYodan1.IsDead || !chYodan2.IsDead)
