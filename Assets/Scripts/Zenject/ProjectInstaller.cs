@@ -20,6 +20,15 @@ public class ProjectInstaller : MonoInstaller
     
     [Header("Префаб окна диалогов")]
     [SerializeField] private UIView dialoguePrefab;
+    
+    [Header("Магазин")]
+    [SerializeField] private StoreConfig storeConfig;
+    [SerializeField] private Store storeInstance;
+    
+    [Header("Инвентарь")]
+    [SerializeField] private InventoryConfig inventoryConfig;
+    [SerializeField] private Inventory inventoryInstance;
+    
     public override void InstallBindings()
     {
          Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
@@ -65,5 +74,10 @@ public class ProjectInstaller : MonoInstaller
         
         Container.BindInterfacesAndSelfTo<DialogueManager>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
+
+        Container.BindInstance(storeConfig).AsSingle();
+        Container.Bind<Store>().FromComponentInNewPrefab(storeInstance).AsSingle();
+        Container.BindInstance(inventoryConfig).AsSingle();
+        Container.BindInterfacesAndSelfTo<Inventory>().FromComponentInNewPrefab(inventoryInstance).AsSingle();
     }
 }

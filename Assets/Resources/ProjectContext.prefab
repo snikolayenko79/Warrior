@@ -89,5 +89,7 @@ MonoBehaviour:
     uiPrefab: {fileID: 8993983232895766821, guid: 1f183addd21234a42b3055d029dfea2a, type: 3}
   pauseMenuPrefab: {fileID: 6873533455863789100, guid: bd53d8ccd0ee81046b842d70400392d2, type: 3}
   dialoguePrefab: {fileID: 1427428768529139360, guid: 5c51f783c83af6e42ac22a2050e6eb7a, type: 3}
-  _storeConfig: {fileID: 11400000, guid: 654092977134f3544885ee4a152d40c8, type: 2}
-  _storeInstance: {fileID: 9069462934148719172, guid: 6dfbd887d1b072548b3f50ef55b0c709, type: 3}
+  storeConfig: {fileID: 11400000, guid: 654092977134f3544885ee4a152d40c8, type: 2}
+  storeInstance: {fileID: 9069462934148719172, guid: 6dfbd887d1b072548b3f50ef55b0c709, type: 3}
+  inventoryConfig: {fileID: 11400000, guid: a38aa93083d55814f99507d00e96538f, type: 2}
+  inventoryInstance: {fileID: 6569658802437658634, guid: 52b99589807d81c4eb7f95dbde96103c, type: 3}

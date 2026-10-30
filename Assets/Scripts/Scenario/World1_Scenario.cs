@@ -59,6 +59,9 @@ public class World1_Scenario : MonoBehaviour
     public UIView TextView;
     public UIView ShopUI;
     public UIView InventoryUI;
+
+    private IInventory _inventory;
+    public InventoryItem axe;
     
     [Inject]
     public void Construct(
@@ -67,7 +70,8 @@ public class World1_Scenario : MonoBehaviour
         SpellController spellController,
         BehaviourAttackPlayer behaviourAttackPlayer,
         BehaviourFollowPlayer behaviourFollowPlayer,
-        IUIManager uiManager)
+        IUIManager uiManager,
+        IInventory inventory)
     {
         _dialogManager = dialogManager;
         _attackController = attackController;
@@ -75,6 +79,7 @@ public class World1_Scenario : MonoBehaviour
         _behaviourAttackPlayer = behaviourAttackPlayer;
         _behaviourFollowPlayer = behaviourFollowPlayer;
         _uiManager = uiManager;
+        _inventory = inventory;
     }
     
     void Start()
@@ -84,6 +89,8 @@ public class World1_Scenario : MonoBehaviour
 
     private IEnumerator World1_Scenario_Coroutine()
     {
+        _inventory.AddItemToInventory(axe);
+        
         GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
         
         Character chPlayer = goPlayer.GetComponent<Character>();

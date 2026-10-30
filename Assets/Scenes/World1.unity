@@ -768,6 +768,7 @@ MonoBehaviour:
   TextView: {fileID: 5458947698040673073, guid: 0763754651dee7b4b999ad14c87dd423, type: 3}
   ShopUI: {fileID: 121028050668631104, guid: 64c25f58d16cbf24f840844d1a22b3c0, type: 3}
   InventoryUI: {fileID: 4690131940516015910, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+  axe: {fileID: 11400000, guid: e525b540195706b46a46175fd98e769c, type: 2}
 --- !u!4 &506529202
 Transform:
   m_ObjectHideFlags: 0

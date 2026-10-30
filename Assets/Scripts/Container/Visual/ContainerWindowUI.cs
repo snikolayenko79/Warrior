@@ -6,7 +6,8 @@ public class ContainerWindowUI : UIView
 {
     [SerializeField] private Transform _layoutGroup; // Объект с компонентом Grid/Vertical Layout Group
     [SerializeField] private ContainerSlotUI _slotPrefab;
-    [SerializeField] private Container _container;
+    
+    protected IContainer _container;
     
     protected IContainerInteractor _interactor;
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
@@ -16,11 +17,13 @@ public class ContainerWindowUI : UIView
     public override void OnCreate(params object[] args)
     {
         _interactor = args[0] as IContainerInteractor;
-    }    
+    }
+    
     void Start()
     {
         RefreshWindow();
     }
+    
     public void RefreshWindow()
     {
         ClearWindow();

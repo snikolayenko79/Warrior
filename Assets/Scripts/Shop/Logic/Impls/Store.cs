@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 using Zenject;
 
 public class Store : Container, IStore
@@ -9,14 +8,42 @@ public class Store : Container, IStore
     
     public IReadOnlyList<IPurchasable> Products => _products;
     
-    new void Awake()
+    private StoreConfig _config;
+
+    [Inject]
+    public void Construct(StoreConfig config)
     {
-        base.Awake();
+        _config = config;
+    }
+    
+    protected new void Start()
+    {
+        base.Start();
         
-        foreach (var item in config.Items)
+        foreach (var item in _config.Items)
         {
-            if (item is IPurchasable purchasable)
-                _products.Add(purchasable);
+            AddItemToContainer(item);
+            _products.Add(item);
+        }
+    }
+    
+    protected override void OnItemAdded(IContainerItem item)
+    {
+        base.OnItemAdded(item);
+
+        if (item is IPurchasable purchasable)
+        {
+            _products.Add(purchasable);
+        }
+    }
+    
+    protected override void OnItemRemoved(IContainerItem item)
+    {
+        base.OnItemAdded(item);
+
+        if (item is IPurchasable purchasable)
+        {
+            _products.Remove(purchasable);
         }
     }
 
