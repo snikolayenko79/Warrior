@@ -10,7 +10,7 @@ public class ShopWindowUI : ContainerWindowUI, IUIView
     public void Construct(IStore store)
     {
         _store = store;
-        _container = store as IContainer;
+        ItemsContainer = store as IContainer;
     }
     
     protected override void OnSlotUpdate(ContainerSlotUI slot)

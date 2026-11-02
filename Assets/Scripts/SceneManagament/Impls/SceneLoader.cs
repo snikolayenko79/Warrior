@@ -72,10 +72,6 @@ public class GameSceneLoader : IInitializable, ISceneLoader
             
             yield return null;
         }
-
-        // Пропускаем один кадр. За этот кадр новая сцена полностью 
-        // активируется, и локальный SceneContext уровня УСПЕЕТ проинициализироваться!
-        yield return null; 
         
         // Вызываем событие при ручном переключении сцен
         OnSceneLoaded?.Invoke(sceneName);

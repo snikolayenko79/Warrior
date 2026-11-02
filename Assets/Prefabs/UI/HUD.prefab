@@ -219,6 +219,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8687203852714643488}
     m_Modifications:
+    - target: {fileID: 4690131940516015910, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 6149038118707833132}
+    - target: {fileID: 4690131940516015910, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: 7752580780490659458, guid: 391ca3c4d67b2f540945078e80c7df94, type: 3}
+    - target: {fileID: 7750510634885024495, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+      propertyPath: m_Spacing
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8687203852714643488, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -324,6 +336,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+--- !u!224 &6149038118707833132 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8802753066471662075, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}
+  m_PrefabInstance: {fileID: 3421729463466756311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6337489579588360439 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8687203852714643488, guid: 26bafd4703ff62b42aeed3b5aa308d34, type: 3}

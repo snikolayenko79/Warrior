@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -12,14 +13,24 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     private readonly Stack<IUIView> _screenStack = new Stack<IUIView>();
     private IUIView _activeWindow;
     private string _currentSceneName;
+    
+    private DiContainer _currentSceneContainer;
+    private readonly CoroutineRunner _coroutineRunner;
+    
+    public void SetCurrentSceneContainer(DiContainer sceneContainer)
+    {
+        _currentSceneContainer = sceneContainer;
+    }
 
     public UIManager(
         IUIViewFactory factory, 
-        GameSceneLoader sceneLoader, 
+        GameSceneLoader sceneLoader,
+        CoroutineRunner coroutineRunner,
         Dictionary<string, GameObject> uiConfigs)
     {
         _factory = factory;
         _sceneLoader = sceneLoader;
+        _coroutineRunner = coroutineRunner;
         _uiConfigs = uiConfigs;
     }
 
@@ -30,7 +41,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
         string startSceneName = _sceneLoader.GetActiveSceneName();
         if (!string.IsNullOrEmpty(startSceneName))
         {
-            OnSceneLoaded(startSceneName);
+            _coroutineRunner.StartCoroutine(OnSceneLoadedRoutine(startSceneName));
         }
     }
 
@@ -41,6 +52,15 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
     private void OnSceneLoaded(string sceneName)
     {
+        _coroutineRunner.StartCoroutine(OnSceneLoadedRoutine(sceneName));
+    }
+    
+    private IEnumerator OnSceneLoadedRoutine(string sceneName)
+    {
+        // Пропускаем один кадр. За этот кадр новая сцена полностью 
+        // активируется, и локальный SceneContext уровня УСПЕЕТ проинициализироваться!
+        yield return null;
+        
         _currentSceneName = sceneName;
         CheckAndSpawnUI(sceneName);
     }
@@ -134,21 +154,24 @@ public class UIManager : IUIManager, IInitializable, IDisposable
 
     public void ClearCurrentUI()
     {
+        // Проверяем, существует ли физически активное окно и является ли оно MonoBehaviour
         if (_activeWindow != null)
         {
-            _activeWindow.Destroy();
+            // Если это компонент Unity и он уже уничтожен движком при смене сцены
+            if (!_activeWindow.IsUnityNull())
+                _activeWindow.Destroy();
+            
+            _activeWindow = null;
         }
 
         while (_screenStack.Count > 0)
         {
             var screen = _screenStack.Pop();
-            if (screen != null)
-            {
+            if (!screen.IsUnityNull())
                 screen.Destroy();
-            }
         }
 
         _activeWindow = null;
-        Time.timeScale = 1f; // Гарантируем сброс паузы при смене сцены
+        Time.timeScale = 1f; // 
     }
 }

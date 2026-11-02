@@ -5,6 +5,7 @@ using Zenject;
 public class InventoryItem_Weapon : InventoryItem
 {
     public WeaponData weapon;
+    
     public override void OnUse(IInventoryOwner inventoryOwner)
     {
         if (inventoryOwner is IAttacker attacker)

@@ -558,8 +558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a535205904244a7419b6e4125b57972f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopWindowUI
-  _layoutGroup: {fileID: 8802753066471662075}
-  _slotPrefab: {fileID: 4670052829517355254, guid: f77cee73e0a22a743ba5635c9efcee05, type: 3}
+  parent: {fileID: 8802753066471662075}
+  slotPrefab: {fileID: 4670052829517355254, guid: f77cee73e0a22a743ba5635c9efcee05, type: 3}
 --- !u!1001 &3893846307636509707
 PrefabInstance:
   m_ObjectHideFlags: 0

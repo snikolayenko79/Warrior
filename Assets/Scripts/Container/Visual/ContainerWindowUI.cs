@@ -1,19 +1,26 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class ContainerWindowUI : MonoBehaviour
 {
-    [SerializeField] private Transform _layoutGroup; // Объект с компонентом Grid/Vertical Layout Group
-    [SerializeField] private ContainerSlotUI _slotPrefab;
+    [SerializeField] private Transform parent; // Объект с компонентом Grid/Vertical Layout Group
+    [SerializeField] private ContainerSlotUI slotPrefab;
     
-    protected IContainer _container;
+    protected IContainer ItemsContainer;
     
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
 
     public delegate void OnClickDelegate(IContainerItem item);
-    
-    
+
+    private DiContainer _diContainer;
+
+    [Inject]
+    public void Construct(DiContainer diContainer)
+    {
+        _diContainer = diContainer;
+    }
     
     protected void Start()
     {
@@ -24,9 +31,9 @@ public class ContainerWindowUI : MonoBehaviour
     {
         ClearWindow();
         
-        foreach (var item in _container.Items)
+        foreach (var item in ItemsContainer.Items)
         {
-            ContainerSlotUI newSlot = Instantiate(_slotPrefab, _layoutGroup);
+            ContainerSlotUI newSlot = _diContainer.InstantiatePrefabForComponent<ContainerSlotUI>(slotPrefab, parent);
             
             newSlot.Setup(item, OnSlotClick);
             
@@ -58,7 +65,7 @@ public class ContainerWindowUI : MonoBehaviour
 
     private void OnSlotClick(IContainerItem item)
     {
-        _container.OnInteract(item);
+        ItemsContainer.OnInteract(item);
     }
     
     protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}

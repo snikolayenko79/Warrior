@@ -43,7 +43,7 @@ public class World1_Scenario : MonoBehaviour
     public Dialogue DialogueSeller = null;
 
     private IGameManager _gameManager;
-    private AttackController _attackController;
+    private IAttackController _attackController;
     private SpellController _spellController;
     private BehaviourAttackPlayer _behaviourAttackPlayer;
     private BehaviourFollowPlayer _behaviourFollowPlayer;
@@ -67,7 +67,7 @@ public class World1_Scenario : MonoBehaviour
     public void Construct(
         IDialogManager dialogManager,
         IGameManager gameManager,
-        AttackController attackController,
+        IAttackController attackController,
         SpellController spellController,
         BehaviourAttackPlayer behaviourAttackPlayer,
         BehaviourFollowPlayer behaviourFollowPlayer,
@@ -97,9 +97,14 @@ public class World1_Scenario : MonoBehaviour
 
         _gameManager.Player = chPlayer;
 
-        _inventory.Owner = chPlayer as IInventoryOwner;
-        _inventory.AddItemToInventory(axe);
-            
+        IInventoryOwner inventoryOwner = chPlayer as IInventoryOwner;
+        if (inventoryOwner != null)
+        {
+            _inventory.Owner = inventoryOwner;
+            inventoryOwner.CurrentInventory = _inventory;
+            _inventory.AddItemToInventory(axe);
+        }
+
         chPlayer.CurrentPath = playerPath1;
         characterStateController.StateStart(chPlayer, followPath);
         

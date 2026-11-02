@@ -27,6 +27,7 @@ public abstract class UIView : MonoBehaviour, IUIView
     
     public void Destroy()
     {
-        UnityEngine.Object.Destroy(gameObject);
+        if (gameObject != null)
+            UnityEngine.Object.Destroy(gameObject);
     }
 }

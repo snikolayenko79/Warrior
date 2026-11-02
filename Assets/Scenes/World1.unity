@@ -1338,11 +1338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3db2322bd397b4ba7bda9a7874a397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::World1Installer
-  _characterController: {fileID: 1844014701}
   _attackController: {fileID: 1844014703}
   _spellController: {fileID: 1844014704}
   _behaviourAttackPlayer: {fileID: 118452102}
   _behaviourFollowPlayer: {fileID: 1501112512}
+  inventoryConfig: {fileID: 11400000, guid: a38aa93083d55814f99507d00e96538f, type: 2}
+  inventoryInstance: {fileID: 6569658802437658634, guid: 52b99589807d81c4eb7f95dbde96103c, type: 3}
 --- !u!1 &1456693120
 GameObject:
   m_ObjectHideFlags: 0

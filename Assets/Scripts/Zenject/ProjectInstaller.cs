@@ -25,16 +25,10 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private StoreConfig storeConfig;
     [SerializeField] private Store storeInstance;
     
-    [Header("Инвентарь")]
-    [SerializeField] private InventoryConfig inventoryConfig;
-    [SerializeField] private Inventory inventoryInstance;
-    
     public override void InstallBindings()
     {
          Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
          Container.Bind<GameSceneLoader>().AsSingle().NonLazy();
-         
-         Container.Bind<IUIViewFactory>().To<UIViewFactory>().AsSingle();
         
         // 1. Биндим префаб паузы как чистый интерфейс IUIView
         IUIView pauseInterface = pauseMenuPrefab as IUIView;
@@ -51,6 +45,8 @@ public class ProjectInstaller : MonoInstaller
         }
         
         Container.Bind<GameObject>().WithId("DialoguePrefab").FromInstance(dialoguePrefab.gameObject);
+        
+        Container.Bind<IUIViewFactory>().To<UIViewFactory>().AsSingle();
         
         // 2. Формируем строго интерфейсный словарь
         var uiDictionary = new Dictionary<string, GameObject>();
@@ -79,8 +75,6 @@ public class ProjectInstaller : MonoInstaller
 
         Container.BindInstance(storeConfig).AsSingle();
         Container.BindInterfacesAndSelfTo<Store>().FromComponentInNewPrefab(storeInstance).AsSingle();
-        Container.BindInstance(inventoryConfig).AsSingle();
-        Container.BindInterfacesAndSelfTo<Inventory>().FromComponentInNewPrefab(inventoryInstance).AsSingle();
         
         Container.Bind<IGameManager>().To<GameManager>().AsSingle();
     }

@@ -14,12 +14,19 @@ public class World1Installer : MonoInstaller
     
     [Header("Поведение - следовать за игроком.")]
     [SerializeField] private BehaviourFollowPlayer _behaviourFollowPlayer;
+    
+    [Header("Инвентарь")]
+    [SerializeField] private InventoryConfig inventoryConfig;
+    [SerializeField] private Inventory inventoryInstance;
 
     public override void InstallBindings()
     {
-        Container.Bind<AttackController>().FromInstance(_attackController);
+        Container.Bind<IAttackController>().FromInstance(_attackController);
         Container.Bind<SpellController>().FromInstance(_spellController);
         Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);
         Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
+        
+        Container.BindInstance(inventoryConfig).AsSingle();
+        Container.BindInterfacesAndSelfTo<Inventory>().FromComponentInNewPrefab(inventoryInstance).AsSingle();
     }
 }

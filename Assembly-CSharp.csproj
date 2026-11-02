@@ -96,8 +96,8 @@
     <Compile Include="Assets\Scripts\Shop\Logic\Impls\StoreConfig.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ActorCharapter.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttacker.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\SpellController.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_DialogueNext.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueManager.cs" />
@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Inventory\Visual\InventorySlotUI.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\RandomPath.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\Impls\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Extentions\UnityInterfaceExtensions.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewPause.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Shop\Logic\Impls\Store.cs" />
