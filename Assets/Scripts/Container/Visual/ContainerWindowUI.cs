@@ -12,7 +12,7 @@ public class ContainerWindowUI : MonoBehaviour
     
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
 
-    public delegate void OnClickDelegate(IContainerItem item);
+    public delegate void OnClickDelegate(ContainerSlotUI itemSlot);
 
     private DiContainer _diContainer;
 
@@ -30,12 +30,16 @@ public class ContainerWindowUI : MonoBehaviour
     public void RefreshWindow()
     {
         ClearWindow();
-        
         foreach (var item in ItemsContainer.Items)
         {
             ContainerSlotUI newSlot = _diContainer.InstantiatePrefabForComponent<ContainerSlotUI>(slotPrefab, parent);
+
+            IContainerItemView itemView = null;
+            if (item.ItemViewPrefab != null)
+                itemView = _diContainer.InstantiatePrefabForComponent<IContainerItemView>(item.ItemViewPrefab, newSlot.transform.parent);
             
-            newSlot.Setup(item, OnSlotClick);
+            
+            newSlot.Setup(item, itemView, OnSlotClick);
             
             OnSlotUpdate(newSlot);
             
@@ -63,9 +67,10 @@ public class ContainerWindowUI : MonoBehaviour
         }
     }
 
-    private void OnSlotClick(IContainerItem item)
+    private void OnSlotClick(ContainerSlotUI slot)
     {
-        ItemsContainer.OnInteract(item);
+        if (slot && !slot.ItemView.IsUnityNull())
+            slot.ItemView.OnInteract(ItemsContainer, slot.Item);
     }
     
     protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}

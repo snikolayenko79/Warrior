@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public abstract class InventoryItem : ContainerItem, IInventoryItem
+[CreateAssetMenu(fileName = "InventoryItem", menuName = "Inventory/Item")]
+
+public class InventoryItem : ContainerItem, IInventoryItem
 { 
-     public abstract void OnUse(IInventoryOwner inventoryOwner);
 }

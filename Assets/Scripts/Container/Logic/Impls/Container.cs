@@ -27,6 +27,4 @@ public abstract class Container : MonoBehaviour, IContainer
     {
         _items.Remove(item);
     }
-    
-    public virtual void OnInteract(IContainerItem item) {}
 }

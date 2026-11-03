@@ -72,8 +72,11 @@
     <Compile Include="Assets\Scripts\UI\Impls\UIManager.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\AttackController.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\InputRouter.cs" />
+    <Compile Include="Assets\Scripts\Container\Visual\Impls\ContainerItemView.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourBase.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Visual\Impls\InventoryItemView.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Visual\IInventoryItemView.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPlayer.cs" />
     <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
@@ -111,7 +114,7 @@
     <Compile Include="Assets\Scripts\SceneManagament\ISceneLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\Dialogue.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_CloseView.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryItem_Potion.cs" />
+    <Compile Include="Assets\Scripts\Container\Visual\IContainerItemView.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryConfig.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
@@ -135,7 +138,6 @@
     <Compile Include="Assets\Scripts\Scenario\World1_Scenario.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\AttackerBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\MoveController.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryItem_Weapon.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellController.cs" />
     <Compile Include="Assets\Scripts\Shop\Logic\Impls\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Assets\Scripts\UI\Impls\UIViewMainMenu.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\IInventoryItem.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\IMovable.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Visual\Impls\InventoryItem_Weapon.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />

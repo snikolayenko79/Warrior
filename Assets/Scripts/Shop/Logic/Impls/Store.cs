@@ -54,13 +54,13 @@ public class Store : Container, IStore
         set => _customer = value;
     }
     
-    public override void OnInteract(IContainerItem item)
-    {
-        if (Customer != null && item is IPurchasable purchasable)
-        {
-            OnPurchase(Customer, purchasable);
-        }
-    }
+    // public override void OnInteract(IContainerItem item)
+    // {
+    //     if (Customer != null && item is IPurchasable purchasable)
+    //     {
+    //         OnPurchase(Customer, purchasable);
+    //     }
+    // }
     
     public void OnPurchase(ICustomer customer, IPurchasable item)
     {

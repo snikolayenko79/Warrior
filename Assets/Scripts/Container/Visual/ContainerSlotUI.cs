@@ -12,12 +12,18 @@ public class ContainerSlotUI : MonoBehaviour
     private IContainerItem _item;
     public IContainerItem Item => _item;
     
+    private IContainerItemView _itemView;
+    public IContainerItemView ItemView => _itemView;
+    
     private ContainerWindowUI.OnClickDelegate _onClick;
     
-    public void Setup(IContainerItem item, ContainerWindowUI.OnClickDelegate onClick)
+    public void Setup(IContainerItem item, IContainerItemView itemView, ContainerWindowUI.OnClickDelegate onClick)
     {
         _item = item;
         _onClick = onClick;
+        _itemView = itemView;
+        if (_itemView != null)
+            _itemView.ItemData = item;
         if (_nameText)
             _nameText.text = item.Name;
         if (_iconImage)
@@ -40,9 +46,7 @@ public class ContainerSlotUI : MonoBehaviour
     
     private void OnClicked()
     {
-        if (_onClick != null && _item != null)
-        {
-            _onClick(_item);
-        }
+        if (_onClick != null)
+            _onClick(this);
     }
 }

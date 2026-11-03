@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a4c42feb45ecf24392fc82bae9db9b1, type: 3}
-  m_Name: InventoryItem_MagicSword
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryItem_Weapon
+  m_Script: {fileID: 11500000, guid: 76d2ae26af6f35e46b38b9321ab405ac, type: 3}
+  m_Name: MagicSword
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Magic sword
+  _itemViewPrefab: {fileID: -6767356252082939192, guid: d9c148de23661f348a322a58eab836b7, type: 3}
   icon: {fileID: 580304011752998546, guid: 1bd4e723112ab5846ad3c9060381210b, type: 3}
-  weapon: {fileID: 11400000, guid: 920ce7d0cbb293e49aba52a7b6bf2c89, type: 2}

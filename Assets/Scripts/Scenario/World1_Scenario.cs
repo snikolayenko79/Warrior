@@ -127,7 +127,6 @@ public class World1_Scenario : MonoBehaviour
             yield return null;
 
         _uiManager.OpenWindow(ShopUI.gameObject, player as ICustomer);
-        //_uiManager.OpenWindow(InventoryUI.gameObject, player as ICustomer);
         
         characterStateController.StateEnd(chPlayer, followPath);
         

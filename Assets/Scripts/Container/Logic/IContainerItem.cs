@@ -4,4 +4,5 @@ public interface IContainerItem
 {
     string Name { get; }
     Sprite Icon { get; }
+    ContainerItemView ItemViewPrefab { get; }
 }

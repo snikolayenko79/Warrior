@@ -10,7 +10,4 @@ public interface IContainer
     
     void AddItemToContainer(IContainerItem item);
     void RemoveItemFromContainer(IContainerItem item);
-    
-    // Метод совершения действия с айтемами из контейнера
-    void OnInteract(IContainerItem item);
 }

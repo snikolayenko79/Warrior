@@ -52,13 +52,13 @@ public class Inventory : Container, IInventory
             RemoveItemFromContainer(containerItem);
     }
     
-    public override void OnInteract(IContainerItem item)
-    {
-        if (Owner != null && item is IInventoryItem inventoryItem)
-        {
-            OnUse(Owner, inventoryItem);
-        }
-    }
+    // public override void OnInteract(IContainerItemView itemView)
+    // {
+    //     if (Owner != null && (itemView != null) && itemView.ItemData is IInventoryItem inventoryItemData)
+    //     {
+    //         OnUse(Owner, inventoryItemData);
+    //     }
+    // }
 
     public IInventoryOwner Owner
     {
@@ -68,7 +68,7 @@ public class Inventory : Container, IInventory
         
     public void OnUse(IInventoryOwner inventoryOwner, IInventoryItem inventoryItem)
     {
-        inventoryItem.OnUse(inventoryOwner);
+        //inventoryItem.OnUse(inventoryOwner);
     }
 
     public bool Load(IInventoryItem inventoryItem)
