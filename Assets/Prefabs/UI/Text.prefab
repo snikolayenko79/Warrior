@@ -270,6 +270,6 @@ MonoBehaviour:
   textControl: {fileID: 1833332811905162064}
   canvas: {fileID: 4374118232301545919}
   canvasGroup: {fileID: 1190753041622618938}
-  standTime: 0.1
+  standTime: 1
   fadeoutTime: 0.8
   UpSpeed: 150

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Sword
-  itemViewPrefab: {fileID: -7264830491062202126, guid: b3e49d3d76ed0524e920b2527baac3df, type: 3}
+  itemViewPrefab: {fileID: 5476061879990390236, guid: 50acb9c6eaa8fff4289de67b28313e37, type: 3}
   icon: {fileID: 712035800519618848, guid: 2922c46ada4fe6b468b8d495879ad58d, type: 3}

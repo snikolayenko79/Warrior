@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MagicSword
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Magic sword
-  itemViewPrefab: {fileID: -6767356252082939192, guid: d9c148de23661f348a322a58eab836b7, type: 3}
+  itemViewPrefab: {fileID: 5476061879990390236, guid: 8c00d094213c4a943ae849b72ce0b1a5, type: 3}
   icon: {fileID: 580304011752998546, guid: 1bd4e723112ab5846ad3c9060381210b, type: 3}

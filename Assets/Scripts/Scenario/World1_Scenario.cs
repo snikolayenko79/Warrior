@@ -205,7 +205,7 @@ public class World1_Scenario : MonoBehaviour
         
         _spellController.AddSpell(player, fireBallSpell);
          Vector3 screenPos = levelCamera.WorldToScreenPoint(player.Position);
-         _uiManager.OpenWindow(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
+         _uiManager.CreateView(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
         
         characterStateController.StateEnd(chPlayer, followPath);
         characterStateController.StateStart(chPlayer, playerInput);

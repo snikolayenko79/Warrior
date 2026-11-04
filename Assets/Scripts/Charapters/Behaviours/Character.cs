@@ -134,8 +134,12 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
     
     public bool IsDead => health <= 0;
 
-    public float Health => health;
-    
+    public float Health
+    {
+        get => health;
+        set => health = Mathf.Clamp(value, 0, 100);
+    }
+
     public void TakeDamage(float damageAmount)
     {
         Debug.Log(this.name + ": -" + damageAmount + " health points");
