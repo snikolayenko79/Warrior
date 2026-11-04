@@ -90,7 +90,10 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     public IUIView OpenWindow(GameObject popupPrefab, params object[] args)
     {
         // TODO. переделать IsModal и timeScale. Могут динамически меняться в старт окна.
-        // Может в окнах менять. Или вообще отказаться. 
+        // Может в окнах менять. Или вообще отказаться.
+        
+        // TODO. Может быть 2 немодальных окна, они должны залочиться одним модальным.
+        // B потом также разлочиться.
         
         if (popupPrefab == null)
         {
@@ -104,6 +107,8 @@ public class UIManager : IUIManager, IInitializable, IDisposable
         }
 
         IUIView newView = CreateView(popupPrefab, args);
+        
+        // TODO. Логика не совсем правильная. Если модальное новое окно, то лочить нужно все нижние.
         
         if (newView.IsModal)
             _activeWindow.SetInteractable(false);
@@ -122,6 +127,10 @@ public class UIManager : IUIManager, IInitializable, IDisposable
         if (_activeWindow == null)
             return;
 
+        // TODO. Если хотя бы одно из оставшихся окон паузит время, нужно паузить.
+        // Если закрыли модальное окно, то нужно пересмотреть все окна в том порядке, как открывали.
+        // Могло быть 2 немодальных окна, а они залочились одним модальным.
+        
         // Запоминаем, было ли закрывающееся окно модальным, чтобы знать, разблокировать ли нижнее
         bool closedWasModal = _activeWindow.IsModal;
 
@@ -139,6 +148,7 @@ public class UIManager : IUIManager, IInitializable, IDisposable
                 _activeWindow.SetInteractable(true);
         }
 
+        
         // Если на экране осталось окно, и оно ТРЕБУЕТ паузу
         if (_activeWindow != null && _activeWindow.PauseTime)
         {

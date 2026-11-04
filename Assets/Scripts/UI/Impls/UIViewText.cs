@@ -38,14 +38,19 @@ public class UIViewText : UIView
             UpdatePosition(_screenPos);
         }
         
-        yield return new WaitForSeconds(standTime);
-
         float fadeCounter = 0;
+        while (fadeCounter <= standTime)
+        {
+            fadeCounter += Time.unscaledDeltaTime;            
+            yield return null;
+        }
+
+        fadeCounter = 0;
         while (fadeCounter <= fadeoutTime)
         {
-            fadeCounter += Time.deltaTime;
+            fadeCounter += Time.unscaledDeltaTime;
             
-            _screenPos.y += UpSpeed * Time.deltaTime;
+            _screenPos.y += UpSpeed * Time.unscaledDeltaTime;
             UpdatePosition(_screenPos);
             
             canvasGroup.alpha = Mathf.Lerp(1, 0, fadeCounter/fadeoutTime);

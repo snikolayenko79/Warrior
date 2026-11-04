@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 42
+  controlID: 96
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Inventory
+    - Assets/Prefabs/UI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Inventory
+  - Assets/Prefabs/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
@@ -615,30 +615,21 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 53672
+    - m_Data: 54322
     m_LastClickedID:
-      m_Data: 53672
+      m_Data: 54322
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53216
-    - m_Data: 53218
-    - m_Data: 53220
-    - m_Data: 53222
-    - m_Data: 53224
-    - m_Data: 53226
     - m_Data: 53228
     - m_Data: 53230
     - m_Data: 53232
-    - m_Data: 53662
-    - m_Data: 53704
-    - m_Data: 53714
-    - m_Data: 53722
-    - m_Data: 53724
-    - m_Data: 53728
-    - m_Data: 53738
-    - m_Data: 53772
-    - m_Data: 53800
-    - m_Data: 53802
+    - m_Data: 53234
+    - m_Data: 53236
+    - m_Data: 53238
+    - m_Data: 53240
+    - m_Data: 53242
+    - m_Data: 53244
+    - m_Data: 54372
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -672,15 +663,15 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53216
-    - m_Data: 53218
-    - m_Data: 53220
-    - m_Data: 53222
-    - m_Data: 53224
-    - m_Data: 53226
     - m_Data: 53228
     - m_Data: 53230
     - m_Data: 53232
+    - m_Data: 53234
+    - m_Data: 53236
+    - m_Data: 53238
+    - m_Data: 53240
+    - m_Data: 53242
+    - m_Data: 53244
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -802,7 +793,8 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1338
+      - m_Data: -6044
+      - m_Data: -1336
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

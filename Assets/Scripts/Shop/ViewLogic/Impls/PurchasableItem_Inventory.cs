@@ -23,11 +23,11 @@ public class PurchasableItem_Inventory : PurchasableView
     {
         if (_inventory.ContainsItem(inventoryItem))
         {
-            //_uiManager.OpenWindow(TextView.gameObject, "You already have this item", Screen.width/2, Screen.height/2);
+            _uiManager.CreateView(TextView.gameObject, "You already have this item", (float)Screen.width/2.0f, (float)Screen.height/2.0f);
             return;
         }
 
         _inventory.AddItemToInventory(inventoryItem);
-        //_uiManager.OpenWindow(TextView.gameObject, "Item added to inventory", Screen.width/2, Screen.height/2);
+        _uiManager.CreateView(TextView.gameObject, "Item added to inventory", (float)Screen.width/2.0f, (float)Screen.height/2.0f);
     }
 }

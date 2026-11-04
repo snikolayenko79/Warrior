@@ -91,7 +91,9 @@ public class World1_Scenario : MonoBehaviour
 
     private IEnumerator World1_Scenario_Coroutine()
     {
+        // TODO. Убрать.
         yield return new WaitForSeconds(3);
+        
         GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
         
         Character chPlayer = goPlayer.GetComponent<Character>();
