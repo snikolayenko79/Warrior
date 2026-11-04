@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
   itemName: Potion
-  _itemViewPrefab: {fileID: 0}
+  itemViewPrefab: {fileID: 1405920230200764361, guid: de575289f611c824d9f0f80b14585525, type: 3}
   icon: {fileID: -2880734798192188640, guid: e3c77816894432b4dbe5d906aeb112b3, type: 3}
   price: 20

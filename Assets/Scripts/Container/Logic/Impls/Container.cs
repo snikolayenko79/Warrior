@@ -5,9 +5,12 @@ using Zenject;
 
 public abstract class Container : MonoBehaviour, IContainer
 {
-    private List<IContainerItem> _items = new List<IContainerItem>();
+    protected List<IContainerItem> _items = new List<IContainerItem>();
     
     public IReadOnlyList<IContainerItem> Items => _items;
+    
+    public event Action<IContainerItem> OnItemAdded;
+    public event Action<IContainerItem> OnItemRemoved;
 
     public virtual void Initialize(IReadOnlyList<IContainerItem> items)
     {
@@ -15,16 +18,18 @@ public abstract class Container : MonoBehaviour, IContainer
             return;
         
         foreach (var item in items)
-            AddItemToContainer(item);
+            _items.Add(item);
     }
     
     public void AddItemToContainer(IContainerItem item)
     {
         _items.Add(item);
+        OnItemAdded?.Invoke(item);
     }
     
     public void RemoveItemFromContainer(IContainerItem item)
     {
         _items.Remove(item);
+        OnItemRemoved?.Invoke(item);
     }
 }

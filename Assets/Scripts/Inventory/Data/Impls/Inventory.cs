@@ -29,7 +29,10 @@ public class Inventory : Container, IInventory
             if (item is IInventoryItem inventoryItem)
             {
                 if (Load(inventoryItem))
-                    AddItemToInventory(inventoryItem);
+                {
+                    _inventoryItems.Add(inventoryItem);
+                    _items.Add(item);
+                }
             }
         }
     }
@@ -51,30 +54,22 @@ public class Inventory : Container, IInventory
         if (inventoryItem is IContainerItem containerItem)
             RemoveItemFromContainer(containerItem);
     }
-    
-    // public override void OnInteract(IContainerItemView itemView)
-    // {
-    //     if (Owner != null && (itemView != null) && itemView.ItemData is IInventoryItem inventoryItemData)
-    //     {
-    //         OnUse(Owner, inventoryItemData);
-    //     }
-    // }
+
+    public bool ContainsItem(IInventoryItem inventoryItem)
+    {
+        return _inventoryItems.Contains(inventoryItem);
+    }
 
     public IInventoryOwner Owner
     {
         get => _owner;
         set => _owner = value;
     }
-        
-    public void OnUse(IInventoryOwner inventoryOwner, IInventoryItem inventoryItem)
-    {
-        //inventoryItem.OnUse(inventoryOwner);
-    }
 
     public bool Load(IInventoryItem inventoryItem)
     {
         // TODO. Load item state: in inventory or not.
-        return true;
+        return false;
     }
 
     public void Save(IInventoryItem inventoryItem, bool bInInventory)

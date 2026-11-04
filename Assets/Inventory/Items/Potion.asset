@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Potion
-  _itemViewPrefab: {fileID: 733016982303300629, guid: 8c3e7f3c765f83248b470f9300754e32, type: 3}
+  itemViewPrefab: {fileID: 733016982303300629, guid: 8c3e7f3c765f83248b470f9300754e32, type: 3}
   icon: {fileID: -2880734798192188640, guid: e3c77816894432b4dbe5d906aeb112b3, type: 3}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
   itemName: Axe
-  _itemViewPrefab: {fileID: 0}
+  itemViewPrefab: {fileID: 1405920230200764361, guid: b943faf1802bf4a44932b790c12b66ea, type: 3}
   icon: {fileID: -5825250732961213246, guid: d3ddd634b7e2d234bbcd12c96fec6bcb, type: 3}
   price: 50

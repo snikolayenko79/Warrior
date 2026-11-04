@@ -10,6 +10,4 @@ public interface IStore
     void RemoveItemFromStore(IPurchasable purchasable);
 
     ICustomer Customer { get; set; }
-    
-    void OnPurchase(ICustomer customer, IPurchasable item);
 }

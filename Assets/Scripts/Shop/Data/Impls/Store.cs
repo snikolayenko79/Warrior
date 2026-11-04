@@ -27,7 +27,8 @@ public class Store : Container, IStore
         {
             if (item is IPurchasable purchasable)
             {
-                AddItemToStore(purchasable);
+                _products.Add(purchasable);
+                _items.Add(item);
             }
         }
     }
@@ -54,20 +55,12 @@ public class Store : Container, IStore
         set => _customer = value;
     }
     
-    // public override void OnInteract(IContainerItem item)
+    // public void OnPurchase(ICustomer customer, IPurchasable item)
     // {
-    //     if (Customer != null && item is IPurchasable purchasable)
+    //     if (customer.Coins >= item.Price)
     //     {
-    //         OnPurchase(Customer, purchasable);
+    //         customer.Coins -= item.Price;
+    //         item.OnPurchase(customer);
     //     }
     // }
-    
-    public void OnPurchase(ICustomer customer, IPurchasable item)
-    {
-        if (customer.Coins >= item.Price)
-        {
-            customer.Coins -= item.Price;
-            item.OnPurchase(customer);
-        }
-    }
 }

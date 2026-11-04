@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public interface IContainer
 {
@@ -10,4 +11,7 @@ public interface IContainer
     
     void AddItemToContainer(IContainerItem item);
     void RemoveItemFromContainer(IContainerItem item);
+    
+    event Action<IContainerItem> OnItemAdded;
+    event Action<IContainerItem> OnItemRemoved;
 }

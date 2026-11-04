@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
+using System;
 using Zenject;
 
 public class ContainerWindowUI : MonoBehaviour
@@ -8,6 +9,7 @@ public class ContainerWindowUI : MonoBehaviour
     [SerializeField] private Transform parent; // Объект с компонентом Grid/Vertical Layout Group
     [SerializeField] private ContainerSlotUI slotPrefab;
     
+    // TODO. Инициализируется только в классах-наследниках. Т.е. нельзя использовать именно этот класс.
     protected IContainer ItemsContainer;
     
     private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
@@ -25,10 +27,28 @@ public class ContainerWindowUI : MonoBehaviour
     protected void Start()
     {
         RefreshWindow();
+
+        if (!ItemsContainer.IsUnityNull())
+        {
+            ItemsContainer.OnItemAdded += OnItemAdded;
+            ItemsContainer.OnItemRemoved += OnItemRemoved;
+        }
+    }
+    
+    protected void OnDestroy()
+    {
+        if (!ItemsContainer.IsUnityNull())
+        {
+            ItemsContainer.OnItemAdded -= OnItemAdded;
+            ItemsContainer.OnItemRemoved -= OnItemRemoved;
+        }
     }
     
     public void RefreshWindow()
     {
+        if (ItemsContainer.IsUnityNull())
+            return;
+        
         ClearWindow();
         foreach (var item in ItemsContainer.Items)
         {
@@ -71,6 +91,16 @@ public class ContainerWindowUI : MonoBehaviour
     {
         if (slot && !slot.ItemView.IsUnityNull())
             slot.ItemView.OnInteract(ItemsContainer, slot.Item);
+    }
+
+    private void OnItemAdded(IContainerItem item)
+    {
+        RefreshWindow();
+    }
+    
+    private void OnItemRemoved(IContainerItem item)
+    {
+        RefreshWindow();
     }
     
     protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}

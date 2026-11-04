@@ -49,11 +49,11 @@ public class World1_Scenario : MonoBehaviour
     private BehaviourFollowPlayer _behaviourFollowPlayer;
 
     public Camera levelCamera;
-
-    public List<WeaponData> allWeapons = new List<WeaponData>();
-    public List<SpellData> allSpells = new List<SpellData>();
-
+    
     public WeaponData defaultPlayerWeapon = null;
+    public WeaponData defaultEnemyWeapon = null;
+    
+    public SpellData fireBallSpell;
     
     private IUIManager _uiManager;
 
@@ -91,6 +91,7 @@ public class World1_Scenario : MonoBehaviour
 
     private IEnumerator World1_Scenario_Coroutine()
     {
+        yield return new WaitForSeconds(3);
         GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
         
         Character chPlayer = goPlayer.GetComponent<Character>();
@@ -119,7 +120,7 @@ public class World1_Scenario : MonoBehaviour
         Character chYodan1 = goYodan1.GetComponent<Character>();
         
         Enemy enemy1 = chYodan1 as Enemy;
-        _attackController.SelectWeapon(enemy1, allWeapons[0]);
+        _attackController.SelectWeapon(enemy1, defaultEnemyWeapon);
         
         yield return null;
         
@@ -168,7 +169,7 @@ public class World1_Scenario : MonoBehaviour
          characterStateController.StateStart(chYodan2, attackPlayer);
          
          Enemy enemy2 = chYodan2 as Enemy;
-         _attackController.SelectWeapon(enemy2, allWeapons[0]);
+         _attackController.SelectWeapon(enemy2, defaultEnemyWeapon);
          
          while (!chYodan1.IsDead || !chYodan2.IsDead)
             yield return null;
@@ -200,7 +201,7 @@ public class World1_Scenario : MonoBehaviour
         while (_dialogManager.IsDialogueRunning)
             yield return null;
         
-        _spellController.AddSpell(player, allSpells[0]);
+        _spellController.AddSpell(player, fireBallSpell);
          Vector3 screenPos = levelCamera.WorldToScreenPoint(player.Position);
          _uiManager.OpenWindow(TextView.gameObject, "+ spell", screenPos.x, screenPos.y);
         

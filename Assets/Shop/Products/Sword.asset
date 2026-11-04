@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStoreItem
   itemName: Sword
-  _itemViewPrefab: {fileID: 0}
+  itemViewPrefab: {fileID: 1405920230200764361, guid: 2d9647f09797b8e4e8dd0dbe2c513f90, type: 3}
   icon: {fileID: 712035800519618848, guid: 2922c46ada4fe6b468b8d495879ad58d, type: 3}
   price: 100

@@ -10,9 +10,9 @@ public interface IInventory
     void AddItemToInventory(IInventoryItem inventoryItem);
     void RemoveItemFromInventory(IInventoryItem inventoryItem);
     
-    IInventoryOwner Owner { get; set; }
+    bool ContainsItem(IInventoryItem inventoryItem);
     
-    void OnUse(IInventoryOwner inventoryOwner, IInventoryItem inventoryItem);
+    IInventoryOwner Owner { get; set; }
     
     bool Load(IInventoryItem inventoryItem);
     void Save(IInventoryItem inventoryItem, bool bInInventory);
