@@ -17,7 +17,9 @@ public class World1Installer : MonoInstaller
     
     [Header("Инвентарь")]
     [SerializeField] private InventoryConfig inventoryConfig;
-    [SerializeField] private Inventory inventoryInstance;
+    
+    [Header("Магазин")]
+    [SerializeField] private StoreConfig storeConfig;
 
     public override void InstallBindings()
     {
@@ -27,6 +29,9 @@ public class World1Installer : MonoInstaller
         Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
         
         Container.BindInstance(inventoryConfig).AsSingle();
-        Container.BindInterfacesAndSelfTo<Inventory>().FromComponentInNewPrefab(inventoryInstance).AsSingle();
+        Container.BindInterfacesAndSelfTo<Inventory>().AsSingle();
+        
+        Container.BindInstance(storeConfig).AsSingle();
+        Container.BindInterfacesAndSelfTo<Store>().AsSingle();
     }
 }

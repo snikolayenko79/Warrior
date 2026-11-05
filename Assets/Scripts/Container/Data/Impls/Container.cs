@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public abstract class Container : MonoBehaviour, IContainer
+public abstract class Container : IContainer
 {
     protected List<IContainerItem> _items = new List<IContainerItem>();
     
