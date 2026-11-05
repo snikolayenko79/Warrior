@@ -24,7 +24,7 @@ public class ProjectInstaller : MonoInstaller
     public override void InstallBindings()
     {
          Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
-         Container.Bind<GameSceneLoader>().AsSingle().NonLazy();
+         Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle().NonLazy();
         
         // 1. Биндим префаб паузы как чистый интерфейс IUIView
         IUIView pauseInterface = pauseMenuPrefab as IUIView;
@@ -70,5 +70,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
         
         Container.Bind<IGameManager>().To<GameManager>().AsSingle();
+        
+        Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
     }
 }

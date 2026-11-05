@@ -1,8 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Enemy : ActorCharapter, IAttacker, IAttackable
+public class Enemy : ActorCharapter, IAttacker, IAttackable, IDamageable
 {
+    private IEnemyData _enemyData;
+
+    protected new void Awake()
+    {
+        base.Awake();
+        
+        if (!TryGetComponent<IEnemyData>(out _enemyData))
+        {
+            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных IEnemyData!", this);
+        }
+    }
+    
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
     private List<WeaponData> _availableWeapons = new List<WeaponData>();
     private WeaponData _currentWeapon;
@@ -50,12 +62,10 @@ public class Enemy : ActorCharapter, IAttacker, IAttackable
             MyAnimator.SetTrigger("Attack");
     }
     
-    [SerializeField] private int _experience = 10;
-    
     public int Experience
     {
-        get => _experience;
-        set  => _experience = value;
+        get => _enemyData.Experience;
+        set  => _enemyData.Experience = value;
         
     }
     
@@ -66,5 +76,39 @@ public class Enemy : ActorCharapter, IAttacker, IAttackable
         get => _lockAttackCounter;
         set  => _lockAttackCounter = value;
         
+    }
+    
+    public override bool IsDead => _enemyData.CurrentHealth <= 0;
+
+    public float Health
+    {
+        get => _enemyData.CurrentHealth;
+        set => _enemyData.CurrentHealth = value;
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        Debug.Log(this.name + ": -" + damageAmount + " health points");
+        
+        _enemyData.CurrentHealth -= damageAmount;
+        
+        if (MyAnimator)
+            MyAnimator.SetTrigger("TakeDamage");
+
+        if (Health <= 0)
+            Dead();
+    }
+    
+    public void Dead()
+    {
+        if (MyAnimator)
+        {
+            MyAnimator.SetBool("IsMoving", false);
+            MyAnimator.SetTrigger("IsDead");
+        }
+
+        MyRigidbody.isKinematic = true;
+        
+        OnDead?.Invoke(this);
     }
 }

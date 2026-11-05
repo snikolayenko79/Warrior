@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
+public class Character : MonoBehaviour, IMovable, ICharapterState
 {
     public Animator MyAnimator;
 
@@ -108,8 +108,6 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
     
     public Transform MyTransform => this.transform;
 
-    protected float health = 100;
-
     protected void Awake()
     {
         if (!MyAnimator)
@@ -132,40 +130,7 @@ public class Character : MonoBehaviour, IMovable, IDamageable, ICharapterState
             MyAnimator.SetBool("IsMoving", IsMoving);
     }
     
-    public bool IsDead => health <= 0;
-
-    public float Health
-    {
-        get => health;
-        set => health = Mathf.Clamp(value, 0, 100);
-    }
-
-    public void TakeDamage(float damageAmount)
-    {
-        Debug.Log(this.name + ": -" + damageAmount + " health points");
-        
-        health -= damageAmount;
-        health = Mathf.Clamp(Health, 0, 100);
-        
-        if (MyAnimator)
-            MyAnimator.SetTrigger("TakeDamage");
-
-        if (Health <= 0)
-            Dead();
-    }
-
-    public Action<Character> OnDead;
+    public virtual bool IsDead => false;
     
-    public void Dead()
-    {
-        if (MyAnimator)
-        {
-            MyAnimator.SetBool("IsMoving", false);
-            MyAnimator.SetTrigger("IsDead");
-        }
-
-        MyRigidbody.isKinematic = true;
-        
-        OnDead?.Invoke(this);
-    }
+    public Action<Character> OnDead;
 }

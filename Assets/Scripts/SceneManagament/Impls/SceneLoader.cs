@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class GameSceneLoader : IInitializable, ISceneLoader
+public class SceneLoader : IInitializable, ISceneLoader
 {
     private readonly DiContainer _container;
     private readonly CoroutineRunner _coroutineRunner;
@@ -13,7 +13,7 @@ public class GameSceneLoader : IInitializable, ISceneLoader
     // Наше родное событие для UIManager
     public event Action<string> OnSceneLoaded;
 
-    public GameSceneLoader(
+    public SceneLoader(
         DiContainer container,
         CoroutineRunner coroutineRunner)
     {

@@ -677,6 +677,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 01989ca0c0069024ba27d4044c24da98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3255919575287677413}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 01989ca0c0069024ba27d4044c24da98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6568774240622800902}
   m_SourcePrefab: {fileID: 100100000, guid: 01989ca0c0069024ba27d4044c24da98, type: 3}
 --- !u!95 &2784061010632844528 stripped
 Animator:
@@ -719,7 +722,6 @@ MonoBehaviour:
   allWeapons:
   - {fileID: 11400000, guid: cf21529a7b8334a48a60698c33aaaab6, type: 2}
   weaponPoint: {fileID: 8800609292088735882}
-  _experience: 10
 --- !u!135 &449054906607413096
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -768,3 +770,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &6568774240622800902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8865622585812231216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b0d9870169d0d43b210b4c03a448e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 50
+  experience: 10

@@ -3,10 +3,10 @@ using Zenject;
 
 public class Button_Start : MonoBehaviour
 {
-    private GameSceneLoader _sceneLoader;
+    private ISceneLoader _sceneLoader;
 
     [Inject]
-    public void Construct(GameSceneLoader sceneLoader)
+    public void Construct(ISceneLoader sceneLoader)
     {
         _sceneLoader = sceneLoader;
     }

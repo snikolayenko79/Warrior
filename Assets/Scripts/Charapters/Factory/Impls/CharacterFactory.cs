@@ -44,7 +44,8 @@ public class CharacterFactory : MonoBehaviour, ICharacterFactory
         character.OnDead += OnCharapterDead;
         
         // 3. Возвращаем персонажу "жизнь" (сбрасываем здоровье до 100)
-        character.TakeDamage(-1000); 
+        if (character is IDamageable damageable)
+            damageable.TakeDamage(-1000); 
 
         // 4. Сбрасываем и настраиваем навигацию
         // Если на персонаже висит настроенный в инспекторе INavigationPath, возвращаем его как стартовый компас

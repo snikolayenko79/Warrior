@@ -7,7 +7,7 @@ using Zenject;
 public class UIManager : IUIManager, IInitializable, IDisposable
 {
     private readonly IUIViewFactory _factory;
-    private readonly GameSceneLoader _sceneLoader;
+    private readonly ISceneLoader _sceneLoader;
     private readonly Dictionary<string, GameObject> _uiConfigs;
     
     private readonly Stack<IUIView> _screenStack = new Stack<IUIView>();
@@ -23,8 +23,8 @@ public class UIManager : IUIManager, IInitializable, IDisposable
     }
 
     public UIManager(
-        IUIViewFactory factory, 
-        GameSceneLoader sceneLoader,
+        IUIViewFactory factory,
+        ISceneLoader sceneLoader,
         CoroutineRunner coroutineRunner,
         Dictionary<string, GameObject> uiConfigs)
     {

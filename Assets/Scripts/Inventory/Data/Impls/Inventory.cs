@@ -2,7 +2,7 @@ using UnityEngine;
 using Zenject;
 using System.Collections.Generic;
 
-public class Inventory : Container, IInventory
+public class Inventory : Container, IInventory, ISavable
 {
     private List<IInventoryItem> _inventoryItems = new List<IInventoryItem>();
     
@@ -75,5 +75,10 @@ public class Inventory : Container, IInventory
     public void Save(IInventoryItem inventoryItem, bool bInInventory)
     {
         // TODO. Save item state: in inventory or not.
+    }
+
+    public void Save(ISaveLoadService saveService)
+    {
+        
     }
 }

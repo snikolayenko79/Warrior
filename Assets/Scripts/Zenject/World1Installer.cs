@@ -27,11 +27,11 @@ public class World1Installer : MonoInstaller
         Container.Bind<SpellController>().FromInstance(_spellController);
         Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);
         Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
-        
+
         Container.BindInstance(inventoryConfig).AsSingle();
-        Container.BindInterfacesAndSelfTo<Inventory>().AsSingle();
+        Container.Bind(typeof(IInventory), typeof(ISavable)).To<Inventory>().AsSingle();
         
         Container.BindInstance(storeConfig).AsSingle();
-        Container.BindInterfacesAndSelfTo<Store>().AsSingle();
+        Container.Bind<IStore>().To<Store>().AsSingle();
     }
 }

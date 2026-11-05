@@ -99,14 +99,8 @@ public class World1_Scenario : MonoBehaviour
         Character chPlayer = goPlayer.GetComponent<Character>();
 
         _gameManager.Player = chPlayer;
-
-        IInventoryOwner inventoryOwner = chPlayer as IInventoryOwner;
-        if (inventoryOwner != null)
-        {
-            _inventory.Owner = inventoryOwner;
-            inventoryOwner.CurrentInventory = _inventory;
-            _inventory.AddItemToInventory(axe);
-        }
+        
+        _inventory.AddItemToInventory(axe);
 
         chPlayer.CurrentPath = playerPath1;
         characterStateController.StateStart(chPlayer, followPath);
