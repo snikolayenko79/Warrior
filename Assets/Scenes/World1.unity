@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStateBehaviourMoveToAttack
   players: []
-  attackDistance: 0.6
 --- !u!1 &135160260
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +669,52 @@ MonoBehaviour:
   - {fileID: 373958256}
   - {fileID: 1062558170}
   looped: 0
+--- !u!1 &464088574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464088576}
+  - component: {fileID: 464088575}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &464088575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464088574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2469bd6a0cd53d049b711aea93042e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  characterStateController: {fileID: 1844014701}
+  timeBeforeDespawn: 4
+--- !u!4 &464088576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464088574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506487296
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +794,7 @@ MonoBehaviour:
   characterFactory: {fileID: 1009138829}
   characterStateController: {fileID: 1844014701}
   playerInput: {fileID: 1537528160}
+  playerInteract: {fileID: 924923178}
   followPath: {fileID: 135160261}
   attackPlayer: {fileID: 118452102}
   followPlayer: {fileID: 1501112512}
@@ -837,6 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   MyInputSource: {fileID: 716001904}
   MyPlayerInputListener: {fileID: 1537528162}
+  MyPlayerInputListener2: {fileID: 924923177}
 --- !u!114 &716001903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,6 +1120,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 506529202}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &924923175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924923176}
+  - component: {fileID: 924923178}
+  - component: {fileID: 924923177}
+  m_Layer: 0
+  m_Name: PlayerInteract
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &924923176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924923175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1844014700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924923177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924923175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dd5619aa46df747ab91dd439d62d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputListener
+  myActionsName:
+  - Attack
+--- !u!114 &924923178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924923175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1125e5eb9f1724caace592a9245431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BehaviourPlayerInteract
+  interactDistance: 0.5
 --- !u!1 &1009138828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,8 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba2c6d5f11b2054eaf634e734d5becf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharapterFactory
-  characterStateController: {fileID: 1844014701}
-  timeBeforeDespawn: 4
 --- !u!4 &1009138830
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,6 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3db2322bd397b4ba7bda9a7874a397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::World1Installer
+  gameManager: {fileID: 464088575}
+  characterFactory: {fileID: 1009138829}
   _attackController: {fileID: 1844014703}
   _spellController: {fileID: 1844014704}
   _behaviourAttackPlayer: {fileID: 118452102}
@@ -1786,6 +1893,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1537528161}
+  - {fileID: 924923176}
   - {fileID: 135160262}
   - {fileID: 118452101}
   - {fileID: 1501112511}
@@ -1806,6 +1914,7 @@ MonoBehaviour:
   statesBehaviours:
   - {fileID: 1537528160}
   - {fileID: 135160261}
+  - {fileID: 924923178}
 --- !u!114 &1844014702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,3 +2105,4 @@ SceneRoots:
   - {fileID: 506529202}
   - {fileID: 1327546269}
   - {fileID: 427842524}
+  - {fileID: 464088576}

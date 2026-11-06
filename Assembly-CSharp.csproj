@@ -175,6 +175,7 @@
     <Compile Include="Assets\Scripts\Input\IInputListener.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Impls\Player.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourPlayerInteract.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\INavigationPath.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

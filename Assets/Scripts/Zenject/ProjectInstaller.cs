@@ -69,8 +69,6 @@ public class ProjectInstaller : MonoInstaller
         // TODO. Контекст сцены.
         Container.BindInterfacesAndSelfTo<DialogueActorsRegistry>().AsSingle().NonLazy();
         
-        Container.Bind<IGameManager>().To<GameManager>().AsSingle();
-        
         Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
     }
 }

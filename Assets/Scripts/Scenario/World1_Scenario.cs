@@ -30,10 +30,11 @@ public class World1_Scenario : MonoBehaviour
     public CharacterFactory characterFactory;
     
     public CharacterStateController characterStateController;
-    [FormerlySerializedAs("characterStatePlayerInput")] public BehaviourBase playerInput;
-    [FormerlySerializedAs("characterPathMove")] [FormerlySerializedAs("characterStatePathMove")] public BehaviourFollowPath followPath;
+    public BehaviourBase playerInput;
+    public BehaviourBase playerInteract;
+    public BehaviourFollowPath followPath;
     public BehaviourAttackPlayer attackPlayer;
-    [FormerlySerializedAs("startFollowPlayer")] public BehaviourFollowPlayer followPlayer;
+    public BehaviourFollowPlayer followPlayer;
     
     private IDialogManager _dialogManager = null;
 
@@ -94,11 +95,9 @@ public class World1_Scenario : MonoBehaviour
         // TODO. Убрать.
         yield return new WaitForSeconds(3);
         
-        GameObject goPlayer = characterFactory.SpawnCharapter(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation);
+        GameObject goPlayer = _gameManager.CreateCharacter("Warrior", playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation * playerPrefab.transform.rotation, SideType.Player);
         
         Character chPlayer = goPlayer.GetComponent<Character>();
-
-        _gameManager.Player = chPlayer;
         
         _inventory.AddItemToInventory(axe);
 
@@ -112,7 +111,7 @@ public class World1_Scenario : MonoBehaviour
         _behaviourAttackPlayer.players.Add(chPlayer as Player);
         _behaviourFollowPlayer.players.Add(chPlayer as Player);
         
-        GameObject goYodan1 = characterFactory.SpawnCharapter(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation);
+        GameObject goYodan1 = _gameManager.CreateCharacter("Yodan", enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation * enemy1Prefab.transform.rotation, SideType.Enemy);
         Character chYodan1 = goYodan1.GetComponent<Character>();
         
         Enemy enemy1 = chYodan1 as Enemy;
@@ -157,7 +156,7 @@ public class World1_Scenario : MonoBehaviour
          characterStateController.StateStart(chYodan1, followPlayer);
          characterStateController.StateStart(chYodan1, attackPlayer);
         
-         GameObject goYodan2 = characterFactory.SpawnCharapter(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation * enemy2Prefab.transform.rotation);
+         GameObject goYodan2 = _gameManager.CreateCharacter("Yodan", enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation * enemy2Prefab.transform.rotation, SideType.Enemy);
          Character chYodan2 = goYodan2.GetComponent<Character>();
          chYodan2.CurrentPath = enemy2Path;
          characterStateController.StateStart(chYodan2, followPath);
@@ -172,7 +171,7 @@ public class World1_Scenario : MonoBehaviour
         
         yield return new WaitForSeconds(2);
         
-        GameObject goVillager = characterFactory.SpawnCharapter(villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation);
+        GameObject goVillager = _gameManager.CreateCharacter("Villager", villagerPrefab, villagerSpawnPoint.position, villagerSpawnPoint.rotation * villagerPrefab.transform.rotation, SideType.Friendly);
         Character chVillager = goVillager.GetComponent<Character>();
         chVillager.CurrentPath = villagerPath;
         characterStateController.StateStart(chVillager, followPath);
@@ -181,7 +180,7 @@ public class World1_Scenario : MonoBehaviour
         chPlayer.CurrentPath = playerPath2;
         characterStateController.StateStart(chPlayer, followPath);
         
-        GameObject goSeller = characterFactory.SpawnCharapter(sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation);
+        GameObject goSeller = _gameManager.CreateCharacter("Seller", sellerPrefab, sellerSpawnPoint.position, sellerSpawnPoint.rotation * sellerPrefab.transform.rotation, SideType.Friendly);
         Character chSeller = goSeller.GetComponent<Character>();
         chSeller.CurrentPath = sellerPath;
         characterStateController.StateStart(chSeller, followPath);
@@ -203,5 +202,6 @@ public class World1_Scenario : MonoBehaviour
         
         characterStateController.StateEnd(chPlayer, followPath);
         characterStateController.StateStart(chPlayer, playerInput);
+        characterStateController.StateStart(chPlayer, playerInteract);
     }
 }

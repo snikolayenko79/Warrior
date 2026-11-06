@@ -3,6 +3,12 @@ using Zenject;
 
 public class World1Installer : MonoInstaller
 {
+    [Header("Менеджер игры.")]
+    [SerializeField] private GameManager gameManager;
+    
+    [Header("Фабрика персонажей.")]
+    [SerializeField] private CharacterFactory characterFactory;
+    
     [Header("Контроллер атак.")]
     [SerializeField] private AttackController _attackController;
     
@@ -23,6 +29,8 @@ public class World1Installer : MonoInstaller
 
     public override void InstallBindings()
     {
+        Container.Bind<IGameManager>().FromInstance(gameManager);
+        Container.Bind<ICharacterFactory>().FromInstance(characterFactory);
         Container.Bind<IAttackController>().FromInstance(_attackController);
         Container.Bind<SpellController>().FromInstance(_spellController);
         Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);

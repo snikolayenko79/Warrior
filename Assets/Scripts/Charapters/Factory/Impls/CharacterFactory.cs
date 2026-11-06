@@ -4,9 +4,6 @@ using System.Collections;
 
 public class CharacterFactory : MonoBehaviour, ICharacterFactory
 {
-    public CharacterStateController characterStateController;
-    public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
-    
     private IObjectPool _objectPool = null;
 
     public GameObject SpawnCharapter(GameObject prefab, Vector3 position, Quaternion rotation)
@@ -41,55 +38,7 @@ public class CharacterFactory : MonoBehaviour, ICharacterFactory
             return enemyInstance;
         }
 
-        character.OnDead += OnCharapterDead;
-        
-        // 3. Возвращаем персонажу "жизнь" (сбрасываем здоровье до 100)
-        if (character is IDataContainer dataContainer)
-        {
-            if (!dataContainer.Data.IsUnityNull())
-                dataContainer.Data.Initialize();
-        }
-
-        // 4. Сбрасываем и настраиваем навигацию
-        // Если на персонаже висит настроенный в инспекторе INavigationPath, возвращаем его как стартовый компас
-        if (enemyInstance.TryGetComponent<INavigationPath>(out var path))
-        {
-            character.CurrentPath = path;
-        }
-        else
-        {
-            // Если патруля нет (например, статичная турель), навигатор по умолчанию отсутствует
-            character.CurrentPath = null;
-        }
-
-        // 5. Регистрируем сущность в глобальной системе симуляции движения
-        if (characterStateController != null)
-        {
-            characterStateController.RegisterEntity(character);
-        }
-
         return enemyInstance;
-    }
-
-    void OnCharapterDead(Character character)
-    {
-        character.OnDead -= OnCharapterDead;
-        
-        if (characterStateController != null)
-        {
-            characterStateController.UnregisterEntity(character);
-        }
-
-        StartCoroutine(DelayedDespawnRoutine((character)));
-    }
-    
-    private IEnumerator DelayedDespawnRoutine(Character charapter)
-    {
-        // Ждем указанное количество секунд (пока враг красиво падает на землю)
-        yield return new WaitForSeconds(timeBeforeDespawn);
-
-        // 4. По истечении таймера окончательно прячем тело в пул
-        DespawnCharacter(charapter);
     }
     
     // Публичный метод деспавна (можно вызвать и вручную, например, при деспавне за экраном)

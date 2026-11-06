@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public interface IGameManager
 {
-    ICharapterState Player { get; set; }
+    GameObject CreateCharacter(string name, GameObject prefab, Vector3 position, Quaternion rotation, SideType side);
+    IReadOnlyList<GameObject> GetCharactersBySide(SideType side);
 }

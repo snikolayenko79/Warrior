@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class CharacterStateController : MonoBehaviour, ICharacterStateController
 {
+    // TODO. Нужны?
     [SerializeField] List<BehaviourBase> statesBehaviours = new List<BehaviourBase>();
     
     protected List<ICharapterState> Entities = new List<ICharapterState>();

@@ -1,14 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Zenject;
 
 public class BehaviourAttackPlayer : AttackerBehaviourBase
 {
     public List<Player> players = new List<Player>();
-    public float attackDistance = 0.3f;
     
     const float BaseAttackChance = 1f;
     const float MaxAttackChance = 50f;
     const float PauseBetweenAttacks = 2f;
+
+    private IAttackController _attackController;
+
+    [Inject]
+    public void Construct(IAttackController attackController)
+    {
+        _attackController = attackController;
+    }
     
     public override void StateStart(ICharapterState characterState)
     {
@@ -31,7 +39,7 @@ public class BehaviourAttackPlayer : AttackerBehaviourBase
             if (player.IsDead)
                 continue;
                 
-            if (Vector3.Distance(attacker.Position, player.Position) <= attackDistance)
+            if (_attackController.CanAttack(attacker, player))
             {
                 if (TryToAttack(attacker))
                 {

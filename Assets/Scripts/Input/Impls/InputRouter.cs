@@ -38,9 +38,6 @@ public class InputRouter : IInputRouter
     {
         foreach (var logicalActionName in listener.ActionsName)
         {
-            if (InputMap.ContainsKey(logicalActionName))
-                InputMap[logicalActionName].Remove(listener);
-
             if (InputMap.TryGetValue(logicalActionName, out List<IInputListener> listeners))
             {
                 listeners.Remove(listener);
