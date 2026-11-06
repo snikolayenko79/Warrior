@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Store\View\StoreSlotUI.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_CloseView.cs" />
     <Compile Include="Assets\Scripts\Container\Data\IContainerItem.cs" />
+    <Compile Include="Assets\Scripts\Charapters\IInteractor.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\IInventoryOwner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Container\View\Impls\ContainerWindowUI.cs" />

@@ -802,6 +802,8 @@ MonoBehaviour:
   DialogueYodan1: {fileID: 11400000, guid: d110689e921a5054b9e9fde008ea0b35, type: 2}
   DialogueVillager: {fileID: 11400000, guid: c1a9a9ceb8aa37b439d5edc9dc5cf68a, type: 2}
   DialogueSeller: {fileID: 11400000, guid: 324130fafa63dcf4d8b0987d922054a7, type: 2}
+  DialogueVillager2: {fileID: 11400000, guid: c0e28c6e0ffc4e748aac60a9e0ddc32f, type: 2}
+  DialogueSeller2: {fileID: 11400000, guid: 324130fafa63dcf4d8b0987d922054a7, type: 2}
   levelCamera: {fileID: 427842523}
   defaultPlayerWeapon: {fileID: 11400000, guid: 250f012339a8fb44cb658667f58ca90e, type: 2}
   defaultEnemyWeapon: {fileID: 11400000, guid: cf21529a7b8334a48a60698c33aaaab6, type: 2}
@@ -1180,6 +1182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BehaviourPlayerInteract
   interactDistance: 0.5
+  DialogueVillager: {fileID: 0}
+  DialogueSeller: {fileID: 0}
 --- !u!1 &1009138828
 GameObject:
   m_ObjectHideFlags: 0

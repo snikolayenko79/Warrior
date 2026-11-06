@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : MonoBehaviour, IMovable, ICharapterState
+public class Character : MonoBehaviour, IMovable, ICharapterState, IInteractor
 {
     public Animator MyAnimator;
 
@@ -133,4 +133,6 @@ public class Character : MonoBehaviour, IMovable, ICharapterState
     public virtual bool IsDead => false;
     
     public Action<Character> OnDead;
+
+    public string Name => gameObject.name;
 }

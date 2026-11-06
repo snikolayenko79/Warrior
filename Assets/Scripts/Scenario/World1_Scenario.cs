@@ -31,7 +31,7 @@ public class World1_Scenario : MonoBehaviour
     
     public CharacterStateController characterStateController;
     public BehaviourBase playerInput;
-    public BehaviourBase playerInteract;
+    public BehaviourPlayerInteract playerInteract;
     public BehaviourFollowPath followPath;
     public BehaviourAttackPlayer attackPlayer;
     public BehaviourFollowPlayer followPlayer;
@@ -42,7 +42,8 @@ public class World1_Scenario : MonoBehaviour
     public Dialogue DialogueYodan1 = null;
     public Dialogue DialogueVillager = null;
     public Dialogue DialogueSeller = null;
-
+    public Dialogue DialogueVillager2 = null;
+    
     private IGameManager _gameManager;
     private IAttackController _attackController;
     private SpellController _spellController;
@@ -88,6 +89,19 @@ public class World1_Scenario : MonoBehaviour
     void Start()
     {
         StartCoroutine(World1_Scenario_Coroutine());
+        playerInteract.OnInteract += OnInteract;
+    }
+
+    private void OnInteract(IInteractor player, IInteractor interactor)
+    {
+        if (interactor.Name == "Villager")
+        {
+            _dialogManager.StartDialogue(DialogueVillager2);
+        }
+        else if (interactor.Name == "Seller")
+        {
+            _dialogManager.StartDialogue(DialogueSeller);
+        }
     }
 
     private IEnumerator World1_Scenario_Coroutine()

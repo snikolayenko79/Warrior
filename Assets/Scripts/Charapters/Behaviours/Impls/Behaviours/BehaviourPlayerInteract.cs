@@ -1,19 +1,28 @@
 using UnityEngine;
 using Zenject;
+using System;
 
 public class BehaviourPlayerInteract : BehaviourBase
 {
     public float interactDistance = 0.3f;
     
+    public Dialogue DialogueVillager = null;
+    public Dialogue DialogueSeller = null;
+    
     private IGameManager _gameManager;
+    private IDialogManager _dialogManager;
+    
+    public Action<IInteractor, IInteractor> OnInteract;
 
     [Inject]
-    public void Construct(IGameManager gameManager)
+    public void Construct(IGameManager gameManager, IDialogManager dialogManager)
     {
         _gameManager = gameManager;
+        _dialogManager = dialogManager;
     }
     
-    private IMovable _player;
+    private IInteractor _playerInteractor;
+    private IMovable _playerMovable;
     private IInputListener _inputListener;
     
     public void SetInputListener(IInputListener inputListener)
@@ -22,7 +31,8 @@ public class BehaviourPlayerInteract : BehaviourBase
     
     public override void StateStart(ICharapterState characterState)
     {
-        _player = characterState as IMovable;
+        _playerInteractor = characterState as IInteractor;
+        _playerMovable = characterState as IMovable;
         
         TryGetComponent<IInputListener>(out _inputListener);
 
@@ -48,39 +58,28 @@ public class BehaviourPlayerInteract : BehaviourBase
     {
         if (logicalActionName == "Attack" && context.FloatValue == 0)
         {
-            if (_player == null || _player.IsDead)
+            if (_playerInteractor.IsUnityNull() || _playerInteractor.IsDead)
                 return;
             
             foreach (var character in _gameManager.GetCharactersBySide(SideType.Friendly))
             {
-                if (Vector3.Distance(character.transform.position, _player.Position) <= interactDistance)
+                if (!character.TryGetComponent<IInteractor>(out IInteractor interactor))
+                    continue;
+                    
+                if (CanInteractWith(interactor))
                 {
-                    InteractWith(character);
+                    OnInteract?.Invoke(_playerInteractor, interactor);
                     break;
                 }
             }
         }
     }
 
-    private void InteractWith(GameObject character)
+    private bool CanInteractWith(IInteractor interactor)
     {
-        if (character.name == "Villager")
-        {
-            InteractWithVillager(character);
-        }
-        else if (character.name == "Seller")
-        {
-            InteractWithSeller(character);
-        }
-    }
-    
-    private void InteractWithVillager(GameObject villager)
-    {
-        Debug.Log("InteractWithVillager");
-    }
-    
-    private void InteractWithSeller(GameObject seller)
-    {
-        Debug.Log("InteractWithSeller");
+        if (interactor is IMovable movable && !_playerMovable.IsUnityNull())
+            return Vector3.Distance(movable.Position, _playerMovable.Position) <= interactDistance;
+
+        return true;
     }
 }
