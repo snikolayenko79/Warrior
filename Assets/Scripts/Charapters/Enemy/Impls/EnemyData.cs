@@ -22,12 +22,7 @@ public class EnemyData : MonoBehaviour, IEnemyData
         set => experience = value;
     }
     
-    void Awake()
-    {
-        ResetData();
-    }
-
-    public void ResetData()
+    public void Initialize()
     {
         _currentHealth = maxHealth;
     }

@@ -150,6 +150,7 @@
     <Compile Include="Assets\Scripts\Scenario\World1_Scenario.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\AttackerBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\MoveController.cs" />
+    <Compile Include="Assets\Scripts\Data\IData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellController.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
     <Compile Include="Assets\Scripts\SaveLoad\ISaveLoadService.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerItem.cs" />
+    <Compile Include="Assets\Scripts\Data\IDataContainer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />

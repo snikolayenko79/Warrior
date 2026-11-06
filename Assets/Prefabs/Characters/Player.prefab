@@ -374,6 +374,7 @@ MonoBehaviour:
   MyRotateSpeed: 300
   dialogueActorName: Player
   speechBubbleAnchor: {fileID: 1392574285553782705}
+  playerData: {fileID: 6231084729903241704}
   spellSpawnPoint: {fileID: 8447368732712295509}
   weaponPoint: {fileID: 3444118038263464537}
 --- !u!54 &7442628728495409567

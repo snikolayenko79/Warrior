@@ -81,4 +81,9 @@ public class Inventory : Container, IInventory, ISavable
     {
         
     }
+    
+    public void Load(ISaveLoadService saveService)
+    {
+        
+    }
 }

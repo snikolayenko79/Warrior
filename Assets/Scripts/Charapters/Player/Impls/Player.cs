@@ -3,18 +3,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
+public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
 {
-    private IPlayerData _playerData;
+    [SerializeField]private PlayerData playerData;
     private IInventory _inventory;
     
     protected new void Awake()
     {
         base.Awake();
         
-        if (!TryGetComponent<IPlayerData>(out _playerData))
+        if (!playerData)
         {
-            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных IPlayerData!", this);
+            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
         }
     }
     
@@ -30,6 +30,8 @@ public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICus
         _inventory = inventory;
         _inventory.Owner = this;
     }
+
+    public IData Data => playerData;
     
     private List<SpellData> _availableSpells = new List<SpellData>();
     [SerializeField] Transform spellSpawnPoint;
@@ -108,8 +110,8 @@ public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICus
     
     public int Experience
     {
-        get => _playerData.Experience;
-        set  => _playerData.Experience = value;
+        get => playerData.Experience;
+        set  => playerData.Experience = value;
         
     }
     
@@ -124,23 +126,23 @@ public class Player : ActorCharapter, IAttacker, ISpellCaster, IAttackable, ICus
 
     public int Coins
     {
-        get => _playerData.Coins;
-        set => _playerData.Coins = value;
+        get => playerData.Coins;
+        set => playerData.Coins = value;
     }
     
-    public override bool IsDead => _playerData.CurrentHealth <= 0;
+    public override bool IsDead => playerData.CurrentHealth <= 0;
 
     public float Health
     {
-        get => _playerData.CurrentHealth;
-        set => _playerData.CurrentHealth = value;
+        get => playerData.CurrentHealth;
+        set => playerData.CurrentHealth = value;
     }
 
     public void TakeDamage(float damageAmount)
     {
         Debug.Log(this.name + ": -" + damageAmount + " health points");
         
-        _playerData.CurrentHealth -= damageAmount;
+        playerData.CurrentHealth -= damageAmount;
         
         if (MyAnimator)
             MyAnimator.SetTrigger("TakeDamage");

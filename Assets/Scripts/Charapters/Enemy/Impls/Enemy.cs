@@ -1,19 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Enemy : ActorCharapter, IAttacker, IAttackable, IDamageable
+public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDamageable
 {
-    private IEnemyData _enemyData;
+    [SerializeField]private EnemyData enemyData;
 
     protected new void Awake()
     {
         base.Awake();
         
-        if (!TryGetComponent<IEnemyData>(out _enemyData))
+        if (!enemyData)
         {
-            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных IEnemyData!", this);
+            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных EnemyData!", this);
         }
     }
+    
+    public IData Data  => enemyData;
     
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
     private List<WeaponData> _availableWeapons = new List<WeaponData>();
@@ -64,8 +66,8 @@ public class Enemy : ActorCharapter, IAttacker, IAttackable, IDamageable
     
     public int Experience
     {
-        get => _enemyData.Experience;
-        set  => _enemyData.Experience = value;
+        get => enemyData.Experience;
+        set  => enemyData.Experience = value;
         
     }
     
@@ -78,19 +80,19 @@ public class Enemy : ActorCharapter, IAttacker, IAttackable, IDamageable
         
     }
     
-    public override bool IsDead => _enemyData.CurrentHealth <= 0;
+    public override bool IsDead => enemyData.CurrentHealth <= 0;
 
     public float Health
     {
-        get => _enemyData.CurrentHealth;
-        set => _enemyData.CurrentHealth = value;
+        get => enemyData.CurrentHealth;
+        set => enemyData.CurrentHealth = value;
     }
 
     public void TakeDamage(float damageAmount)
     {
         Debug.Log(this.name + ": -" + damageAmount + " health points");
         
-        _enemyData.CurrentHealth -= damageAmount;
+        enemyData.CurrentHealth -= damageAmount;
         
         if (MyAnimator)
             MyAnimator.SetTrigger("TakeDamage");

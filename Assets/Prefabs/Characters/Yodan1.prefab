@@ -719,6 +719,7 @@ MonoBehaviour:
   MyRotateSpeed: 150
   dialogueActorName: Yodan1
   speechBubbleAnchor: {fileID: 3671525903324294428}
+  enemyData: {fileID: 6568774240622800902}
   allWeapons:
   - {fileID: 11400000, guid: cf21529a7b8334a48a60698c33aaaab6, type: 2}
   weaponPoint: {fileID: 8800609292088735882}

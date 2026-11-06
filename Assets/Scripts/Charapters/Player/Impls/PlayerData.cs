@@ -33,23 +33,13 @@ public class PlayerData : MonoBehaviour, IPlayerData, ISavable
         get => _currentExperience;
         set => _currentExperience = value;
     }
-    
+
+    private ISaveLoadService _saveLoadService;
+        
     [Inject]
     public void Construct(ISaveLoadService saveLoadService)
     {
-        PlayerSaveData rawData = saveLoadService.CurrentProgress;
-
-        if (rawData.IsNewData)
-        {
-            ResetData();
-        }
-        else
-        {
-            _currentMaxHealth = rawData.MaxHealth;
-            _currentHealth = rawData.SavedHealth;
-            _currentCoins = rawData.Coins;
-            _currentExperience = rawData.Experience;
-        }
+        _saveLoadService = saveLoadService;
     }
     
     public void Save(ISaveLoadService saveService)
@@ -64,11 +54,30 @@ public class PlayerData : MonoBehaviour, IPlayerData, ISavable
         rawData.IsNewData = false;
     }
     
-    public void ResetData()
+    public void Load(ISaveLoadService saveService)
     {
-        _currentMaxHealth = maxHealthInit;
-        _currentHealth = _currentMaxHealth;
-        _currentCoins = coinsInit;
-        _currentExperience = experienceInit;
+        PlayerSaveData rawData = saveService.CurrentProgress;
+        
+        rawData.MaxHealth = _currentMaxHealth;
+        rawData.SavedHealth = _currentHealth;
+        rawData.Coins = _currentCoins;
+        rawData.Experience = _currentExperience;
+    }
+    
+    public void Initialize()
+    {
+        PlayerSaveData rawData = _saveLoadService.CurrentProgress;
+
+        if (!rawData.IsNewData)
+        {
+            Load(_saveLoadService);
+        }
+        else
+        {
+            _currentMaxHealth = maxHealthInit;
+            _currentHealth = _currentMaxHealth;
+            _currentCoins = coinsInit;
+            _currentExperience = experienceInit;
+        }
     }
 }
