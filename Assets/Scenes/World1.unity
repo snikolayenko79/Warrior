@@ -1836,6 +1836,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackDistance: 0.6
 --- !u!114 &1844014704
 MonoBehaviour:
   m_ObjectHideFlags: 0

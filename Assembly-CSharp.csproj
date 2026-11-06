@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventorySlotUI.cs" />
+    <Compile Include="Assets\Scripts\Charapters\SideType.cs" />
     <Compile Include="Assets\Scripts\Container\Data\IContainer.cs" />
     <Compile Include="Assets\Scripts\Store\Logic\IPurchaseLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />

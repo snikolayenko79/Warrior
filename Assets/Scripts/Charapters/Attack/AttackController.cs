@@ -1,18 +1,79 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AttackController : MonoBehaviour, IAttackController
 {
     [Tooltip("Леер врагов (противоположной стороны).")]
     public LayerMask playerLayer;
     public LayerMask enemyLayer;
+    
+    public float attackDistance = 0.3f;
+    
+    private List<IAttacker> _attackers = new List<IAttacker>();
+    private List<IAttackable> _attackables = new List<IAttackable>();
+
+    public void RegisterAttacker(IAttacker attacker)
+    {
+        _attackers.Add(attacker);
+    }
+
+    public void UnregisterAttacker(IAttacker attacker)
+    {
+        _attackers.Remove(attacker);
+    }
+
+    public void RegisterAttackable(IAttackable attackable)
+    {
+        _attackables.Add(attackable);
+    }
+
+    public void UnregisterAttackable(IAttackable attackable)
+    {
+        _attackables.Remove(attackable);
+    }
 
     public void UpdateAttack(IAttacker attacker)
     {
         if (attacker is { IsAttacking: true})
         {
-            DoAttack(attacker);
+            if (CanAttack(attacker))
+                DoAttack(attacker);
+            
             attacker.IsAttacking = false;
         }
+    }
+
+    public bool CanAttack(IAttacker attacker)
+    {
+        if (attacker.SelectedWeapon.IsUnityNull())
+            return  false;
+        
+        bool bCanAttack = false;
+        
+        foreach (var attackable in _attackables)
+        {
+            if (CanAttack(attacker, attackable))
+            {
+                bCanAttack = true;
+                break;
+            }
+        }
+        
+        return bCanAttack;
+    }
+    
+    public bool CanAttack(IAttacker attacker, IAttackable attackable)
+    {
+        if (attackable.IsDead)
+            return false;
+            
+        if (attacker.Side == SideType.Player && attackable.Side != SideType.Enemy)
+            return false;
+            
+        if (attacker.Side == SideType.Enemy && attackable.Side != SideType.Player)
+            return false;
+
+        return Vector3.Distance(attacker.Position, attackable.Position) <= attackDistance;
     }
 
     protected void DoAttack(IAttacker attacker)

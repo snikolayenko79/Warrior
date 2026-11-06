@@ -13,4 +13,5 @@ public interface IAttacker
     bool IsDead { get; }
     int Experience { get; set; } // 0-100
     float LockAttackCounter { get; set; }
+    SideType Side { get; }
 }

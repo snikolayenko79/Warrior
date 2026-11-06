@@ -5,6 +5,14 @@ using Zenject;
 
 public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
 {
+    private IAttackController _attackController;
+
+    [Inject]
+    public void Construct(IAttackController attackController)
+    {
+        _attackController = attackController;
+    }
+    
     [SerializeField]private PlayerData playerData;
     private IInventory _inventory;
     
@@ -16,6 +24,22 @@ public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, I
         {
             Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
         }
+    }
+    
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        
+        _attackController.RegisterAttacker(this);
+        _attackController.RegisterAttackable(this);
+    }
+    
+    protected new void OnDisable()
+    {
+        base.OnDisable();
+        
+        _attackController.UnregisterAttacker(this);
+        _attackController.UnregisterAttackable(this);
     }
     
     public IInventory CurrentInventory
@@ -107,6 +131,10 @@ public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, I
         if (MyAnimator != null)
             MyAnimator.SetTrigger("Attack");
     }
+
+    [SerializeField] private SideType side;
+
+    public SideType Side => side;
     
     public int Experience
     {

@@ -1,8 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Zenject;
 
 public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDamageable
 {
+    private IAttackController _attackController;
+
+    [Inject]
+    public void Construct(IAttackController attackController)
+    {
+        _attackController = attackController;
+    }
+    
     [SerializeField]private EnemyData enemyData;
 
     protected new void Awake()
@@ -13,6 +22,22 @@ public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDa
         {
             Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных EnemyData!", this);
         }
+    }
+
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        
+        _attackController.RegisterAttacker(this);
+        _attackController.RegisterAttackable(this);
+    }
+    
+    protected new void OnDisable()
+    {
+        base.OnDisable();
+        
+        _attackController.UnregisterAttacker(this);
+        _attackController.UnregisterAttackable(this);
     }
     
     public IData Data  => enemyData;
@@ -63,6 +88,10 @@ public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDa
         if (MyAnimator != null)
             MyAnimator.SetTrigger("Attack");
     }
+    
+    [SerializeField] private SideType side;
+
+    public SideType Side => side;
     
     public int Experience
     {

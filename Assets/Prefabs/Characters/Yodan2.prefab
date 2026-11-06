@@ -723,6 +723,7 @@ MonoBehaviour:
   allWeapons:
   - {fileID: 11400000, guid: cf21529a7b8334a48a60698c33aaaab6, type: 2}
   weaponPoint: {fileID: 8800609292088735882}
+  side: 1
 --- !u!135 &449054906607413096
 SphereCollider:
   m_ObjectHideFlags: 0
