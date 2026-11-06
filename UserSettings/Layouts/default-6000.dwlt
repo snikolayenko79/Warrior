@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 96
+  controlID: 42
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Characters
+    - Assets/Scripts/Store/Logic/Impls
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,24 +606,20 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Characters
+  - Assets/Scripts/Store/Logic/Impls
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
+    scrollPos: {x: 0, y: 759}
     m_SelectedIDs:
-    - m_Data: 53796
+    - m_Data: 53870
     m_LastClickedID:
-      m_Data: 53796
+      m_Data: 53870
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53314
-    - m_Data: 53316
-    - m_Data: 53318
-    - m_Data: 53320
     - m_Data: 53322
     - m_Data: 53324
     - m_Data: 53326
@@ -638,7 +634,11 @@ MonoBehaviour:
     - m_Data: 53344
     - m_Data: 53346
     - m_Data: 53348
-    - m_Data: 53844
+    - m_Data: 53350
+    - m_Data: 53352
+    - m_Data: 53354
+    - m_Data: 53356
+    - m_Data: 53852
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -672,10 +672,6 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53314
-    - m_Data: 53316
-    - m_Data: 53318
-    - m_Data: 53320
     - m_Data: 53322
     - m_Data: 53324
     - m_Data: 53326
@@ -690,6 +686,10 @@ MonoBehaviour:
     - m_Data: 53344
     - m_Data: 53346
     - m_Data: 53348
+    - m_Data: 53350
+    - m_Data: 53352
+    - m_Data: 53354
+    - m_Data: 53356
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -717,9 +717,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 50714
-    m_LastClickedInstanceID: 50714
-    m_HadKeyboardFocusLastEvent: 0
+    - m_Data: 49758
+    m_LastClickedInstanceID: 49758
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 0
     - m_Data: 49292
@@ -810,12 +810,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -11244
+      - m_Data: 49758
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
       - m_Data: -1336
-      - m_Data: 50606
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

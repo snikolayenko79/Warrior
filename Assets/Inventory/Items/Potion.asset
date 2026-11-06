@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Potion
   itemViewPrefab: {fileID: 5476061879990390236, guid: 265a229c1991995408b7ebbd95463c8a, type: 3}
   icon: {fileID: -2880734798192188640, guid: e3c77816894432b4dbe5d906aeb112b3, type: 3}
+  isStackable: 1

@@ -12,6 +12,9 @@ public interface IInventory
     
     bool ContainsItem(IInventoryItem inventoryItem);
     
+    int ItemsCount { get; }
+    int MaxItemsCount { get; }
+    
     IInventoryOwner Owner { get; set; }
     
     bool Load(IInventoryItem inventoryItem);

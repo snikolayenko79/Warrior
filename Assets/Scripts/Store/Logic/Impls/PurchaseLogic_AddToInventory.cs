@@ -20,9 +20,15 @@ public class PurchaseLogic_AddToInventory : PurchaseLogic
     
     public override void Execute(IStore storeData, IPurchasable itemData)
     {
-        if (_inventory.ContainsItem(inventoryItem))
+        if (!inventoryItem.IsStackable && _inventory.ContainsItem(inventoryItem))
         {
-            _uiManager.CreateView(TextView.gameObject, "You already have this item", (float)Screen.width/2.0f, (float)Screen.height*0.95f);
+            _uiManager.CreateView(TextView.gameObject, "You already have this item!", (float)Screen.width/2.0f, (float)Screen.height*0.95f);
+            return;
+        }
+        
+        if (_inventory.ItemsCount >= _inventory.MaxItemsCount)
+        {
+            _uiManager.CreateView(TextView.gameObject, "Your inventory is full!", (float)Screen.width/2.0f, (float)Screen.height*0.95f);
             return;
         }
 

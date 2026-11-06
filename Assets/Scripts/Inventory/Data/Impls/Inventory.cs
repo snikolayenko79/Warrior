@@ -60,6 +60,9 @@ public class Inventory : Container, IInventory, ISavable
         return _inventoryItems.Contains(inventoryItem);
     }
 
+    public int ItemsCount => _inventoryItems.Count;
+    public int MaxItemsCount => _config.MaxItemsCount;
+
     public IInventoryOwner Owner
     {
         get => _owner;
