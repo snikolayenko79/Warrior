@@ -3,24 +3,35 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Zenject;
+using Object = System.Object;
 
 namespace Scenario
 {
-    public class ScenarioManager : MonoBehaviour
+    public class ScenarioManager : IInitializable
     {
-        [SerializeField] private List<ScenarioStage> scenarioStages = new List<ScenarioStage>();
-        [SerializeField] private List<string> scenarioVars = new List<string>();
+        private ScenarioData _scenarioData;
 
         private Dictionary<string, bool> _varsState;
         
+        private List<ScenarioStage> _scenarioStagesToExecute = new List<ScenarioStage>();
+
+        private DiContainer _diContainer = null;
         private CoroutineRunner _coroutineRunner = null;
         private Coroutine _coroutineCheckStages = null;
         
-        public void Construct(CoroutineRunner coroutineRunner)
+        public void Construct(DiContainer diContainer, ScenarioData scenarioData, CoroutineRunner coroutineRunner)
         {
+            _diContainer = diContainer;
             _coroutineRunner = coroutineRunner;
+            _scenarioData = scenarioData;
         }
 
+        public void Initialize()
+        {
+            InitVars();
+            InitStages();
+        }
+        
         private IEnumerator Start()
         {
             InitVars();
@@ -32,9 +43,17 @@ namespace Scenario
         private void InitVars()
         {
             _varsState = new Dictionary<string, bool>();
-            foreach (var scenarioVar in scenarioVars)
+            foreach (var scenarioVar in _scenarioData.ScenarioVars)
             {
                 _varsState.Add(scenarioVar, false);
+            }
+        }
+
+        private void InitStages()
+        {
+            foreach (var stage in _scenarioData.ScenarioStages)
+            {
+                _scenarioStagesToExecute.Add(stage);
             }
         }
 
@@ -65,14 +84,38 @@ namespace Scenario
         
         private void CheckStages()
         {
-            foreach (var scenarioStage in scenarioStages)
+            for (int i = _scenarioStagesToExecute.Count - 1; i >= 0; i--)
             {
-                if (scenarioStage.IsStarted ||  scenarioStage.IsEnded)
-                    continue;
+                ScenarioStage scenarioStage = _scenarioStagesToExecute[i];
                 
-                if (scenarioStage.CheckDependencies())
-                    scenarioStage.StartStage();
+                if (CheckDependencies(scenarioStage))
+                {
+                    StartStage(scenarioStage);
+                    _scenarioStagesToExecute.RemoveAt(i);
+                }
             }
+        }
+        
+        private bool CheckDependencies(ScenarioStage scenarioStage)
+        {
+            foreach (var dependency in scenarioStage.Dependencies)
+            {
+                if (!GetBool(dependency.varName) != dependency.varState)
+                    return false;
+            }
+            
+            return true;
+        }
+
+        private void StartStage(ScenarioStage scenarioStage)
+        {
+            ScenarioStageLogic logic = _diContainer.InstantiatePrefabForComponent<ScenarioStageLogic>(scenarioStage.LogicPrefab);
+            
+            logic.Execute(() =>
+            {
+                if (logic)
+                    UnityEngine.Object.Destroy(logic.gameObject);
+            });
         }
     }
 }

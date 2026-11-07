@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scenario
 {
-    public abstract class ScenarioLogic : MonoBehaviour
+    public abstract class ScenarioStageLogic : MonoBehaviour
     {
         public delegate void OnExecuteFinished();
         

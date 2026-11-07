@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Inventory\Data\IInventory.cs" />
     <Compile Include="Assets\Scripts\UI\IUIViewFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\IBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Scenario\ScenarioData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\ActorCharapter.cs" />
     <Compile Include="Assets\Scripts\Container\Logic\Impls\ContainerInteractLogic.cs" />
     <Compile Include="Assets\Scripts\Container\Logic\IContainerInteractLogic.cs" />
