@@ -20,7 +20,7 @@ public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDa
         
         if (!enemyData)
         {
-            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных EnemyData!", this);
+            Debug.LogError($"[Enemy] На объекте {name} отсутствует обязательный компонент данных EnemyData!", this);
         }
     }
 

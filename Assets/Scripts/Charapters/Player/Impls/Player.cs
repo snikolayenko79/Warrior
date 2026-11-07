@@ -22,7 +22,7 @@ public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, I
         
         if (!playerData)
         {
-            Debug.LogError($"[EnemyView] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
+            Debug.LogError($"[Player] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
         }
     }
     

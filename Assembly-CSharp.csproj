@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Dialogues\IDialogue.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventoryWindowUI.cs" />
+    <Compile Include="Assets\Scripts\Scenario\ScenarioStage.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventorySlotUI.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Assets\Scripts\Charapters\Enemy\IEnemyData.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewPause.cs" />
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
+    <Compile Include="Assets\Scripts\Scenario\ScenarioStageLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Container\View\Impls\ContainerItemView.cs" />
     <Compile Include="Assets\Scripts\UI\IUIView.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPath.cs" />
+    <Compile Include="Assets\Scripts\Scenario\ScenarioManager.cs" />
     <Compile Include="Assets\Scripts\Input\IInputListener.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Impls\Player.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_MainMenu.cs" />
