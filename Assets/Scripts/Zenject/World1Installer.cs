@@ -40,6 +40,11 @@ public class World1Installer : MonoInstaller
     
     [Header("Сценарий")]
     [SerializeField] private ScenarioData scenarioData;
+    
+    [Header("Дверь жителя, который дает заклинание.")]
+    [SerializeField] private Door doorVillager;
+    [Header("Дверь жителя - торговца.")]
+    [SerializeField] private Door doorSeller;
 
     public override void InstallBindings()
     {
@@ -62,5 +67,8 @@ public class World1Installer : MonoInstaller
         
         Container.BindInterfacesAndSelfTo<ScenarioManager>().AsSingle().NonLazy();
         Container.Bind<ScenarioData>().FromInstance(scenarioData);
+        
+        Container.Bind<Door>().WithId("doorVillager").FromInstance(doorVillager);
+        Container.Bind<Door>().WithId("doorSeller").FromInstance(doorSeller);
     }
 }

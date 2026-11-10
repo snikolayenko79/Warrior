@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ef5c02b8590bd4c8e692c11f49ce1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.VillagerAppearanceLogic
+  doorId: doorSeller
   prefab: {fileID: 198864776837070588, guid: c276fea948b84cd4ea4cce8772029379, type: 3}
   spawnPoint: {fileID: 3885778019968270406}
   path: {fileID: 4656430806531678693}

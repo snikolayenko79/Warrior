@@ -7,6 +7,7 @@ namespace Scenario
 {
     public class VillagerAppearanceLogic : ScenarioStageLogic
     {
+        public string doorId = "doorVillager";
         public GameObject prefab;
         public Transform spawnPoint;
         public SpecifiedPath path;
@@ -14,6 +15,7 @@ namespace Scenario
         public string villagerName = "";
         public float delay = 4.0f;
 
+        private DiContainer _container;
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
         private CharacterStateController _characterStateController;
@@ -21,11 +23,13 @@ namespace Scenario
         
         [Inject]
         public void Construct(
+            DiContainer container,
             ScenarioManager scenarioManager,
             IGameManager gameManager,
             CharacterStateController characterStateController,
             BehaviourFollowPath behaviourFollowPath)
         {
+            _container = container;
             _scenarioManager = scenarioManager;
             _gameManager = gameManager;
             _characterStateController = characterStateController;
@@ -38,8 +42,12 @@ namespace Scenario
             
             GameObject go = _gameManager.CreateCharacter(villagerName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Friendly);
             Character character = go.GetComponent<Character>();
-        
-            yield return null;
+            
+            Door door = _container.ResolveId<Door>(doorId);
+            door.Open(null);
+            
+            while (door && !door.IsOpened)
+                yield return null;
             
             character.CurrentPath = path;
             _characterStateController.StateStart(character, _behaviourFollowPath);
