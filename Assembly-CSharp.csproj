@@ -58,13 +58,16 @@
     <Compile Include="Assets\Scripts\Store\Data\Impls\StoreConfig.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryUseLogic.cs" />
     <Compile Include="Assets\Scripts\Store\View\StoreWindowUI.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\FightLogic.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\InputListener.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIViewHud.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogue.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\YodanSpawnLogic.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\NewInputEventSource_CustomActions.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventoryWindowUI.cs" />
     <Compile Include="Assets\Scripts\Scenario\ScenarioStage.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\WarriorAppearanceLogic.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventorySlotUI.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Assets\Scripts\Inventory\Data\IInventoryOwner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Container\View\Impls\ContainerWindowUI.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\Yodan1AppearanceLogic.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryUseLogic_Heal.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellData.cs" />
     <Compile Include="Assets\Scripts\Store\Data\IStore.cs" />
@@ -174,6 +178,7 @@
     <Compile Include="Assets\Scripts\Data\IDataContainer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\VillagerAppearanceLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPath.cs" />
     <Compile Include="Assets\Scripts\Scenario\ScenarioManager.cs" />

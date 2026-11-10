@@ -6,6 +6,7 @@ using Zenject;
 
 namespace Scenario
 {
+    [CreateAssetMenu(fileName = "NewScenarioStage", menuName = "Scenario/New scenario stage data")]
     public class ScenarioStage : ScriptableObject
     {
         [System.Serializable]

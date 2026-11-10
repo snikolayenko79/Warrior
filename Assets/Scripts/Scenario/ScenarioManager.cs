@@ -19,7 +19,7 @@ namespace Scenario
         private CoroutineRunner _coroutineRunner = null;
         private Coroutine _coroutineCheckStages = null;
         
-        public void Construct(DiContainer diContainer, ScenarioData scenarioData, CoroutineRunner coroutineRunner)
+        public ScenarioManager(DiContainer diContainer, ScenarioData scenarioData, CoroutineRunner coroutineRunner)
         {
             _diContainer = diContainer;
             _coroutineRunner = coroutineRunner;
@@ -30,13 +30,6 @@ namespace Scenario
         {
             InitVars();
             InitStages();
-        }
-        
-        private IEnumerator Start()
-        {
-            InitVars();
-            
-            yield return null;
             CheckStages();
         }
         
@@ -77,17 +70,16 @@ namespace Scenario
         private IEnumerator CheckStagesOnNextFrame()
         {
             yield return  null;
-            
+            _coroutineCheckStages = null; //TODO? обязательно до CheckStages. чтобы уже запускалась новая корутина.
             CheckStages();
-            _coroutineCheckStages = null;
         }
         
         private void CheckStages()
         {
             for (int i = _scenarioStagesToExecute.Count - 1; i >= 0; i--)
             {
-                ScenarioStage scenarioStage = _scenarioStagesToExecute[i];
                 
+                ScenarioStage scenarioStage = _scenarioStagesToExecute[i];
                 if (CheckDependencies(scenarioStage))
                 {
                     StartStage(scenarioStage);
@@ -100,7 +92,8 @@ namespace Scenario
         {
             foreach (var dependency in scenarioStage.Dependencies)
             {
-                if (!GetBool(dependency.varName) != dependency.varState)
+                //Debug.Log(scenarioStage + " - " + dependency.varName + " - " + GetBool(dependency.varName) + " - " + dependency.varState);
+                if (GetBool(dependency.varName) != dependency.varState)
                     return false;
             }
             
@@ -109,6 +102,9 @@ namespace Scenario
 
         private void StartStage(ScenarioStage scenarioStage)
         {
+            if (!scenarioStage.LogicPrefab)
+                return;
+            
             ScenarioStageLogic logic = _diContainer.InstantiatePrefabForComponent<ScenarioStageLogic>(scenarioStage.LogicPrefab);
             
             logic.Execute(() =>

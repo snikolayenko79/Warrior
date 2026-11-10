@@ -56,6 +56,9 @@ public class BehaviourPlayerInteract : BehaviourBase
 
     private void OnInputAction(string logicalActionName, InputContext context)
     {
+        if (_gameManager.IsUnityNull() || _gameManager.IsGameplayLocked())
+            return;
+        
         if (logicalActionName == "Attack" && context.FloatValue == 0)
         {
             if (_playerInteractor.IsUnityNull() || _playerInteractor.IsDead)

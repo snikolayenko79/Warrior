@@ -30,6 +30,11 @@ public class BehaviourFollowPlayer : MovableBehaviourBase
                 
                 break;
             }
+            else
+            {
+                if (movable.CurrentPath.IsUnityNull() || movable.CurrentPath is FollowTargetPath)
+                    movable.CurrentPath = new RandomPath(movable);
+            }
         }
     }
     

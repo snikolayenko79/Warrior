@@ -9,9 +9,20 @@ namespace Scenario
         
         public void Execute(OnExecuteFinished onExecuteFinished)
         {
-            StartCoroutine(ExecuteCoroutine(onExecuteFinished));
+            StartCoroutine(ExecuteWrapper(onExecuteFinished));
         }
 
-        protected abstract IEnumerator ExecuteCoroutine(OnExecuteFinished onExecuteFinished);
+        // Базовая обертка, которая гарантирует вызов делегата в конце
+        private IEnumerator ExecuteWrapper(OnExecuteFinished onExecuteFinished)
+        {
+            // Ждем выполнения логики наследника
+            yield return StartCoroutine(ExecuteCoroutine());
+        
+            // Логика завершилась — вызываем колбэк
+            onExecuteFinished?.Invoke();
+        }
+
+        // Наследники переопределяют этот метод
+        protected abstract IEnumerator ExecuteCoroutine();
     }
 }

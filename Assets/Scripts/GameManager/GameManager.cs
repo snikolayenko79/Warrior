@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour, IGameManager
     
     private ICharacterFactory _characterFactory;
 
+    private int _gameplayLock = 0;
+
     [Inject]
     public void Construct(ICharacterFactory characterFactory)
     {
@@ -71,7 +73,20 @@ public class GameManager : MonoBehaviour, IGameManager
             return characters;
         }
         
-        return new List<GameObject>();
+        return System.Array.Empty<GameObject>();
+    }
+    
+    public void SetGameplayLocked(bool bLock)
+    {
+        if (bLock)
+            _gameplayLock++;
+        else
+            _gameplayLock--;
+    }
+
+    public bool IsGameplayLocked()
+    {
+        return _gameplayLock > 0;
     }
     
     void OnCharapterDead(Character character)

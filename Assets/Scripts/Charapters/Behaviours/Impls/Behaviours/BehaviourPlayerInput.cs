@@ -39,6 +39,9 @@ public class BehaviourPlayerInput : BehaviourBase
 
     private void OnInputAction(string logicalActionName, InputContext context)
     {
+        if (_gameManager.IsUnityNull() || _gameManager.IsGameplayLocked())
+            return;
+        
         if (logicalActionName == "Move")
         {
             if (_movable == null || _movable.IsDead)

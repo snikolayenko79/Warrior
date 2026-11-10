@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Scenario
 {
+    [CreateAssetMenu(fileName = "NewScenario", menuName = "Scenario/New scenario data")]
     public class ScenarioData : ScriptableObject
     {
         [SerializeField] private List<ScenarioStage> scenarioStages = new List<ScenarioStage>();

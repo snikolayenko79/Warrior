@@ -17,7 +17,7 @@ public class BehaviourFollowPath : MovableBehaviourBase
             movable.RotationDirection = 0;
             return;
         }
-
+        
         Vector3? targetPosition = movable.CurrentPath.GetCurrentTarget();
         if (!targetPosition.HasValue)
         {
