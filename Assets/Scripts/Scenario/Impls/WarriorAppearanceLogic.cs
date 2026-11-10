@@ -25,6 +25,7 @@ namespace Scenario
         private BehaviourFollowPlayer _behaviourFollowPlayer;
         private BehaviourBase _behaviourFollowPath;
         private BehaviourBase _behaviourPlayerInput;
+        private BehaviourBase _behaviourPlayerInteract;
         
         [Inject]
         public void Construct(
@@ -38,7 +39,8 @@ namespace Scenario
             BehaviourAttackPlayer behaviourAttackPlayer,
             BehaviourFollowPlayer behaviourFollowPlayer,
             BehaviourFollowPath behaviourFollowPath,
-            BehaviourPlayerInput behaviourPlayerInput)
+            BehaviourPlayerInput behaviourPlayerInput,
+            BehaviourPlayerInteract behaviourPlayerInteract)
         {
             _scenarioManager = scenarioManager;
             _gameManager = gameManager;
@@ -51,6 +53,7 @@ namespace Scenario
             _behaviourFollowPlayer = behaviourFollowPlayer;
             _behaviourFollowPath = behaviourFollowPath;
             _behaviourPlayerInput = behaviourPlayerInput;
+            _behaviourPlayerInteract = behaviourPlayerInteract;
         }
         
         protected override IEnumerator ExecuteCoroutine()
@@ -90,6 +93,7 @@ namespace Scenario
                 yield return null;
             
             _characterStateController.StateStart(chPlayer, _behaviourPlayerInput);
+            _characterStateController.StateStart(chPlayer, _behaviourPlayerInteract);
             
             _scenarioManager.SetBool(cameVar, true);
             

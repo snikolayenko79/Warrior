@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour, IGameManager
     public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
     
     private Dictionary<SideType, List<GameObject>> _characters = new  Dictionary<SideType, List<GameObject>>();
+    private List<GameObject> _allCharacters = new List<GameObject>();
     
     private ICharacterFactory _characterFactory;
 
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour, IGameManager
             _characters[side] = new List<GameObject>();
         
         _characters[side].Add(go);
+        
+        _allCharacters.Add(go);
         
         go.name = name;
         
@@ -76,6 +79,11 @@ public class GameManager : MonoBehaviour, IGameManager
         return System.Array.Empty<GameObject>();
     }
     
+    public IReadOnlyList<GameObject> GetAllCharacters()
+    {
+        return _allCharacters;
+    }
+    
     public void SetGameplayLocked(bool bLock)
     {
         if (bLock)
@@ -86,7 +94,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public bool IsGameplayLocked()
     {
-        return _gameplayLock > 0;
+        return _gameplayLock > 0 || Time.timeScale == 0;
     }
     
     void OnCharapterDead(Character character)

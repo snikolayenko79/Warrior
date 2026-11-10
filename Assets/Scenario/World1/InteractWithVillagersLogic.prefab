@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5779560704516868668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8065048844072760339}
+  - component: {fileID: 1122203961182596202}
+  m_Layer: 0
+  m_Name: InteractWithVillagersLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8065048844072760339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779560704516868668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1122203961182596202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779560704516868668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a72c185a55b1654abc8911379a099e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scenario.InteractLogic
+  dialogueVillager1: {fileID: 11400000, guid: c1a9a9ceb8aa37b439d5edc9dc5cf68a, type: 2}
+  dialogueVillager2: {fileID: 11400000, guid: c0e28c6e0ffc4e748aac60a9e0ddc32f, type: 2}
+  dialogueSeller: {fileID: 11400000, guid: 324130fafa63dcf4d8b0987d922054a7, type: 2}
+  fireBallSpell: {fileID: 11400000, guid: f106d02ef4b0dbd4297acfa41668aaef, type: 2}
+  TextViewPrefab: {fileID: 5458947698040673073, guid: 0763754651dee7b4b999ad14c87dd423, type: 3}
+  ShopUIPrefab: {fileID: 121028050668631104, guid: 64c25f58d16cbf24f840844d1a22b3c0, type: 3}

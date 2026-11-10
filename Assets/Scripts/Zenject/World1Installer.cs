@@ -21,6 +21,7 @@ public class World1Installer : MonoInstaller
     
     [Header("Поведение - ввод для игрока.")]
     [SerializeField] private BehaviourPlayerInput _behaviourPlayerInput;
+    [SerializeField] private BehaviourPlayerInteract _behaviourPlayerInteract;
     
     [Header("Поведение - атаковать игрока.")]
     [SerializeField] private BehaviourAttackPlayer _behaviourAttackPlayer;
@@ -48,6 +49,7 @@ public class World1Installer : MonoInstaller
         Container.Bind<IAttackController>().FromInstance(_attackController);
         Container.Bind<SpellController>().FromInstance(_spellController);
         Container.Bind<BehaviourPlayerInput>().FromInstance(_behaviourPlayerInput);
+        Container.Bind<BehaviourPlayerInteract>().FromInstance(_behaviourPlayerInteract);
         Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);
         Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
         Container.Bind<BehaviourFollowPath>().FromInstance(_behaviourFollowPath);
@@ -56,6 +58,7 @@ public class World1Installer : MonoInstaller
         Container.Bind(typeof(IInventory), typeof(ISavable)).To<Inventory>().AsSingle();
         
         Container.BindInstance(storeConfig).AsSingle();
+        Container.Bind(typeof(IStore)).To<Store>().AsSingle();
         
         Container.BindInterfacesAndSelfTo<ScenarioManager>().AsSingle().NonLazy();
         Container.Bind<ScenarioData>().FromInstance(scenarioData);

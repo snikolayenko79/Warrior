@@ -34,11 +34,9 @@ namespace Scenario
         
         protected override IEnumerator ExecuteCoroutine()
         {
-            _gameManager.SetGameplayLocked(true);
-            
             yield return new WaitForSeconds(delay);
             
-            GameObject go = _gameManager.CreateCharacter(villagerName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Enemy);
+            GameObject go = _gameManager.CreateCharacter(villagerName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Friendly);
             Character character = go.GetComponent<Character>();
         
             yield return null;
@@ -52,8 +50,6 @@ namespace Scenario
                 yield return null;
             
             _scenarioManager.SetBool(cameVar, true);
-            
-            _gameManager.SetGameplayLocked(false);
         }
     }
 }

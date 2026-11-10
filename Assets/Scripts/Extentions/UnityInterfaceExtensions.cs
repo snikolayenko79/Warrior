@@ -7,14 +7,17 @@ public static class UnityInterfaceExtensions
     /// </summary>
     public static bool IsUnityNull(this object interfaceTarget)
     {
+        // 1. Проверяем стандартный C# null
         if (interfaceTarget == null) return true;
 
-        // Если за интерфейсом скрывается MonoBehaviour, проверяем его через логику Unity
-        if (interfaceTarget is MonoBehaviour monoBehaviour)
+        // 2. Приводим к базовому объекту Unity (закроет MonoBehaviour, Component, ScriptableObject и т.д.)
+        if (interfaceTarget is UnityEngine.Object unityObject)
         {
-            return monoBehaviour == null; 
+            // Используем перегруженный оператор Unity для проверки уничтожения на C++ стороне
+            return unityObject == null; 
         }
 
+        // 3. Если это чистый C# класс, и он прошел первую проверку — значит он жив
         return false;
     }
 }

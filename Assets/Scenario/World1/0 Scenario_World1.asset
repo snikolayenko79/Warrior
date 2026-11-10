@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b524166a1d601341896f74c5f88ee3f, type: 2}
   - {fileID: 11400000, guid: 225f1f84c6c912e43a7d122d5f8a9ee6, type: 2}
   - {fileID: 11400000, guid: 895753ec27646a74b92685eaaed82ad2, type: 2}
+  - {fileID: 11400000, guid: 4b89ca34ecacb854f85fcac8fa74483e, type: 2}
   scenarioVars:
   - WarriorCame
   - Yodan1Came

@@ -6,20 +6,7 @@ public class BehaviourPlayerInteract : BehaviourBase
 {
     public float interactDistance = 0.3f;
     
-    public Dialogue DialogueVillager = null;
-    public Dialogue DialogueSeller = null;
-    
-    private IGameManager _gameManager;
-    private IDialogManager _dialogManager;
-    
     public Action<IInteractor, IInteractor> OnInteract;
-
-    [Inject]
-    public void Construct(IGameManager gameManager, IDialogManager dialogManager)
-    {
-        _gameManager = gameManager;
-        _dialogManager = dialogManager;
-    }
     
     private IInteractor _playerInteractor;
     private IMovable _playerMovable;
@@ -59,16 +46,29 @@ public class BehaviourPlayerInteract : BehaviourBase
         if (_gameManager.IsUnityNull() || _gameManager.IsGameplayLocked())
             return;
         
+        if (_playerInteractor.IsUnityNull() || _playerInteractor.IsDead)
+            return;
+        
         if (logicalActionName == "Attack" && context.FloatValue == 0)
         {
-            if (_playerInteractor.IsUnityNull() || _playerInteractor.IsDead)
-                return;
-            
-            foreach (var character in _gameManager.GetCharactersBySide(SideType.Friendly))
+            var characters = _gameManager.GetAllCharacters();
+            for (int i = 0; i < characters.Count; i++)
             {
+                var character = characters[i];
+                
+                if (character.IsUnityNull())
+                    continue;
+                
+                // TODO. Избавиться от получения компоненты.
                 if (!character.TryGetComponent<IInteractor>(out IInteractor interactor))
                     continue;
-                    
+
+                if (interactor.IsDead)
+                    continue;
+                        
+                if (interactor == _playerInteractor)
+                    continue;
+                
                 if (CanInteractWith(interactor))
                 {
                     OnInteract?.Invoke(_playerInteractor, interactor);
@@ -80,9 +80,9 @@ public class BehaviourPlayerInteract : BehaviourBase
 
     private bool CanInteractWith(IInteractor interactor)
     {
-        if (interactor is IMovable movable && !_playerMovable.IsUnityNull())
-            return Vector3.Distance(movable.Position, _playerMovable.Position) <= interactDistance;
-
-        return true;
+        return (interactor is IMovable movable)
+               && (_playerMovable != null)
+               && !_playerMovable.IsUnityNull()
+               && Vector3.Distance(movable.Position, _playerMovable.Position) <= interactDistance;
     }
 }

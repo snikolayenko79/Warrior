@@ -156,7 +156,6 @@
     <Compile Include="Assets\Scripts\UI\Impls\UIViewDialogue.cs" />
     <Compile Include="Assets\Scripts\Container\View\IContainerItemView.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_Pause.cs" />
-    <Compile Include="Assets\Scripts\Scenario\World1_Scenario.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\AttackerBehaviourBase.cs" />
     <Compile Include="Assets\Scripts\Charapters\Move\MoveController.cs" />
     <Compile Include="Assets\Scripts\Data\IData.cs" />
@@ -178,6 +177,7 @@
     <Compile Include="Assets\Scripts\Data\IDataContainer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
+    <Compile Include="Assets\Scripts\Scenario\Impls\InteractLogic.cs" />
     <Compile Include="Assets\Scripts\Scenario\Impls\VillagerAppearanceLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\FollowTargetPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\Behaviours\BehaviourFollowPath.cs" />

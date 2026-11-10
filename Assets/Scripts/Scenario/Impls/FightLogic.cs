@@ -26,8 +26,6 @@ namespace Scenario
         
         protected override IEnumerator ExecuteCoroutine()
         {
-            Debug.Log("FightLogic");
-            
             InitEnemiesList();
 
             float checkTimer = 0f;
@@ -59,14 +57,12 @@ namespace Scenario
             
             foreach (var enemy in _gameManager.GetCharactersBySide(SideType.Enemy))
             {
-                Debug.Log(enemy.name);
                 if (enemy.TryGetComponent<Character>(out var ch))
                 {
                     enemies.Add(ch);
                     ch.OnDead += OnDead;
                 }
             }
-            Debug.Log(enemies.Count);
         }
 
         private void OnDead(Character ch)
