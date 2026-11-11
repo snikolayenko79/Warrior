@@ -109,8 +109,8 @@ namespace Scenario
             
             logic.Execute(() =>
             {
-                if (logic)
-                    UnityEngine.Object.Destroy(logic.gameObject);
+                //if (logic)
+                 //   UnityEngine.Object.Destroy(logic.gameObject);
             });
         }
     }

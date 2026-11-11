@@ -66,6 +66,11 @@ namespace Scenario
             yield return new WaitForSeconds(3);
         
             GameObject goPlayer = _gameManager.CreateCharacter("Warrior", prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Player);
+            
+            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
+            // примет эту точку за стартовую, и рывка вперед не произойдет.
+            Physics.SyncTransforms();
         
             Character chPlayer = goPlayer.GetComponent<Character>();
         
