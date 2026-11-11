@@ -41,6 +41,12 @@ namespace Scenario
             yield return new WaitForSeconds(delay);
             
             GameObject go = _gameManager.CreateCharacter(villagerName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Friendly);
+        
+            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
+            // примет эту точку за стартовую, и рывка вперед не произойдет.
+            Physics.SyncTransforms();
+            
             Character character = go.GetComponent<Character>();
             
             Door door = _container.ResolveId<Door>(doorId);

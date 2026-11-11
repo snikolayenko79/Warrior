@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Scenario\Impls\WarriorAppearanceLogic.cs" />
     <Compile Include="Assets\Scripts\SceneManagament\Impls\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\UI\IUImanager.cs" />
+    <Compile Include="Assets\Scripts\CameraMover\CameraMoverFollowByPlayer.cs" />
     <Compile Include="Assets\Scripts\Inventory\View\InventorySlotUI.cs" />
     <Compile Include="Assets\Scripts\Charapters\SideType.cs" />
     <Compile Include="Assets\Scripts\Container\Data\IContainer.cs" />
@@ -87,13 +88,13 @@
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryUseLogic_SelectWeapon.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerConfig.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\CameraMover\CameraMoverBase.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\UITrianglePointer.cs" />
     <Compile Include="Assets\Scripts\Zenject\World1Installer.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\InventoryConfig.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
-    <Compile Include="Assets\Scripts\CameraMover.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\Inventory.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerItem.cs" />
     <Compile Include="Assets\Scripts\Data\IDataContainer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
+    <Compile Include="Assets\Scripts\CameraMover\CameraMoverCustom.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Scenario\Impls\InteractLogic.cs" />
     <Compile Include="Assets\Scripts\Scenario\Impls\VillagerAppearanceLogic.cs" />

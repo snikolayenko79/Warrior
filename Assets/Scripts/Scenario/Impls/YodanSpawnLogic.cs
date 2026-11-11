@@ -62,6 +62,11 @@ namespace Scenario
                 }
             }
             
+            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
+            // примет эту точку за стартовую, и рывка вперед не произойдет.
+            Physics.SyncTransforms();
+            
             _scenarioManager.SetBool(spawnedVar, true);
             
             yield break;

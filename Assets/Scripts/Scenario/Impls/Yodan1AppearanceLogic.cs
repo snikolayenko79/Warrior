@@ -50,6 +50,12 @@ namespace Scenario
             _gameManager.SetGameplayLocked(true);
             
             GameObject go = _gameManager.CreateCharacter("Yodan1", prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Enemy);
+            
+            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
+            // примет эту точку за стартовую, и рывка вперед не произойдет.
+            Physics.SyncTransforms();
+            
             Character character = go.GetComponent<Character>();
         
             Enemy enemy = character as Enemy;

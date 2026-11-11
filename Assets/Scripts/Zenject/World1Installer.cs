@@ -45,9 +45,6 @@ public class World1Installer : MonoInstaller
     [SerializeField] private Door doorVillager;
     [Header("Дверь жителя - торговца.")]
     [SerializeField] private Door doorSeller;
-
-    [Header("Скрипт для движения камеры.")]
-    [SerializeField] private CameraMover cameraMover;
     
     public override void InstallBindings()
     {
@@ -73,6 +70,8 @@ public class World1Installer : MonoInstaller
         
         Container.Bind<Door>().WithId("doorVillager").FromInstance(doorVillager);
         Container.Bind<Door>().WithId("doorSeller").FromInstance(doorSeller);
-        Container.Bind<CameraMover>().FromInstance(cameraMover).AsSingle();
+        
+        if (Camera.main.TryGetComponent<CameraMoverBase>(out CameraMoverBase cameraMover))
+            Container.Bind<CameraMoverBase>().FromInstance(cameraMover).AsSingle();
     }
 }
