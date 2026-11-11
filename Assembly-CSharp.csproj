@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\InventoryConfig.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
+    <Compile Include="Assets\Scripts\CameraMover.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Charapters\IAttackable.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\Inventory.cs" />

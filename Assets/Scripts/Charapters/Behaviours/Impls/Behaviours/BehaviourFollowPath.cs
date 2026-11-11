@@ -52,16 +52,12 @@ public class BehaviourFollowPath : MovableBehaviourBase
         directionToPlayer.y = 0;
 
         float forwardDot = Vector3.Dot(target.Orientation, directionToPlayer.normalized);
-        float sideDot = Vector3.Dot(target.Right, directionToPlayer.normalized);
-        float turnInput = Mathf.Clamp(sideDot, -1f, 1f);
         float angle = Mathf.Acos(forwardDot) * Mathf.Rad2Deg;
         if (angle > 1)
         {
-            //Debug.Log(angle);
-            // Vector3 r = MoveTarget.Rotation;
-            // r.y += angle * turnInput;
-            // MoveTarget.Rotation = Vector3.Lerp(MoveTarget.Rotation, r, Time.deltaTime * MoveTarget.MaxRotationSpeed);
-            float direction = Mathf.Sign(angle * turnInput);
+            float sideDot = Vector3.Dot(target.Right, directionToPlayer.normalized);
+            float direction = Mathf.Sign(sideDot);
+            
             if (!target.IsRotating || target.RotationDirection != direction)
             {
                 target.RotationSpeed = 0;

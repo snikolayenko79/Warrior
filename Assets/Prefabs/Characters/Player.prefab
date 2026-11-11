@@ -377,6 +377,7 @@ MonoBehaviour:
   playerData: {fileID: 6231084729903241704}
   spellSpawnPoint: {fileID: 8447368732712295509}
   weaponPoint: {fileID: 3444118038263464537}
+  side: 0
 --- !u!54 &7442628728495409567
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -401,7 +402,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &2593736471114701131

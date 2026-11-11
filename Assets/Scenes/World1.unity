@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 427842523}
   - component: {fileID: 427842522}
   - component: {fileID: 427842521}
+  - component: {fileID: 427842525}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -418,6 +419,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 21.02, y: 0, z: 0}
+--- !u!114 &427842525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427842520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff1c5b6b04e09145bd7e53068b5dd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMover
+  _moveSpeed: 5
+  _rotationSpeed: 5
 --- !u!1 &436055142
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +530,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -943,6 +958,7 @@ MonoBehaviour:
   scenarioData: {fileID: 11400000, guid: fb3dc9597834e5e48abb4ccaa68ce528, type: 2}
   doorVillager: {fileID: 77542058}
   doorSeller: {fileID: 2087222208}
+  cameraMover: {fileID: 427842525}
 --- !u!1 &1501112510
 GameObject:
   m_ObjectHideFlags: 0

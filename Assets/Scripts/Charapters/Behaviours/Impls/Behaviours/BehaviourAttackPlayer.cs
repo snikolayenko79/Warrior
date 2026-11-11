@@ -76,7 +76,9 @@ public class BehaviourAttackPlayer : AttackerBehaviourBase
         float angle = Mathf.Acos(forwardDot) * Mathf.Rad2Deg;
         if (angle > 1)
         {
-            target.Rotation += new Vector3(0, 0, angle);
+            float sideDot = Vector3.Dot(target.Right, directionToPlayer.normalized);
+            float direction = Mathf.Sign(sideDot);
+            target.Rotation += new Vector3(0, 0, angle * direction);
         }
     }
     

@@ -46,6 +46,9 @@ public class World1Installer : MonoInstaller
     [Header("Дверь жителя - торговца.")]
     [SerializeField] private Door doorSeller;
 
+    [Header("Скрипт для движения камеры.")]
+    [SerializeField] private CameraMover cameraMover;
+    
     public override void InstallBindings()
     {
         Container.Bind<IGameManager>().FromInstance(gameManager);
@@ -70,5 +73,6 @@ public class World1Installer : MonoInstaller
         
         Container.Bind<Door>().WithId("doorVillager").FromInstance(doorVillager);
         Container.Bind<Door>().WithId("doorSeller").FromInstance(doorSeller);
+        Container.Bind<CameraMover>().FromInstance(cameraMover).AsSingle();
     }
 }

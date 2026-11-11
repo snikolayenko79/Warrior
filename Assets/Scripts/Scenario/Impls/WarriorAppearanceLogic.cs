@@ -26,6 +26,7 @@ namespace Scenario
         private BehaviourBase _behaviourFollowPath;
         private BehaviourBase _behaviourPlayerInput;
         private BehaviourBase _behaviourPlayerInteract;
+        private CameraMover _cameraMover;
         
         [Inject]
         public void Construct(
@@ -40,7 +41,8 @@ namespace Scenario
             BehaviourFollowPlayer behaviourFollowPlayer,
             BehaviourFollowPath behaviourFollowPath,
             BehaviourPlayerInput behaviourPlayerInput,
-            BehaviourPlayerInteract behaviourPlayerInteract)
+            BehaviourPlayerInteract behaviourPlayerInteract,
+            CameraMover cameraMover)
         {
             _scenarioManager = scenarioManager;
             _gameManager = gameManager;
@@ -54,6 +56,7 @@ namespace Scenario
             _behaviourFollowPath = behaviourFollowPath;
             _behaviourPlayerInput = behaviourPlayerInput;
             _behaviourPlayerInteract = behaviourPlayerInteract;
+            _cameraMover = cameraMover;
         }
         
         protected override IEnumerator ExecuteCoroutine()
@@ -91,6 +94,8 @@ namespace Scenario
         
             while (_dialogManager.IsDialogueRunning)
                 yield return null;
+            
+            _cameraMover.SetTarget(chPlayer as IMovable);
             
             _characterStateController.StateStart(chPlayer, _behaviourPlayerInput);
             _characterStateController.StateStart(chPlayer, _behaviourPlayerInteract);

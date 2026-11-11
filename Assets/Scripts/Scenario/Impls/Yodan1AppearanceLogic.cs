@@ -12,6 +12,7 @@ namespace Scenario
         public Transform spawnPoint;
         public SpecifiedPath path;
         public Dialogue dialogue = null;
+        public AudioSource roarSound;
         public string cameVar = "";
 
         private ScenarioManager _scenarioManager;
@@ -53,8 +54,11 @@ namespace Scenario
         
             Enemy enemy = character as Enemy;
             _attackController.SelectWeapon(enemy, defaultWeapon);
+            
+            if (roarSound)
+                roarSound.Play();
         
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
             
             character.CurrentPath = path;
             _characterStateController.StateStart(character, _behaviourFollowPath);
