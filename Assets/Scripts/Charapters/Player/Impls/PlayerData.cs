@@ -2,38 +2,18 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 
-public class PlayerData : MonoBehaviour, IPlayerData, ISavable
+public class PlayerData : AttackCharacterData, ICustomerData, ISavable
 {
-    [Header("Player init data")]
-    [SerializeField]private float maxHealthInit;
     [SerializeField]private int coinsInit;
-    [SerializeField]private int experienceInit;
     
-    private float _currentHealth;
-    private float _currentMaxHealth;
     private int _currentCoins;
-    private int _currentExperience;
-    
-    public float CurrentHealth
-    {
-        get => _currentHealth;
-        set => _currentHealth = Mathf.Clamp(value, 0, _currentMaxHealth);
-    }
-    
-    public float MaxHealth => _currentMaxHealth;
 
     public int Coins
     {
         get => _currentCoins;
         set => _currentCoins = value;
     }
-
-    public int Experience
-    {
-        get => _currentExperience;
-        set => _currentExperience = value;
-    }
-
+    
     private ISaveLoadService _saveLoadService;
         
     [Inject]
@@ -42,29 +22,7 @@ public class PlayerData : MonoBehaviour, IPlayerData, ISavable
         _saveLoadService = saveLoadService;
     }
     
-    public void Save(ISaveLoadService saveService)
-    {
-        PlayerSaveData rawData = saveService.CurrentProgress;
-        
-        rawData.MaxHealth = _currentMaxHealth;
-        rawData.SavedHealth = _currentHealth;
-        rawData.Coins = _currentCoins;
-        rawData.Experience = _currentExperience;
-        
-        rawData.IsNewData = false;
-    }
-    
-    public void Load(ISaveLoadService saveService)
-    {
-        PlayerSaveData rawData = saveService.CurrentProgress;
-        
-        rawData.MaxHealth = _currentMaxHealth;
-        rawData.SavedHealth = _currentHealth;
-        rawData.Coins = _currentCoins;
-        rawData.Experience = _currentExperience;
-    }
-    
-    public void Initialize()
+    public override void Initialize()
     {
         PlayerSaveData rawData = _saveLoadService.CurrentProgress;
 
@@ -74,10 +32,32 @@ public class PlayerData : MonoBehaviour, IPlayerData, ISavable
         }
         else
         {
-            _currentMaxHealth = maxHealthInit;
-            _currentHealth = _currentMaxHealth;
-            _currentCoins = coinsInit;
-            _currentExperience = experienceInit;
+            MaxHealth = maxHealthInit;
+            Health = MaxHealth;
+            Coins = coinsInit;
+            Experience = experienceInit;
         }
+    }
+    
+    public void Save(ISaveLoadService saveService)
+    {
+        PlayerSaveData rawData = saveService.CurrentProgress;
+        
+        rawData.MaxHealth = MaxHealth;
+        rawData.SavedHealth = Health;
+        rawData.Coins = Coins;
+        rawData.Experience = Experience;
+        
+        rawData.IsNewData = false;
+    }
+    
+    public void Load(ISaveLoadService saveService)
+    {
+        PlayerSaveData rawData = saveService.CurrentProgress;
+        
+        rawData.MaxHealth = MaxHealth;
+        rawData.SavedHealth = Health;
+        rawData.Coins = Coins;
+        rawData.Experience = Experience;
     }
 }

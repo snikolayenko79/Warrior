@@ -1,8 +1,6 @@
 using UnityEngine;
 
-public interface IEnemyData : IData
+public interface IEnemyData : IAttackCharacterData
 {
-    float CurrentHealth { get; set; }
-    float MaxHealth { get; }
-    int Experience { get; set; }
+    
 }

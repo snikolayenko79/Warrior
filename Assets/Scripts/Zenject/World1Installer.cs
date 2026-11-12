@@ -11,9 +11,10 @@ public class World1Installer : MonoInstaller
     [Header("Фабрика персонажей.")]
     [SerializeField] private CharacterFactory characterFactory;
     
+    [FormerlySerializedAs("characterController")]
     [FormerlySerializedAs("_characterStateController")]
     [Header("Контроллер персонажей основной.")]
-    [SerializeField] private CharacterController characterController;
+    [SerializeField] private GameCharacterController gameCharacterController;
     
     [Header("Контроллер атак.")]
     [SerializeField] private AttackController _attackController;
@@ -52,7 +53,7 @@ public class World1Installer : MonoInstaller
     {
         Container.Bind<IGameManager>().FromInstance(gameManager);
         Container.Bind<ICharacterFactory>().FromInstance(characterFactory);
-        Container.Bind<CharacterController>().FromInstance(characterController);
+        Container.Bind<GameCharacterController>().FromInstance(gameCharacterController);
         Container.Bind<IAttackController>().FromInstance(_attackController);
         Container.Bind<SpellController>().FromInstance(_spellController);
         Container.Bind<BehaviourPlayerInput>().FromInstance(_behaviourPlayerInput);

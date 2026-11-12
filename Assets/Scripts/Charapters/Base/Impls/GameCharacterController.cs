@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
-public class CharacterController : MonoBehaviour, ICharacterController
+public class GameCharacterController : MonoBehaviour, ICharacterController
 {
     // TODO. Нужны?
-    [SerializeField] List<BehaviourBase> statesBehaviours = new List<BehaviourBase>();
+    [SerializeField] List<BehaviourBase> behaviours = new List<BehaviourBase>();
     
     protected List<ICharacter> Entities = new List<ICharacter>();
     

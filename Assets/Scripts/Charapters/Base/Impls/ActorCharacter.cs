@@ -11,25 +11,25 @@ public class ActorCharacter : Character, IDialogueActor
     public string DisplayName => dialogueActorName;
     public Vector3 SpeechBubbleAnchor => speechBubbleAnchor != null? speechBubbleAnchor.position : Vector3.zero;
 
-    private IDialogueActorsRegistry _registry;
+    private IDialogueActorsRegistry _dialogueActorsRegistry;
     
     [Inject]
     public void Construct(IDialogueActorsRegistry registry)
     {
-        _registry  = registry;
+        _dialogueActorsRegistry  = registry;
     }
 
     protected new void OnEnable()
     {
         base.OnEnable();
         
-        _registry.Register(this);
+        _dialogueActorsRegistry.Register(this);
     }
     
     protected new void OnDisable()
     {
         base.OnDisable();
         
-        _registry.Unregister(this);
+        _dialogueActorsRegistry.Unregister(this);
     }
 }

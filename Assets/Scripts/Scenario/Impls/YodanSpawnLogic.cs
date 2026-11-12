@@ -16,7 +16,7 @@ namespace Scenario
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
         private IAttackController _attackController;
-        private CharacterController _characterController;
+        private GameCharacterController _gameCharacterController;
         private BehaviourBase _behaviourFollowPath;
         private BehaviourBase _behaviourAttackPlayer;
         private BehaviourBase _behaviourFollowPlayer;
@@ -27,7 +27,7 @@ namespace Scenario
             IGameManager gameManager,
             IDialogManager dialogManager,
             IAttackController attackController,
-            CharacterController characterController,
+            GameCharacterController gameCharacterController,
             BehaviourFollowPath behaviourFollowPath,
             BehaviourAttackPlayer behaviourAttackPlayer,
             BehaviourFollowPlayer behaviourFollowPlayer)
@@ -35,7 +35,7 @@ namespace Scenario
             _scenarioManager = scenarioManager;
             _gameManager = gameManager;
             _attackController = attackController;
-            _characterController = characterController;
+            _gameCharacterController = gameCharacterController;
             _behaviourFollowPath = behaviourFollowPath;
             _behaviourAttackPlayer = behaviourAttackPlayer;
             _behaviourFollowPlayer = behaviourFollowPlayer;
@@ -56,9 +56,9 @@ namespace Scenario
                 if (character is IMovable movable)
                 {
                     movable.CurrentPath = new RandomPath(movable);
-                    _characterController.StateStart(character, _behaviourFollowPath);
-                    _characterController.StateStart(character, _behaviourAttackPlayer);
-                    _characterController.StateStart(character, _behaviourFollowPlayer);
+                    _gameCharacterController.StateStart(character, _behaviourFollowPath);
+                    _gameCharacterController.StateStart(character, _behaviourAttackPlayer);
+                    _gameCharacterController.StateStart(character, _behaviourFollowPlayer);
                 }
             }
             

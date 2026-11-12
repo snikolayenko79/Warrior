@@ -6,7 +6,7 @@ using Zenject;
 
 public class GameManager : MonoBehaviour, IGameManager
 {
-    [FormerlySerializedAs("characterStateController")] public CharacterController characterController;
+    [FormerlySerializedAs("characterController")] [FormerlySerializedAs("characterStateController")] public GameCharacterController gameCharacterController;
     public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
     
     private Dictionary<SideType, List<GameObject>> _characters = new  Dictionary<SideType, List<GameObject>>();
@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour, IGameManager
             }
 
             // 5. Регистрируем сущность в глобальной системе симуляции движения
-            if (characterController != null)
+            if (gameCharacterController != null)
             {
-                characterController.RegisterEntity(character);
+                gameCharacterController.RegisterEntity(character);
             }
         }
         
@@ -102,9 +102,9 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         character.OnDead -= OnCharapterDead;
         
-        if (characterController != null)
+        if (gameCharacterController != null)
         {
-            characterController.UnregisterEntity(character);
+            gameCharacterController.UnregisterEntity(character);
         }
         
         StartCoroutine(DelayedDespawnRoutine((character)));

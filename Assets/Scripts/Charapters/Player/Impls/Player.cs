@@ -3,50 +3,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public class Player : ActorCharacter, IDataContainer, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
+public class Player : AttackCharacter, ISpellCaster, ICustomer, IInventoryOwner
 {
-    private IAttackController _attackController;
-
-    [Inject]
-    public void Construct(IAttackController attackController)
-    {
-        _attackController = attackController;
-    }
-    
     [SerializeField]private PlayerData playerData;
     private IInventory _inventory;
-    
-    protected new void Awake()
-    {
-        base.Awake();
-        
-        if (!playerData)
-        {
-            Debug.LogError($"[Player] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
-        }
-    }
-    
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-        
-        _attackController.RegisterAttacker(this);
-        _attackController.RegisterAttackable(this);
-    }
-    
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-        
-        _attackController.UnregisterAttacker(this);
-        _attackController.UnregisterAttackable(this);
-    }
-    
-    public IInventory CurrentInventory
-    {
-        get => _inventory;
-        set => _inventory = value;
-    }
     
     [Inject]
     public void Construct(IInventory inventory)
@@ -54,8 +14,24 @@ public class Player : ActorCharacter, IDataContainer, IAttacker, ISpellCaster, I
         _inventory = inventory;
         _inventory.Owner = this;
     }
-
-    public IData Data => playerData;
+    
+    protected new void Awake()
+    {
+        base.Awake();
+        
+        if (!playerData)
+            Debug.LogError($"[Player] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
+        else
+        {
+            CharacterData = playerData;
+        }
+    }
+    
+    public IInventory CurrentInventory
+    {
+        get => _inventory;
+        set => _inventory = value;
+    }
     
     private List<SpellData> _availableSpells = new List<SpellData>();
     [SerializeField] Transform spellSpawnPoint;
@@ -95,100 +71,11 @@ public class Player : ActorCharacter, IDataContainer, IAttacker, ISpellCaster, I
         set => _isSpellCastStarted = value;
     }
     
-    private WeaponData _selectedWeapon;
-    [SerializeField] Transform weaponPoint;
-    private GameObject _currentWeaponObject;
-    
-    public WeaponData SelectedWeapon
-    {
-        get => _selectedWeapon;
-        set  => _selectedWeapon = value;
-    }
-    
-    public Transform WeaponPoint => weaponPoint;
-    public GameObject CurrentWeaponObject
-    {
-        get => _currentWeaponObject;
-        set  => _currentWeaponObject = value;
-    }
-
-    private bool _isAttacking  = false;
-    public bool IsAttacking
-    {
-        get => _isAttacking;
-        set => _isAttacking = value;
-    }
-    
-    private bool _isAttackStarted  = false;
-    public bool IsAttackStarted
-    {
-        get => _isAttackStarted;
-        set => _isAttackStarted = value;
-    }
-    
-    public void Attack()
-    {
-        if (MyAnimator != null)
-            MyAnimator.SetTrigger("Attack");
-    }
-
-    [SerializeField] private SideType side;
-
-    public SideType Side => side;
-    
-    public int Experience
-    {
-        get => playerData.Experience;
-        set  => playerData.Experience = value;
-        
-    }
-    
-    private float _lockAttackCounter = 0;
-    
-    public float LockAttackCounter
-    {
-        get => _lockAttackCounter;
-        set  => _lockAttackCounter = value;
-        
-    }
-
     public int Coins
     {
         get => playerData.Coins;
         set => playerData.Coins = value;
     }
     
-    public override bool IsDead => playerData.CurrentHealth <= 0;
-
-    public float Health
-    {
-        get => playerData.CurrentHealth;
-        set => playerData.CurrentHealth = value;
-    }
-
-    public void TakeDamage(float damageAmount)
-    {
-        Debug.Log(this.name + ": -" + damageAmount + " health points");
-        
-        playerData.CurrentHealth -= damageAmount;
-        
-        if (MyAnimator)
-            MyAnimator.SetTrigger("TakeDamage");
-
-        if (Health <= 0)
-            Dead();
-    }
     
-    public void Dead()
-    {
-        if (MyAnimator)
-        {
-            MyAnimator.SetBool("IsMoving", false);
-            MyAnimator.SetTrigger("IsDead");
-        }
-
-        MyRigidbody.isKinematic = true;
-        
-        OnDead?.Invoke(this);
-    }
 }

@@ -217,12 +217,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118452100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1844014700}
+  m_Father: {fileID: 2116117192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &118452102
 MonoBehaviour:
@@ -274,12 +274,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135160260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1844014700}
+  m_Father: {fileID: 2116117192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427842520
 GameObject:
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2469bd6a0cd53d049b711aea93042e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  characterStateController: {fileID: 1844014701}
+  gameCharacterController: {fileID: 1844014701}
   timeBeforeDespawn: 4
 --- !u!4 &464088576
 Transform:
@@ -774,12 +774,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924923175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1844014700}
+  m_Father: {fileID: 2116117192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &924923177
 MonoBehaviour:
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::World1Installer
   gameManager: {fileID: 464088575}
   characterFactory: {fileID: 1009138829}
-  _characterStateController: {fileID: 1844014701}
+  gameCharacterController: {fileID: 1844014701}
   _attackController: {fileID: 1844014703}
   _spellController: {fileID: 1844014704}
   _behaviourPlayerInput: {fileID: 1537528160}
@@ -982,12 +982,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501112510}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1844014700}
+  m_Father: {fileID: 2116117192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1501112512
 MonoBehaviour:
@@ -1043,12 +1043,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537528159}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1844014700}
+  m_Father: {fileID: 2116117192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1537528162
 MonoBehaviour:
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 1844014703}
   - component: {fileID: 1844014704}
   m_Layer: 0
-  m_Name: CharaptersControllers
+  m_Name: Charapters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,11 +1100,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1537528161}
-  - {fileID: 924923176}
-  - {fileID: 135160262}
-  - {fileID: 118452101}
-  - {fileID: 1501112511}
+  - {fileID: 2116117192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1844014701
@@ -1119,10 +1115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cecbb22853194c4d8a2bbd3a7a4e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStateController
-  statesBehaviours:
+  behaviours:
   - {fileID: 1537528160}
+  - {fileID: 924923178}
   - {fileID: 135160261}
-  - {fileID: 0}
+  - {fileID: 118452102}
+  - {fileID: 1501112512}
 --- !u!114 &1844014702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,6 +1240,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72eb2dd2be5c37499226fc67528aabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+--- !u!1 &2116117191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116117192}
+  m_Layer: 0
+  m_Name: Behaviours
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116117192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116117191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1537528161}
+  - {fileID: 924923176}
+  - {fileID: 135160262}
+  - {fileID: 118452101}
+  - {fileID: 1501112511}
+  m_Father: {fileID: 1844014700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3933186823132530409
 PrefabInstance:
   m_ObjectHideFlags: 0
