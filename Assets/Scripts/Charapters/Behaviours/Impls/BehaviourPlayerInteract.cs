@@ -16,10 +16,10 @@ public class BehaviourPlayerInteract : BehaviourBase
     {
     }
     
-    public override void StateStart(ICharapterState characterState)
+    public override void StateStart(ICharacter character)
     {
-        _playerInteractor = characterState as IInteractor;
-        _playerMovable = characterState as IMovable;
+        _playerInteractor = character as IInteractor;
+        _playerMovable = character as IMovable;
         
         TryGetComponent<IInputListener>(out _inputListener);
 
@@ -29,7 +29,7 @@ public class BehaviourPlayerInteract : BehaviourBase
         }
     }
     
-    public override void StateEnd(ICharapterState characterState)
+    public override void StateEnd(ICharacter character)
     {
         if (_inputListener != null)
         {
@@ -37,7 +37,7 @@ public class BehaviourPlayerInteract : BehaviourBase
         }
     }
 
-    public override void StateUpdate(ICharapterState characterState)
+    public override void StateUpdate(ICharacter character)
     {
     }
 

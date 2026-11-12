@@ -11,11 +11,11 @@ public class BehaviourPlayerInput : BehaviourBase
     {
     }
     
-    public override void StateStart(ICharapterState characterState)
+    public override void StateStart(ICharacter character)
     {
-        _movable = characterState as IMovable;
-        _attacker = characterState as IAttacker;
-        _spellcaster  = characterState as ISpellCaster;
+        _movable = character as IMovable;
+        _attacker = character as IAttacker;
+        _spellcaster  = character as ISpellCaster;
         
         TryGetComponent<IInputListener>(out _inputListener);
 
@@ -25,7 +25,7 @@ public class BehaviourPlayerInput : BehaviourBase
         }
     }
     
-    public override void StateEnd(ICharapterState characterState)
+    public override void StateEnd(ICharacter character)
     {
         if (_inputListener != null)
         {
@@ -33,7 +33,7 @@ public class BehaviourPlayerInput : BehaviourBase
         }
     }
 
-    public override void StateUpdate(ICharapterState characterState)
+    public override void StateUpdate(ICharacter character)
     {
     }
 

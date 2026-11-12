@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/CameraMover
+    - Assets/Scripts/Charapters
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/CameraMover
+  - Assets/Scripts/Charapters
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
@@ -615,9 +615,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 399}
     m_SelectedIDs:
-    - m_Data: 54482
+    - m_Data: 53512
     m_LastClickedID:
-      m_Data: 54482
+      m_Data: 53512
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 53504
@@ -626,7 +626,6 @@ MonoBehaviour:
     - m_Data: 53510
     - m_Data: 53512
     - m_Data: 53514
-    - m_Data: 53516
     - m_Data: 53518
     - m_Data: 53520
     - m_Data: 53522
@@ -638,6 +637,8 @@ MonoBehaviour:
     - m_Data: 53534
     - m_Data: 53536
     - m_Data: 53538
+    - m_Data: 54738
+    - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -715,9 +716,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 50620
-    m_LastClickedInstanceID: 50620
-    m_HadKeyboardFocusLastEvent: 1
+    - m_Data: 53514
+    m_LastClickedInstanceID: 53514
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 0
     - m_Data: 49292
@@ -810,7 +811,7 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 50324
+      - m_Data: 53514
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:

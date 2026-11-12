@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class MovableBehaviourBase : BehaviourBase
 {
-    public override void StateUpdate(ICharapterState characterState)
+    public override void StateUpdate(ICharacter character)
     {
-        if (characterState is IMovable movable)
+        if (character is IMovable movable)
         {
             MovableUpdate(movable);
         }

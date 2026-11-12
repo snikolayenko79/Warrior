@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public class Enemy : ActorCharapter, IDataContainer, IAttacker, IAttackable, IDamageable
+public class Enemy : ActorCharacter, IDataContainer, IAttacker, IAttackable, IDamageable
 {
     private IAttackController _attackController;
 

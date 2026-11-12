@@ -11,7 +11,7 @@ public abstract class BehaviourBase : MonoBehaviour, IBehaviour
         _gameManager = gameManager;
     }
     
-    public abstract void StateStart(ICharapterState characterState);
-    public abstract void StateUpdate(ICharapterState characterState);
-    public abstract void StateEnd(ICharapterState characterState);
+    public abstract void StateStart(ICharacter character);
+    public abstract void StateUpdate(ICharacter character);
+    public abstract void StateEnd(ICharacter character);
 }

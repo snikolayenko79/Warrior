@@ -18,7 +18,7 @@ namespace Scenario
         private DiContainer _container;
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
-        private CharacterStateController _characterStateController;
+        private CharacterController _characterController;
         private BehaviourBase _behaviourFollowPath;
         
         [Inject]
@@ -26,13 +26,13 @@ namespace Scenario
             DiContainer container,
             ScenarioManager scenarioManager,
             IGameManager gameManager,
-            CharacterStateController characterStateController,
+            CharacterController characterController,
             BehaviourFollowPath behaviourFollowPath)
         {
             _container = container;
             _scenarioManager = scenarioManager;
             _gameManager = gameManager;
-            _characterStateController = characterStateController;
+            _characterController = characterController;
             _behaviourFollowPath = behaviourFollowPath;
         }
         
@@ -56,7 +56,7 @@ namespace Scenario
                 yield return null;
             
             character.CurrentPath = path;
-            _characterStateController.StateStart(character, _behaviourFollowPath);
+            _characterController.StateStart(character, _behaviourFollowPath);
         
             yield return null;
          

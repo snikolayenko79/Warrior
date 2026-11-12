@@ -76,7 +76,7 @@ public class AttackController : MonoBehaviour, IAttackController
         return Vector3.Distance(attacker.Position, attackable.Position) <= attackDistance;
     }
 
-    protected void DoAttack(IAttacker attacker)
+    private void DoAttack(IAttacker attacker)
     {
         if (attacker is { IsAttackStarted: true })
         {

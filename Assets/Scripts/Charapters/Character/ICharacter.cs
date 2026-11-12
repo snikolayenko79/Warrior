@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public interface ICharapterState
+public interface ICharacter
 {
-    List<IBehaviour> StateBehaviours { get; set; }
+    List<IBehaviour> Behaviours { get; set; }
     Vector3 Position { get; set; }
     bool IsDead { get; }
 }

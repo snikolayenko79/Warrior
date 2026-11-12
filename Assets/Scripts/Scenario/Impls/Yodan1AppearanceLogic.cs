@@ -19,7 +19,7 @@ namespace Scenario
         private IGameManager _gameManager;
         private IDialogManager _dialogManager;
         private IAttackController _attackController;
-        private CharacterStateController _characterStateController;
+        private CharacterController _characterController;
         private BehaviourBase _behaviourAttackPlayer;
         private BehaviourBase _behaviourFollowPlayer;
         private BehaviourBase _behaviourFollowPath;
@@ -30,7 +30,7 @@ namespace Scenario
             IGameManager gameManager,
             IDialogManager dialogManager,
             IAttackController attackController,
-            CharacterStateController characterStateController,
+            CharacterController characterController,
             BehaviourAttackPlayer behaviourAttackPlayer,
             BehaviourFollowPlayer behaviourFollowPlayer,
             BehaviourFollowPath behaviourFollowPath)
@@ -39,7 +39,7 @@ namespace Scenario
             _gameManager = gameManager;
             _dialogManager = dialogManager;
             _attackController = attackController;
-            _characterStateController = characterStateController;
+            _characterController = characterController;
             _behaviourAttackPlayer = behaviourAttackPlayer;
             _behaviourFollowPlayer = behaviourFollowPlayer;
             _behaviourFollowPath = behaviourFollowPath;
@@ -67,7 +67,7 @@ namespace Scenario
             yield return new WaitForSeconds(0.5f);
             
             character.CurrentPath = path;
-            _characterStateController.StateStart(character, _behaviourFollowPath);
+            _characterController.StateStart(character, _behaviourFollowPath);
         
             yield return null;
          
@@ -82,8 +82,8 @@ namespace Scenario
             while (_dialogManager.IsDialogueRunning)
                 yield return null;
             
-            _characterStateController.StateStart(character, _behaviourAttackPlayer);
-            _characterStateController.StateStart(character, _behaviourFollowPlayer);
+            _characterController.StateStart(character, _behaviourAttackPlayer);
+            _characterController.StateStart(character, _behaviourFollowPlayer);
             
             _scenarioManager.SetBool(cameVar, true);
             

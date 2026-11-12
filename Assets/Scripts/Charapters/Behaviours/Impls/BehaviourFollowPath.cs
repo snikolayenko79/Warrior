@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BehaviourFollowPath : MovableBehaviourBase
 {
-    public override void StateStart(ICharapterState characterState)
+    public override void StateStart(ICharacter character)
     {
     }
 
@@ -42,7 +42,7 @@ public class BehaviourFollowPath : MovableBehaviourBase
         RotateTowards(movable, targetPosition.Value);
     }
 
-    public override void StateEnd(ICharapterState characterState)
+    public override void StateEnd(ICharacter character)
     {
     }
     

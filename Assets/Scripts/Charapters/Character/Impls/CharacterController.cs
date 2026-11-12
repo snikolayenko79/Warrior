@@ -1,33 +1,33 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CharacterStateController : MonoBehaviour, ICharacterStateController
+public class CharacterController : MonoBehaviour, ICharacterController
 {
     // TODO. Нужны?
     [SerializeField] List<BehaviourBase> statesBehaviours = new List<BehaviourBase>();
     
-    protected List<ICharapterState> Entities = new List<ICharapterState>();
+    protected List<ICharacter> Entities = new List<ICharacter>();
     
-    public void RegisterEntity(ICharapterState characterState) => Entities.Add(characterState);
-    public void UnregisterEntity(ICharapterState characterState) => Entities.Remove(characterState);
+    public void RegisterEntity(ICharacter character) => Entities.Add(character);
+    public void UnregisterEntity(ICharacter character) => Entities.Remove(character);
 
-    public void StateStart(ICharapterState entity, IBehaviour stateBehaviour)
+    public void StateStart(ICharacter entity, IBehaviour stateBehaviour)
     {
-        entity.StateBehaviours.Add(stateBehaviour);
+        entity.Behaviours.Add(stateBehaviour);
         stateBehaviour.StateStart(entity);
     }
 
-    public void StateEnd(ICharapterState entity, IBehaviour stateBehaviour)
+    public void StateEnd(ICharacter entity, IBehaviour stateBehaviour)
     {
         stateBehaviour.StateEnd(entity);
-        entity.StateBehaviours.Remove(stateBehaviour);
+        entity.Behaviours.Remove(stateBehaviour);
     }
 
     void UpdateStates()
     {
         for (int i = Entities.Count - 1; i >= 0; i--)
         {
-            ICharapterState entity = Entities[i];
+            ICharacter entity = Entities[i];
             
             if (entity == null || entity.IsDead)
             {
@@ -35,9 +35,9 @@ public class CharacterStateController : MonoBehaviour, ICharacterStateController
                 continue;
             }
 
-            for (int j = entity.StateBehaviours.Count - 1; j >= 0; j--)
+            for (int j = entity.Behaviours.Count - 1; j >= 0; j--)
             {
-                IBehaviour behaviour = entity.StateBehaviours[j];
+                IBehaviour behaviour = entity.Behaviours[j];
                 behaviour.StateUpdate(entity);
             }
             

@@ -20,7 +20,7 @@ namespace Scenario
         private IDialogManager _dialogManager;
         private IInventory _inventory;
         private IAttackController _attackController;
-        private CharacterStateController _characterStateController;
+        private CharacterController _characterController;
         private BehaviourAttackPlayer _behaviourAttackPlayer;
         private BehaviourFollowPlayer _behaviourFollowPlayer;
         private BehaviourBase _behaviourFollowPath;
@@ -36,7 +36,7 @@ namespace Scenario
             IDialogManager dialogManager,
             IAttackController attackController,
             IInventory inventory,
-            CharacterStateController characterStateController,
+            CharacterController characterController,
             BehaviourAttackPlayer behaviourAttackPlayer,
             BehaviourFollowPlayer behaviourFollowPlayer,
             BehaviourFollowPath behaviourFollowPath,
@@ -50,7 +50,7 @@ namespace Scenario
             _dialogManager = dialogManager;
             _inventory = inventory;
             _attackController = attackController;
-            _characterStateController = characterStateController;
+            _characterController = characterController;
             _behaviourAttackPlayer = behaviourAttackPlayer;
             _behaviourFollowPlayer = behaviourFollowPlayer;
             _behaviourFollowPath = behaviourFollowPath;
@@ -77,7 +77,7 @@ namespace Scenario
             _inventory.AddItemToInventory(defaultInventoryItem);
 
             chPlayer.CurrentPath = path;
-            _characterStateController.StateStart(chPlayer, _behaviourFollowPath);
+            _characterController.StateStart(chPlayer, _behaviourFollowPath);
         
             Player player = chPlayer as Player;
             _attackController.SelectWeapon(player, defaultWeapon);
@@ -91,7 +91,7 @@ namespace Scenario
             while (chPlayer.IsMoving)
                 yield return null;
         
-            _characterStateController.StateEnd(chPlayer, _behaviourFollowPath);
+            _characterController.StateEnd(chPlayer, _behaviourFollowPath);
         
             yield return new WaitForSeconds(0.50f);
         
@@ -103,8 +103,8 @@ namespace Scenario
             IMovable movable = chPlayer as IMovable;
             _cameraMover.SetTarget(movable);
             
-            _characterStateController.StateStart(chPlayer, _behaviourPlayerInput);
-            _characterStateController.StateStart(chPlayer, _behaviourPlayerInteract);
+            _characterController.StateStart(chPlayer, _behaviourPlayerInput);
+            _characterController.StateStart(chPlayer, _behaviourPlayerInteract);
             
             _scenarioManager.SetBool(cameVar, true);
             

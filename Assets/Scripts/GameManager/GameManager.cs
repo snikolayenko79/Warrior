@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class GameManager : MonoBehaviour, IGameManager
 {
-    public CharacterStateController characterStateController;
+    [FormerlySerializedAs("characterStateController")] public CharacterController characterController;
     public float timeBeforeDespawn = 2.0f; // Время в секундах, пока играет анимация смерти
     
     private Dictionary<SideType, List<GameObject>> _characters = new  Dictionary<SideType, List<GameObject>>();
@@ -60,9 +61,9 @@ public class GameManager : MonoBehaviour, IGameManager
             }
 
             // 5. Регистрируем сущность в глобальной системе симуляции движения
-            if (characterStateController != null)
+            if (characterController != null)
             {
-                characterStateController.RegisterEntity(character);
+                characterController.RegisterEntity(character);
             }
         }
         
@@ -101,9 +102,9 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         character.OnDead -= OnCharapterDead;
         
-        if (characterStateController != null)
+        if (characterController != null)
         {
-            characterStateController.UnregisterEntity(character);
+            characterController.UnregisterEntity(character);
         }
         
         StartCoroutine(DelayedDespawnRoutine((character)));

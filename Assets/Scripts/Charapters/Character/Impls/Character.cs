@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : MonoBehaviour, IMovable, ICharapterState, IInteractor
+public class Character : MonoBehaviour, ICharacter, IMovable, IInteractor
 {
     public Animator MyAnimator;
 
-    private List<IBehaviour> _stateBehaviours = new List<IBehaviour>();
+    private List<IBehaviour> _behaviours = new List<IBehaviour>();
 
-    public List<IBehaviour> StateBehaviours
+    public List<IBehaviour> Behaviours
     {
-        get => _stateBehaviours;
-        set => _stateBehaviours = value;
+        get => _behaviours;
+        set => _behaviours = value;
     }
     
     public Rigidbody MyRigidbody;

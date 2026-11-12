@@ -2,7 +2,7 @@ using System.Reflection.Emit;
 using UnityEngine;
 using Zenject;
 
-public class ActorCharapter : Character, IDialogueActor
+public class ActorCharacter : Character, IDialogueActor
 {
     public string dialogueActorName = "";
     public Transform speechBubbleAnchor;

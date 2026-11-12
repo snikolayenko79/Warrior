@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
 
-public class Player : ActorCharapter, IDataContainer, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
+public class Player : ActorCharacter, IDataContainer, IAttacker, ISpellCaster, IAttackable, ICustomer, IInventoryOwner, IDamageable
 {
     private IAttackController _attackController;
 

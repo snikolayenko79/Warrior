@@ -8,7 +8,7 @@ public class BehaviourFollowPlayer : MovableBehaviourBase
     public float startFollowDistanceMax = 2.0f;
     public float stopFollowDistance = 0.5f;
     
-    public override void StateStart(ICharapterState characterState)
+    public override void StateStart(ICharacter character)
     {
     }
 
@@ -38,7 +38,7 @@ public class BehaviourFollowPlayer : MovableBehaviourBase
         }
     }
     
-    public override void StateEnd(ICharapterState characterState)
+    public override void StateEnd(ICharacter character)
     {
     }
 }

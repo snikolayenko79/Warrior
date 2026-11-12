@@ -18,7 +18,7 @@ public class BehaviourAttackPlayer : AttackerBehaviourBase
         _attackController = attackController;
     }
     
-    public override void StateStart(ICharapterState characterState)
+    public override void StateStart(ICharacter character)
     {
         
     }
@@ -82,7 +82,7 @@ public class BehaviourAttackPlayer : AttackerBehaviourBase
         }
     }
     
-    public override void StateEnd(ICharapterState characterState)
+    public override void StateEnd(ICharacter character)
     {
     }
 }

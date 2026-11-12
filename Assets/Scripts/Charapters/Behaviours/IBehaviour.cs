@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IBehaviour
 {
-    void StateStart(ICharapterState characterState);
-    void StateUpdate(ICharapterState characterState);
-    void StateEnd(ICharapterState characterState);
+    void StateStart(ICharacter character);
+    void StateUpdate(ICharacter character);
+    void StateEnd(ICharacter character);
 }

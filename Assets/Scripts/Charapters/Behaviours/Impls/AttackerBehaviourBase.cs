@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class AttackerBehaviourBase : BehaviourBase
 {
-    public override void StateUpdate(ICharapterState characterState)
+    public override void StateUpdate(ICharacter character)
     {
-        if (characterState is IAttacker attacker)
+        if (character is IAttacker attacker)
         {
             AttackerUpdate(attacker);
         }
