@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IEnemyData : IAttackCharacterData
+public interface IEnemyData
 {
     
 }

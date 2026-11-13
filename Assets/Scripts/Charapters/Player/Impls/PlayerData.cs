@@ -11,9 +11,13 @@ public class PlayerData : AttackCharacterData, ICustomerData, ISavable
     public int Coins
     {
         get => _currentCoins;
-        set => _currentCoins = value;
+        set
+        {
+            _currentCoins = value;
+            RaiseDataChanged();
+        }
     }
-    
+
     private ISaveLoadService _saveLoadService;
         
     [Inject]
@@ -32,11 +36,13 @@ public class PlayerData : AttackCharacterData, ICustomerData, ISavable
         }
         else
         {
-            MaxHealth = maxHealthInit;
-            Health = MaxHealth;
-            Coins = coinsInit;
-            Experience = experienceInit;
+            _currentMaxHealth = maxHealthInit;
+            _health = _currentMaxHealth;
+            _currentCoins = coinsInit;
+            _currentExperience = experienceInit;
         }
+        
+        RaiseDataInitialized();
     }
     
     public void Save(ISaveLoadService saveService)

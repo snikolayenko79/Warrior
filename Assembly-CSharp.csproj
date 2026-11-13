@@ -176,6 +176,7 @@
     <Compile Include="Assets\Scripts\Charapters\Move\IMovable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Navigation\Impls\SpecifiedPath.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\BehaviourBase.cs" />
+    <Compile Include="Assets\Scripts\UI\Impls\PlayerDataUI.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerItem.cs" />

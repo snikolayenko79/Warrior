@@ -5,16 +5,16 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
 {
     private IAttackController _attackController;
 
-    private IAttackCharacterData _attackCharacterData;
+    private IAttackCharacterData _currentAttackCharacterData;
 
-    public IAttackCharacterData AttackCharacterData
+    public IAttackCharacterData CurrentAttackCharacterData
     {
         get
         {
-            if (_attackCharacterData == null)
-                _attackCharacterData = CharacterData as IAttackCharacterData;
+            if (_currentAttackCharacterData == null)
+                _currentAttackCharacterData = CharacterData as IAttackCharacterData;
             
-            return _attackCharacterData;
+            return _currentAttackCharacterData;
         }
     }
 
@@ -83,8 +83,8 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
 
     public int Experience
     {
-        get => AttackCharacterData.Experience;
-        set => AttackCharacterData.Experience = value;
+        get => CurrentAttackCharacterData.Experience;
+        set => CurrentAttackCharacterData.Experience = value;
     }
     
     private float _lockAttackCounter = 0;
@@ -95,19 +95,25 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
         set  => _lockAttackCounter = value;
     }
     
-    public override bool IsDead => AttackCharacterData.Health <= 0;
+    public override bool IsDead => CurrentAttackCharacterData.Health <= 0;
 
     public float Health
     {
-        get => AttackCharacterData.Health;
-        set => AttackCharacterData.Health = value;
+        get => CurrentAttackCharacterData.Health;
+        set => CurrentAttackCharacterData.Health = value;
+    }
+    
+    public float MaxHealth
+    {
+        get => CurrentAttackCharacterData.MaxHealth;
+        set => CurrentAttackCharacterData.MaxHealth = value;
     }
 
     public void TakeDamage(float damageAmount)
     {
         Debug.Log(this.name + ": -" + damageAmount + " health points");
         
-        AttackCharacterData.Health -= damageAmount;
+        CurrentAttackCharacterData.Health -= damageAmount;
         
         if (MyAnimator)
             MyAnimator.SetTrigger("TakeDamage");

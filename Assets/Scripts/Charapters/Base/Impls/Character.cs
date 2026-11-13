@@ -18,7 +18,13 @@ public class Character : MonoBehaviour, ICharacter, IDataContainer, IMovable, II
     }
     
     public IData Data => CharacterData;
-    
+
+    public virtual void InitializeData()
+    {
+        if (!Data.IsUnityNull())
+            Data.Initialize();
+    }
+
     public Rigidbody MyRigidbody;
     
     [SerializeField] private float MyMoveSpeed = 0.5f;

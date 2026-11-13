@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ebe0b90f3072d4ea62b3a6249c33d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMoverBase
-  moveSpeed: 2
+  moveSpeed: 5
 --- !u!1 &436055142
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30

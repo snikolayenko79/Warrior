@@ -11,9 +11,11 @@ public class Enemy : AttackCharacter
         
         if (!enemyData)
             Debug.LogError($"[Enemy] На объекте {name} отсутствует обязательный компонент данных EnemyData!", this);
-        else
-        {
-            CharacterData = enemyData;
-        }
+    }
+    
+    public override void InitializeData()
+    {
+        CharacterData = enemyData;
+        base.InitializeData();
     }
 }

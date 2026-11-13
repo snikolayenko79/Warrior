@@ -8,6 +8,18 @@ public class Player : AttackCharacter, ISpellCaster, ICustomer, IInventoryOwner
     [SerializeField]private PlayerData playerData;
     private IInventory _inventory;
     
+    private PlayerData _currentPlayerData;
+    public PlayerData CurrentPlayerData
+    {
+        get
+        {
+            if (_currentPlayerData == null)
+                _currentPlayerData = CharacterData as PlayerData;
+            
+            return _currentPlayerData;
+        }
+    }
+    
     [Inject]
     public void Construct(IInventory inventory)
     {
@@ -21,10 +33,12 @@ public class Player : AttackCharacter, ISpellCaster, ICustomer, IInventoryOwner
         
         if (!playerData)
             Debug.LogError($"[Player] На объекте {name} отсутствует обязательный компонент данных PlayerData!", this);
-        else
-        {
-            CharacterData = playerData;
-        }
+    }
+    
+    public override void InitializeData()
+    {
+        CharacterData = playerData;
+        base.InitializeData();
     }
     
     public IInventory CurrentInventory
@@ -76,6 +90,4 @@ public class Player : AttackCharacter, ISpellCaster, ICustomer, IInventoryOwner
         get => playerData.Coins;
         set => playerData.Coins = value;
     }
-    
-    
 }
