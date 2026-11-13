@@ -3,6 +3,10 @@ using Zenject;
 
 public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageable
 {
+    public AudioSource attackSound;
+    public AudioSource damageSound;
+    public AudioSource deadSound;
+    
     private IAttackController _attackController;
 
     private IAttackCharacterData _currentAttackCharacterData;
@@ -75,6 +79,9 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
     {
         if (MyAnimator != null)
             MyAnimator.SetTrigger("Attack");
+        
+        if (attackSound)
+            attackSound.Play();
     }
     
     [SerializeField] private SideType side;
@@ -118,6 +125,9 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
         if (MyAnimator)
             MyAnimator.SetTrigger("TakeDamage");
 
+        if (damageSound)
+            damageSound.Play();
+        
         if (Health <= 0)
             Dead();
     }
@@ -129,6 +139,9 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
             MyAnimator.SetBool("IsMoving", false);
             MyAnimator.SetTrigger("IsDead");
         }
+        
+        if (deadSound)
+            deadSound.Play();
 
         MyRigidbody.isKinematic = true;
         

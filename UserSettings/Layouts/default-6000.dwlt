@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -190,10 +190,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 401
+    width: 331
     height: 670
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -214,12 +214,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 401
+    x: 331
     y: 0
-    width: 1093
+    width: 1163
     height: 670
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/UI
+    - Assets/Scripts/Scenario/Impls
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,35 +606,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/UI
+  - Assets/Scripts/Scenario/Impls
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
+    scrollPos: {x: 0, y: 671}
     m_SelectedIDs:
-    - m_Data: 55072
+    - m_Data: 56966
     m_LastClickedID:
-      m_Data: 55072
+      m_Data: 56966
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53530
-    - m_Data: 54526
-    - m_Data: 54534
-    - m_Data: 54538
-    - m_Data: 54542
-    - m_Data: 54566
-    - m_Data: 54568
-    - m_Data: 54574
-    - m_Data: 54600
-    - m_Data: 54606
-    - m_Data: 54612
-    - m_Data: 54614
-    - m_Data: 54632
-    - m_Data: 54942
-    - m_Data: 54944
+    - m_Data: 53538
+    - m_Data: 53968
+    - m_Data: 53980
+    - m_Data: 53984
+    - m_Data: 53988
+    - m_Data: 54066
+    - m_Data: 54074
+    - m_Data: 54598
+    - m_Data: 54618
+    - m_Data: 54634
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -668,7 +663,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53530
+    - m_Data: 53538
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -695,8 +690,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 35496
+    m_LastClickedInstanceID: 35496
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 0
@@ -771,7 +767,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 79
-    width: 400
+    width: 330
     height: 644
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -789,24 +785,14 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 35496
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -111788
-      - m_Data: -111766
-      - m_Data: -101514
-      - m_Data: -100728
-      - m_Data: -98634
-      - m_Data: -95382
-      - m_Data: -89178
-      - m_Data: -81858
-      - m_Data: -76024
-      - m_Data: -72460
-      - m_Data: -67334
-      - m_Data: -67276
-      - m_Data: -1336
-      - m_Data: -12
+      - m_Data: -23700
+      - m_Data: 56946
+      - m_Data: 56960
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1250,8 +1236,8 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_OverrideSceneCullingMask: 0
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
@@ -1259,9 +1245,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 433.09982, y: 429.55637, z: -3.5668907}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 454.605, y: 391.34, z: 0}
+    m_Value: {x: 433.09982, y: 429.55637, z: -3.5668907}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1311,9 +1297,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 427.40024
+    m_Target: 10
     speed: 2
-    m_Value: 690.91077
+    m_Value: 427.40024
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1331,7 +1317,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.6239663, y: 0.0028128752, z: -0.0022424238, w: -0.7814486}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 15}
@@ -1368,9 +1354,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 401
+    x: 331
     y: 79
-    width: 1091
+    width: 1161
     height: 644
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1427,23 +1413,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1091
+      width: 1161
       height: 623
-    m_Scale: {x: 0.85234374, y: 0.85234374}
-    m_Translation: {x: 545.5, y: 311.5}
+    m_Scale: {x: 0.86527777, y: 0.86527777}
+    m_Translation: {x: 580.5, y: 311.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -640
-      y: -365.4629
-      width: 1280
-      height: 730.9258
+      x: -670.8828
+      y: -360
+      width: 1341.7656
+      height: 720
     m_MinimalGUI: 1
-  m_defaultScale: 0.85234374
-  m_LastWindowPixelSize: {x: 1091, y: 644}
+  m_defaultScale: 0.86527777
+  m_LastWindowPixelSize: {x: 1161, y: 644}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
