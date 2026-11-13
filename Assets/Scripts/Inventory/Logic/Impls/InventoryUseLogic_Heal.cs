@@ -14,7 +14,7 @@ public class InventoryUseLogic_Heal : InventoryUseLogic
         _uiManager  = uiManager;
     }
     
-    public override void Execute(IInventory inventoryData, IInventoryItem itemData)
+    public override bool Execute(IInventory inventoryData, IInventoryItem itemData)
     {
         if (inventoryData.Owner is IDamageable damageable)
         {
@@ -24,6 +24,9 @@ public class InventoryUseLogic_Heal : InventoryUseLogic
             float heal = (damageable.Health - healthBefore);
             if (heal > 0)
             {
+                // TODO. Перенести? Эта логика не должна отвечать. У предметов инвентаря должен быть параметр, многоразовый или одноразовый итем.
+                inventoryData.RemoveItemFromInventory(itemData);
+                
                 if (inventoryData.Owner is IMovable movable)
                 {
                     Vector3 screenPos = Camera.main.WorldToScreenPoint(movable.Position);
@@ -32,6 +35,10 @@ public class InventoryUseLogic_Heal : InventoryUseLogic
                         screenPos.y);
                 }
             }
+
+            return true;
         }
+        
+        return false;
     }
 }

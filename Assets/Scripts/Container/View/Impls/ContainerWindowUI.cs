@@ -12,7 +12,7 @@ public class ContainerWindowUI : MonoBehaviour
     // TODO. Инициализируется только в классах-наследниках. Т.е. нельзя использовать именно этот класс.
     protected IContainer ItemsContainer;
     
-    private readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
+    protected readonly List<ContainerSlotUI> _activeSlots = new List<ContainerSlotUI>();
 
     public delegate void OnClickDelegate(ContainerSlotUI itemSlot);
 
@@ -50,6 +50,7 @@ public class ContainerWindowUI : MonoBehaviour
             return;
         
         ClearWindow();
+        
         foreach (var item in ItemsContainer.Items)
         {
             ContainerSlotUI newSlot = _diContainer.InstantiatePrefabForComponent<ContainerSlotUI>(slotPrefab, parent);
@@ -61,11 +62,16 @@ public class ContainerWindowUI : MonoBehaviour
             
             newSlot.Setup(item, itemView, OnSlotClick);
             
-            OnSlotUpdate(newSlot);
+            OnSlotCreated(newSlot);
             
             _activeSlots.Add(newSlot);
         }
+        
+        OnWindowCreated();
     }
+    
+    protected virtual void OnWindowCreated() {}
+    protected virtual void OnSlotCreated(ContainerSlotUI slot) {}
     
     private void ClearWindow()
     {
@@ -77,16 +83,6 @@ public class ContainerWindowUI : MonoBehaviour
         _activeSlots.Clear();
     }
     
-    // Полезно вызывать этот метод, например, когда игрок получает монеты в процессе открытого UI, 
-    // чтобы кнопки "Купить" динамически становились активными/неактивными
-    public void UpdateAllSlots()
-    {
-        foreach (var slot in _activeSlots)
-        {
-            OnSlotUpdate(slot);
-        }
-    }
-
     private void OnSlotClick(ContainerSlotUI slot)
     {
         if (slot && !slot.ItemView.IsUnityNull() && !slot.ItemView.InteractLogic.IsUnityNull())
@@ -102,6 +98,4 @@ public class ContainerWindowUI : MonoBehaviour
     {
         RefreshWindow();
     }
-    
-    protected virtual void OnSlotUpdate(ContainerSlotUI slot) {}
 }

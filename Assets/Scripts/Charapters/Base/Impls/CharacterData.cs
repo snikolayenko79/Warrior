@@ -18,6 +18,6 @@ public class CharacterData : MonoBehaviour, ICharacterData
     
     protected void RaiseDataChanged()
     {
-        OnDataInitialized?.Invoke(this);
+        OnDataChanged?.Invoke(this);
     }
 }

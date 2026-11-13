@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInventoryUseLogic
 {
-    void Execute(IInventory inventoryData, IInventoryItem itemData);
+    bool Execute(IInventory inventoryData, IInventoryItem itemData);
 }

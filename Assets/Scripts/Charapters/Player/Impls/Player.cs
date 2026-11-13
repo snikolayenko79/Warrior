@@ -88,6 +88,13 @@ public class Player : AttackCharacter, ISpellCaster, ICustomer, IInventoryOwner
     public int Coins
     {
         get => playerData.Coins;
-        set => playerData.Coins = value;
+        set
+        {
+            int oldValue = playerData.Coins;
+            playerData.Coins = value;
+            OnCoinsChanged?.Invoke(oldValue, value);
+        }
     }
+
+    public event Action<int, int> OnCoinsChanged;
 }

@@ -63,7 +63,7 @@ namespace Scenario
         {
             _gameManager.SetGameplayLocked(true);
             
-            yield return new WaitForSeconds(3);
+            //yield return new WaitForSeconds(3);
         
             GameObject goPlayer = _gameManager.CreateCharacter("Warrior", prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Player);
             
