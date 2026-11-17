@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Threading.Tasks;
+using System.Threading;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -7,11 +10,21 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private InputListener MyPlayerInputListener2;
     private InputRouter inputRouter;
     
-    void Start()
+    async void Start()
     {
         inputRouter = new  InputRouter();
         inputRouter.Initialize(MyInputSource);
         MyPlayerInputListener.Initialize(inputRouter);
         MyPlayerInputListener2.Initialize(inputRouter);
+
+        await Profile.LoadCommonAsync();
+        await Profile.LoadPlayerAsync("Warrior");
+        
+        int a = Profile.GetVar<int>("a");
+        Debug.Log("Loaded = " + a);
+        Profile.SetVar("a", a + 1);
+        
+        await Profile.SaveAllAsync();
+        Debug.Log("Profile saved");
     }
 }

@@ -79,7 +79,9 @@
     <Compile Include="Assets\Scripts\Store\Logic\IPurchaseLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Profile\IProfileData.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\InputRouter.cs" />
+    <Compile Include="Assets\Scripts\Profile\IProfileDataStorage.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Impls\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Base\Impls\Character.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Impls\EnemyData.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryUseLogic_SelectWeapon.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerConfig.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Profile\Impls\JsonProfileSaver.cs" />
     <Compile Include="Assets\Scripts\CameraMover\CameraMoverBase.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\UITrianglePointer.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\BehaviourFollowPath.cs" />
     <Compile Include="Assets\Scripts\Store\Data\ICustomer.cs" />
     <Compile Include="Assets\Scripts\Store\Data\ICustomerData.cs" />
+    <Compile Include="Assets\Scripts\Profile\Impls\ProfileData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\BehaviourFollowPlayer.cs" />
     <Compile Include="Assets\Scripts\GameManager\IGameManager.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\IInventory.cs" />
@@ -166,6 +170,7 @@
     <Compile Include="Assets\Scripts\Charapters\Spells\ISpellController.cs" />
     <Compile Include="Assets\Scripts\Spells\Impls\FireBall.cs" />
     <Compile Include="Assets\Scripts\SaveLoad\ISaveLoadService.cs" />
+    <Compile Include="Assets\Scripts\Profile\IProfileSaver.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Impls\Enemy.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\IInventoryItem.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\DialogueNode.cs" />
@@ -178,11 +183,13 @@
     <Compile Include="Assets\Scripts\Charapters\Behaviours\Impls\BehaviourBase.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\PlayerDataUI.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
+    <Compile Include="Assets\Scripts\Profile\Impls\ProfileDataStorage.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerItem.cs" />
     <Compile Include="Assets\Scripts\Data\IDataContainer.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\Impls\CharacterFactory.cs" />
     <Compile Include="Assets\Scripts\CameraMover\CameraMoverCustom.cs" />
+    <Compile Include="Assets\Scripts\Profile\Impls\Profile.cs" />
     <Compile Include="Assets\Input\GameControls.cs" />
     <Compile Include="Assets\Scripts\Scenario\Impls\InteractLogic.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\Impls\AttackCharacter.cs" />
