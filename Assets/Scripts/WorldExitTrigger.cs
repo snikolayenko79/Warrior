@@ -36,7 +36,7 @@ public class WorldExitTrigger : MonoBehaviour
         // Каждый класс запишет свои данные в глобальный контейнер сохранения.
         foreach (ISavable system in _savableSystems)
         {
-            system.Save(_saveLoadService);
+            system.Save();
         }
 
         Debug.Log("[LevelExitTrigger] Все локальные системы успешно сохранили свое состояние.");

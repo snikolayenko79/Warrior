@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 public class JsonProfileSaver : IProfileSaver
 {
-    private readonly string _basePath;
+    private readonly string _profileFolder;
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
     public JsonProfileSaver()
     {
-        _basePath = Path.Combine(Application.persistentDataPath, "Profiles");
+        _profileFolder = Path.Combine(Application.persistentDataPath, "Profiles");
 
-        if (!Directory.Exists(_basePath))
-        {
-            Directory.CreateDirectory(_basePath);
-        }
+        if (!Directory.Exists(_profileFolder))
+            Directory.CreateDirectory(_profileFolder);
     }
 
-    private string GetPath(string fileName) => Path.Combine(_basePath, $"{fileName}.json");
+    public string ProfileFolder => _profileFolder;
+    
+    private string GetPath(string fileName) => Path.Combine(_profileFolder, $"{fileName}.json");
 
     public async Task SaveAsync<T>(string fileName, T data)
     {
@@ -30,6 +30,9 @@ public class JsonProfileSaver : IProfileSaver
         await _semaphore.WaitAsync();
         try
         {
+            if (!Directory.Exists(_profileFolder))
+                Directory.CreateDirectory(_profileFolder);
+                    
             string targetPath = GetPath(fileName);
             string tempPath = targetPath + ".tmp";
 
@@ -56,11 +59,8 @@ public class JsonProfileSaver : IProfileSaver
         try
         {
             string targetPath = GetPath(fileName);
-
             if (!File.Exists(targetPath))
-            {
                 return new T();
-            }
 
             string json = await File.ReadAllTextAsync(targetPath);
             return JsonUtility.FromJson<T>(json) ?? new T();
@@ -74,5 +74,15 @@ public class JsonProfileSaver : IProfileSaver
         {
             _semaphore.Release();
         }
+    }
+
+    public T LoadSync<T>(string fileName) where T : new()
+    {
+        string targetPath = GetPath(fileName);
+        if (!File.Exists(targetPath))
+            return new T();
+
+        string json = File.ReadAllText(targetPath);
+        return JsonUtility.FromJson<T>(json) ?? new T();
     }
 }

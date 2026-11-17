@@ -1,30 +1,59 @@
 using UnityEngine;
-using System.Collections;
+using System;
 using System.Threading.Tasks;
-using System.Threading;
+using Zenject;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private NewInputEventSource MyInputSource;
-    [SerializeField] private InputListener MyPlayerInputListener;
-    [SerializeField] private InputListener MyPlayerInputListener2;
-    private InputRouter inputRouter;
-    
-    async void Start()
-    {
-        inputRouter = new  InputRouter();
-        inputRouter.Initialize(MyInputSource);
-        MyPlayerInputListener.Initialize(inputRouter);
-        MyPlayerInputListener2.Initialize(inputRouter);
+    [SerializeField] private GameObject loadingPrefab;
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-        await Profile.LoadCommonAsync();
-        await Profile.LoadPlayerAsync("Warrior");
-        
-        int a = Profile.GetVar<int>("a");
-        Debug.Log("Loaded = " + a);
-        Profile.SetVar("a", a + 1);
-        
-        await Profile.SaveAllAsync();
-        Debug.Log("Profile saved");
+    private ISceneLoader _sceneLoader;
+    private UIManager _uiManager;
+
+    private delegate void OnInitialized();
+    
+    [Inject]
+    public void Construct(ISceneLoader sceneLoader,  UIManager uiManager)
+    {
+        _sceneLoader = sceneLoader;
+        _uiManager = uiManager;
+    }
+    
+    private void Awake()
+    {
+        BeforeInitialize();
+        _ = InitializeAsync(
+            AfterInitialize);
+    }
+
+    private async Task InitializeAsync(OnInitialized callback)
+    {
+        try
+        {
+            await Profile.LoadCommonAsync();
+            await Profile.LoadPlayerAsync(Profile.ProfileKeys.DEFAULT_PLAYER_NAME);
+            
+            await Task.Delay(2000);
+
+            if (this != null)
+            {
+                callback?.Invoke();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+    }
+
+    private void BeforeInitialize()
+    {
+        _uiManager.CreateView(loadingPrefab);
+    }
+    
+    private void AfterInitialize()
+    {
+        _sceneLoader.LoadScene(mainMenuSceneName);
     }
 }

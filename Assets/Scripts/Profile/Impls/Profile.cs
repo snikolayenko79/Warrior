@@ -3,8 +3,12 @@ using System.Threading.Tasks;
 
 public static class Profile
 {
-    private const string COMMON_FILE_NAME = "CommonProfile";
-    private const string PLAYER_FILE_PREFIX = "PlayerProfile_";
+    public static class ProfileKeys
+    {
+        public const string COMMON_FILE_NAME = "CommonProfile";
+        public const string PLAYER_FILE_PREFIX = "PlayerProfile_";
+        public const string DEFAULT_PLAYER_NAME = "Warrior";
+    }
     
     private static readonly IProfileSaver Saver = new JsonProfileSaver();
 
@@ -14,30 +18,53 @@ public static class Profile
 
     public static bool IsCommonLoaded { get; private set; }
     public static bool IsPlayerLoaded { get; private set; }
+
+    public static string GetProfileFolder()
+    {
+        return Saver.ProfileFolder;
+    }
     
     public static async Task LoadCommonAsync()
     {
-        DataStorage.CommonData = await Saver.LoadAsync<ProfileData>(COMMON_FILE_NAME);
+        DataStorage.CommonData = await Saver.LoadAsync<ProfileData>(ProfileKeys.COMMON_FILE_NAME);
         IsCommonLoaded = true;
     }
 
     public static async Task LoadPlayerAsync(string playerId)
     {
         _currentPlayerId = playerId;
-        string fileName = $"{PLAYER_FILE_PREFIX}{playerId}";
+        string fileName = $"{ProfileKeys.PLAYER_FILE_PREFIX}{playerId}";
         
         DataStorage.PlayerData = await Saver.LoadAsync<ProfileData>(fileName);
         IsPlayerLoaded = true;
     }
     
+    public static void LoadCommonSync()
+    {
+        if (IsCommonLoaded)
+            return;
+        
+        DataStorage.CommonData = Saver.LoadSync<ProfileData>(ProfileKeys.COMMON_FILE_NAME);
+        IsCommonLoaded = true;
+    }
+
+    public static void LoadPlayerSync(string playerId)
+    {
+        _currentPlayerId = playerId;
+        string fileName = $"{ProfileKeys.PLAYER_FILE_PREFIX}{playerId}";
+        
+        DataStorage.PlayerData = Saver.LoadSync<ProfileData>(fileName);
+        IsPlayerLoaded = true;
+    }
+    
     public static async Task SaveCommonAsync()
     {
-        await Saver.SaveAsync(COMMON_FILE_NAME, DataStorage.CommonData);
+        await Saver.SaveAsync(ProfileKeys.COMMON_FILE_NAME, DataStorage.CommonData);
     }
 
     public static async Task SavePlayerAsync()
     {
-        string fileName = $"{PLAYER_FILE_PREFIX}{_currentPlayerId}";
+        string fileName = $"{ProfileKeys.PLAYER_FILE_PREFIX}{_currentPlayerId}";
         await Saver.SaveAsync(fileName, DataStorage.PlayerData);
     }
 

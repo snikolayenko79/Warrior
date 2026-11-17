@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\EditorProfileAutoLoader.cs" />
+    <Compile Include="Assets\Scripts\Editor\ProfileEditorTools.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity 6000.3.23f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

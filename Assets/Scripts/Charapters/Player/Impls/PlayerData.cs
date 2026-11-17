@@ -28,16 +28,15 @@ public class PlayerData : AttackCharacterData, ICustomerData, ISavable
     
     public override void Initialize()
     {
-        PlayerSaveData rawData = _saveLoadService.CurrentProgress;
-
-        if (!rawData.IsNewData)
+        bool isNewData = Profile.GetVar<bool>(name + "_isNewData");
+        if (!isNewData)
         {
-            Load(_saveLoadService);
+            Load();
         }
         else
         {
             _currentMaxHealth = maxHealthInit;
-            _health = _currentMaxHealth;
+            _currentHealth = _currentMaxHealth;
             _currentCoins = coinsInit;
             _currentExperience = experienceInit;
         }
@@ -45,25 +44,21 @@ public class PlayerData : AttackCharacterData, ICustomerData, ISavable
         RaiseDataInitialized();
     }
     
-    public void Save(ISaveLoadService saveService)
+    public void Save()
     {
-        PlayerSaveData rawData = saveService.CurrentProgress;
+        Profile.SetVar<float>(name + "_maxHealth", _currentMaxHealth);
+        Profile.SetVar<float>(name + "_health", _currentHealth);
+        Profile.SetVar<int>(name + "_coins", _currentCoins);
+        Profile.SetVar<int>(name + "_experience", _currentExperience);
         
-        rawData.MaxHealth = MaxHealth;
-        rawData.SavedHealth = Health;
-        rawData.Coins = Coins;
-        rawData.Experience = Experience;
-        
-        rawData.IsNewData = false;
+        Profile.SetVar<bool>(name + "_isNewData", false);
     }
     
-    public void Load(ISaveLoadService saveService)
+    public void Load()
     {
-        PlayerSaveData rawData = saveService.CurrentProgress;
-        
-        rawData.MaxHealth = MaxHealth;
-        rawData.SavedHealth = Health;
-        rawData.Coins = Coins;
-        rawData.Experience = Experience;
+        _currentMaxHealth = Profile.GetVar<float>(name + "_maxHealth");
+        _currentHealth = Profile.GetVar<float>(name + "_health");
+        _currentCoins = Profile.GetVar<int>(name + "_coins");
+        _currentExperience = Profile.GetVar<int>(name + "_experience");
     }
 }

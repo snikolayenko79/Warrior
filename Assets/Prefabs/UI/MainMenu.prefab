@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d0dbbfe1d6f424baf14bb4f3723983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIViewMainMenu
-  IsViewModal: 0
-  IsViewPauseTime: 0
+  isViewModal: 0
+  isViewPauseTime: 0
 --- !u!1001 &2549770583160368450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -379,6 +379,18 @@ PrefabInstance:
     - target: {fileID: 2972472365860356044, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
       propertyPath: m_Name
       value: ButtonStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontStyle
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 7969265224191334127, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -514,6 +526,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontStyle
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -619,6 +643,18 @@ PrefabInstance:
     - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
       propertyPath: m_text
       value: Options
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontStyle
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671350150991926695, guid: 8e8038cbf4033b84db5ea77c7fb75c81, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

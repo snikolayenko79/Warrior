@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Charapters\Attack\IAttackController.cs" />
     <Compile Include="Assets\Scripts\UI\Impls\UIManager.cs" />
     <Compile Include="Assets\Scripts\Profile\IProfileData.cs" />
+    <Compile Include="Assets\Scripts\LevelInitializer.cs" />
     <Compile Include="Assets\Scripts\Input\Impls\InputRouter.cs" />
     <Compile Include="Assets\Scripts\Profile\IProfileDataStorage.cs" />
     <Compile Include="Assets\Scripts\Charapters\Player\Impls\PlayerData.cs" />

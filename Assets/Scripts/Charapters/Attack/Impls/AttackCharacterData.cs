@@ -7,16 +7,16 @@ public class AttackCharacterData : CharacterData, IAttackCharacterData
     [SerializeField]protected float maxHealthInit;
     [SerializeField]protected int experienceInit;
     
-    protected float _health;
+    protected float _currentHealth;
     protected float _currentMaxHealth;
     protected int _currentExperience;
     
     public float Health
     {
-        get => _health;
+        get => _currentHealth;
         set
         {
-            _health = Mathf.Clamp(value, 0, _currentMaxHealth);
+            _currentHealth = Mathf.Clamp(value, 0, _currentMaxHealth);
             RaiseDataChanged();
         }
     }
@@ -44,7 +44,7 @@ public class AttackCharacterData : CharacterData, IAttackCharacterData
     public override void Initialize()
     {
         _currentMaxHealth = maxHealthInit;
-        _health = _currentMaxHealth;
+        _currentHealth = _currentMaxHealth;
         _currentExperience = experienceInit;
         
         RaiseDataInitialized();

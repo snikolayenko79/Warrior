@@ -80,12 +80,12 @@ public class Inventory : Container, IInventory, ISavable
         // TODO. Save item state: in inventory or not.
     }
 
-    public void Save(ISaveLoadService saveService)
+    public void Save()
     {
         
     }
     
-    public void Load(ISaveLoadService saveService)
+    public void Load()
     {
         
     }
