@@ -11,6 +11,8 @@ public class GameInitializer : MonoBehaviour
     private ISceneLoader _sceneLoader;
     private UIManager _uiManager;
 
+    private IUIView _loadingView;
+
     private delegate void OnInitialized();
     
     [Inject]
@@ -33,6 +35,7 @@ public class GameInitializer : MonoBehaviour
         {
             await Profile.LoadCommonAsync();
             await Profile.LoadPlayerAsync(Profile.ProfileKeys.DEFAULT_PLAYER_NAME);
+            await Profile.SaveAllAsync();
             
             await Task.Delay(2000);
 
@@ -49,11 +52,23 @@ public class GameInitializer : MonoBehaviour
 
     private void BeforeInitialize()
     {
-        _uiManager.CreateView(loadingPrefab);
+        CreateLoadingView();
     }
     
     private void AfterInitialize()
     {
+        DestroyLoadingView();
         _sceneLoader.LoadScene(mainMenuSceneName);
+    }
+
+    private void CreateLoadingView()
+    {
+        _loadingView = _uiManager.CreateView(loadingPrefab);
+    }
+    
+    private void DestroyLoadingView()
+    {
+        if (!_loadingView.IsUnityNull())
+            _loadingView.Destroy();
     }
 }

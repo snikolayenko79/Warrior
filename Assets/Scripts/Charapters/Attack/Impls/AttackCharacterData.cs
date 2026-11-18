@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class AttackCharacterData : CharacterData, IAttackCharacterData
+public abstract class AttackCharacterData : CharacterData, IAttackCharacterData
 {
     [Header("Init data")]
     [SerializeField]protected float maxHealthInit;
@@ -41,12 +41,10 @@ public class AttackCharacterData : CharacterData, IAttackCharacterData
         }
     }
 
-    public override void Initialize()
+    public override void OnInitialize()
     {
         _currentMaxHealth = maxHealthInit;
         _currentHealth = _currentMaxHealth;
         _currentExperience = experienceInit;
-        
-        RaiseDataInitialized();
     }
 }

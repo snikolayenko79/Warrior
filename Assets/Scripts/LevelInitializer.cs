@@ -20,5 +20,6 @@ public class LevelInitializer : MonoBehaviour
         int a = Profile.GetVar<int>("a");
         Debug.Log("Loaded = " + a);
         Profile.SetVar("a", a + 1);
+        Profile.SetVar("a", a + 1, true);
     }
 }

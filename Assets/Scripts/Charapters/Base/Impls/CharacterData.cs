@@ -3,21 +3,30 @@ using System;
 
 public class CharacterData : MonoBehaviour, ICharacterData
 {
-    public event Action<IData> OnDataInitialized;
-    public event Action<IData> OnDataChanged;
-    
-    public virtual void Initialize()
+    private IDataContainer _container;
+
+    public IDataContainer Container
     {
-        RaiseDataInitialized();
+        get => _container;
+        set => _container = value;
     }
     
-    protected void RaiseDataInitialized()
+    public event Action<IData> OnDataInitializedEvent;
+    public event Action<IData> OnDataChangedEvent;
+
+    public void Initialize()
     {
-        OnDataInitialized?.Invoke(this);
+        OnInitialize();
+        OnDataInitializedEvent?.Invoke(this);
     }
-    
-    protected void RaiseDataChanged()
+
+    public virtual void OnInitialize() { }
+
+    public void RaiseDataChanged()
     {
-        OnDataChanged?.Invoke(this);
+        OnDataChanged();
+        OnDataChangedEvent?.Invoke(this);
     }
+
+    public virtual void OnDataChanged() { }
 }

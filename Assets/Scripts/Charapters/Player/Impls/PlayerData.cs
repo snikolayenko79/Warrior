@@ -26,39 +26,31 @@ public class PlayerData : AttackCharacterData, ICustomerData, ISavable
         _saveLoadService = saveLoadService;
     }
     
-    public override void Initialize()
+    public override void OnInitialize()
     {
-        bool isNewData = Profile.GetVar<bool>(name + "_isNewData");
-        if (!isNewData)
-        {
-            Load();
-        }
-        else
-        {
-            _currentMaxHealth = maxHealthInit;
-            _currentHealth = _currentMaxHealth;
-            _currentCoins = coinsInit;
-            _currentExperience = experienceInit;
-        }
-        
-        RaiseDataInitialized();
+        Load();
     }
-    
+
+    public override void OnDataChanged()
+    {
+        Save();
+    }
+
     public void Save()
     {
-        Profile.SetVar<float>(name + "_maxHealth", _currentMaxHealth);
-        Profile.SetVar<float>(name + "_health", _currentHealth);
-        Profile.SetVar<int>(name + "_coins", _currentCoins);
-        Profile.SetVar<int>(name + "_experience", _currentExperience);
+        Profile.SetVar<float>(Container.Name + "_maxHealth", _currentMaxHealth);
+        Profile.SetVar<float>(Container.Name  + "_health", _currentHealth);
+        Profile.SetVar<int>(Container.Name  + "_coins", _currentCoins);
+        Profile.SetVar<int>(Container.Name  + "_experience", _currentExperience);
         
-        Profile.SetVar<bool>(name + "_isNewData", false);
+        Profile.SetVar<bool>(Container.Name  + "_isNewData", false);
     }
     
     public void Load()
     {
-        _currentMaxHealth = Profile.GetVar<float>(name + "_maxHealth");
-        _currentHealth = Profile.GetVar<float>(name + "_health");
-        _currentCoins = Profile.GetVar<int>(name + "_coins");
-        _currentExperience = Profile.GetVar<int>(name + "_experience");
+        _currentMaxHealth = Profile.GetVar<float>(Container.Name  + "_maxHealth", maxHealthInit);
+        _currentHealth = Profile.GetVar<float>(Container.Name  + "_health", _currentMaxHealth);
+        _currentCoins = Profile.GetVar<int>(Container.Name  + "_coins", coinsInit);
+        _currentExperience = Profile.GetVar<int>(Container.Name  + "_experience", experienceInit);
     }
 }

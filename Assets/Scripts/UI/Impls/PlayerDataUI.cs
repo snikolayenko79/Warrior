@@ -24,14 +24,14 @@ public class PlayerDataUI : MonoBehaviour
             {
                 if (_playerData != null)
                 {
-                    _playerData.OnDataInitialized -= OnDataInitialized;
-                    _playerData.OnDataChanged -= OnDataChanged;
+                    _playerData.OnDataInitializedEvent -= OnDataInitialized;
+                    _playerData.OnDataChangedEvent -= OnDataChanged;
                 }
                 
                 _playerData = player.CurrentPlayerData;
                 
-                _playerData.OnDataInitialized += OnDataInitialized;
-                _playerData.OnDataChanged += OnDataChanged;
+                _playerData.OnDataInitializedEvent += OnDataInitialized;
+                _playerData.OnDataChangedEvent += OnDataChanged;
                 
                 UpdateUI(_playerData);
             }
@@ -59,14 +59,14 @@ public class PlayerDataUI : MonoBehaviour
         {
             if (_playerData != null)
             {
-                _playerData.OnDataInitialized -= OnDataInitialized;
-                _playerData.OnDataChanged -= OnDataChanged;
+                _playerData.OnDataInitializedEvent -= OnDataInitialized;
+                _playerData.OnDataChangedEvent -= OnDataChanged;
             }
             
             _playerData = player.CurrentPlayerData;
             
-            _playerData.OnDataInitialized += OnDataInitialized;
-            _playerData.OnDataChanged += OnDataChanged;
+            _playerData.OnDataInitializedEvent += OnDataInitialized;
+            _playerData.OnDataChangedEvent += OnDataChanged;
             
             UpdateUI(_playerData);
         }

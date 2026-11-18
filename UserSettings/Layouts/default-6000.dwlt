@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Zenject
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,24 +606,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Zenject
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
+    scrollPos: {x: 0, y: 767}
     m_SelectedIDs:
-    - m_Data: 54104
+    - m_Data: 54162
     m_LastClickedID:
-      m_Data: 54104
+      m_Data: 54162
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 53644
-    - m_Data: 54104
-    - m_Data: 54148
-    - m_Data: 54150
+    - m_Data: 54094
+    - m_Data: 54102
+    - m_Data: 54126
+    - m_Data: 54142
+    - m_Data: 54146
+    - m_Data: 54176
+    - m_Data: 54182
+    - m_Data: 54190
+    - m_Data: 55222
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -685,9 +691,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 55158
-    m_LastClickedInstanceID: 55158
-    m_HadKeyboardFocusLastEvent: 1
+    - m_Data: 50738
+    m_LastClickedInstanceID: 50738
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 0
     - m_Data: 49292
@@ -734,7 +740,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 9}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -780,15 +786,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 55158
+      - m_Data: 50738
       m_LastClickedID:
-        m_Data: 55158
+        m_Data: 50738
       m_ExpandedIDs:
-      - m_Data: -7146
-      - m_Data: -2816
-      - m_Data: -2584
       - m_Data: -1336
-      - m_Data: -12
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1525,9 +1527,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 5951f85cf3300dd458790da0a20cf370, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 8e2cbff15acf21d4a9e50246ab1478d7, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -6370308507314953457, guid: 5951f85cf3300dd458790da0a20cf370, type: 2}
+  - m_Target: {fileID: 4103018969888820389, guid: 8e2cbff15acf21d4a9e50246ab1478d7, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}

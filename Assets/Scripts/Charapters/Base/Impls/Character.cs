@@ -22,7 +22,10 @@ public class Character : MonoBehaviour, ICharacter, IDataContainer, IMovable, II
     public virtual void InitializeData()
     {
         if (!Data.IsUnityNull())
+        {
+            Data.Container = this;
             Data.Initialize();
+        }
     }
 
     public Rigidbody MyRigidbody;
@@ -144,5 +147,5 @@ public class Character : MonoBehaviour, ICharacter, IDataContainer, IMovable, II
     
     public Action<Character> OnDead;
 
-    public string Name => gameObject.name;
+    public string Name => name;
 }

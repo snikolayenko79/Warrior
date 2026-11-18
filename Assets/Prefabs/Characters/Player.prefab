@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   maxHealthInit: 100
-  experienceInit: 10
+  experienceInit: 30
   coinsInit: 100
 --- !u!4 &406045789174979550 stripped
 Transform:

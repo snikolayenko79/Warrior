@@ -2,7 +2,7 @@ using UnityEngine;
 using Zenject;
 using System.Collections.Generic;
 
-public class Inventory : Container, IInventory, ISavable
+public class Inventory : Container, IInventory
 {
     private List<IInventoryItem> _inventoryItems = new List<IInventoryItem>();
     
@@ -71,22 +71,11 @@ public class Inventory : Container, IInventory, ISavable
 
     public bool Load(IInventoryItem inventoryItem)
     {
-        // TODO. Load item state: in inventory or not.
-        return false;
+        return Profile.GetVar<bool>(inventoryItem.Name + "_collected", false);
     }
 
     public void Save(IInventoryItem inventoryItem, bool bInInventory)
     {
-        // TODO. Save item state: in inventory or not.
-    }
-
-    public void Save()
-    {
-        
-    }
-    
-    public void Load()
-    {
-        
+        Profile.SetVar<bool>(inventoryItem.Name + "_collected", bInInventory);
     }
 }

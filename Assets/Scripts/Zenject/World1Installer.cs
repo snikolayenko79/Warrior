@@ -63,7 +63,7 @@ public class World1Installer : MonoInstaller
         Container.Bind<BehaviourFollowPath>().FromInstance(_behaviourFollowPath);
 
         Container.BindInstance(inventoryConfig).AsSingle();
-        Container.Bind(typeof(IInventory), typeof(ISavable)).To<Inventory>().AsSingle();
+        Container.Bind(typeof(IInventory)).To<Inventory>().AsSingle();
         
         Container.BindInstance(storeConfig).AsSingle();
         Container.Bind(typeof(IStore)).To<Store>().AsSingle();
