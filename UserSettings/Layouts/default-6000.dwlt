@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 331
     height: 670
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1163
     height: 670
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
@@ -247,8 +247,8 @@ MonoBehaviour:
     y: 670
     width: 1494
     height: 271
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 13}
@@ -274,8 +274,8 @@ MonoBehaviour:
     y: 0
     width: 426
     height: 941
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Editor
+    - Assets/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -606,30 +606,24 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Editor
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Work\GitHub\Warrior
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 447}
+    scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 57926
+    - m_Data: 54104
     m_LastClickedID:
-      m_Data: 57926
+      m_Data: 54104
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53632
-    - m_Data: 54100
-    - m_Data: 54108
-    - m_Data: 54132
-    - m_Data: 54146
-    - m_Data: 54156
-    - m_Data: 54162
-    - m_Data: 58952
-    - m_Data: 58966
-    - m_Data: 58984
+    - m_Data: 53644
+    - m_Data: 54104
+    - m_Data: 54148
+    - m_Data: 54150
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -663,7 +657,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53632
+    - m_Data: 53644
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -691,9 +685,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 58608
-    m_LastClickedInstanceID: 58608
-    m_HadKeyboardFocusLastEvent: 0
+    - m_Data: 55158
+    m_LastClickedInstanceID: 55158
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 0
     - m_Data: 49292
@@ -740,7 +734,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 9}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -786,26 +780,13 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 58608
+      - m_Data: 55158
       m_LastClickedID:
-        m_Data: 0
+        m_Data: 55158
       m_ExpandedIDs:
-      - m_Data: -43856
-      - m_Data: -39902
-      - m_Data: -27734
-      - m_Data: -27720
-      - m_Data: -27702
-      - m_Data: -25844
-      - m_Data: -24142
-      - m_Data: -23392
-      - m_Data: -22524
-      - m_Data: -20216
-      - m_Data: -19946
-      - m_Data: -17796
-      - m_Data: -17778
-      - m_Data: -5152
-      - m_Data: -4434
-      - m_Data: -3506
+      - m_Data: -7146
+      - m_Data: -2816
+      - m_Data: -2584
       - m_Data: -1336
       - m_Data: -12
       m_RenameOverlay:

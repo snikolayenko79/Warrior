@@ -20,8 +20,5 @@ public class LevelInitializer : MonoBehaviour
         int a = Profile.GetVar<int>("a");
         Debug.Log("Loaded = " + a);
         Profile.SetVar("a", a + 1);
-        
-        await Profile.SaveAllAsync();
-        Debug.Log("Profile saved");
     }
 }
