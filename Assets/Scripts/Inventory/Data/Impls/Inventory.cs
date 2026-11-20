@@ -28,10 +28,14 @@ public class Inventory : Container, IInventory
         {
             if (item is IInventoryItem inventoryItem)
             {
-                if (Load(inventoryItem))
+                int count = Load(inventoryItem);
+                if (count > 0)
                 {
-                    _inventoryItems.Add(inventoryItem);
-                    _items.Add(item);
+                    for (int i = 0; i < count; i++)
+                    {
+                        _inventoryItems.Add(inventoryItem);
+                        _items.Add(item);
+                    }
                 }
             }
         }
@@ -40,7 +44,7 @@ public class Inventory : Container, IInventory
     public void AddItemToInventory(IInventoryItem inventoryItem)
     {
         _inventoryItems.Add(inventoryItem);
-        Save(inventoryItem, true);
+        Save(inventoryItem, Load(inventoryItem) + 1);
         
         if (inventoryItem is IContainerItem containerItem)
             AddItemToContainer(containerItem);
@@ -49,7 +53,7 @@ public class Inventory : Container, IInventory
     public void RemoveItemFromInventory(IInventoryItem inventoryItem)
     {
         _inventoryItems.Remove(inventoryItem);
-        Save(inventoryItem, false);
+        Save(inventoryItem, Load(inventoryItem) - 1);
         
         if (inventoryItem is IContainerItem containerItem)
             RemoveItemFromContainer(containerItem);
@@ -69,13 +73,13 @@ public class Inventory : Container, IInventory
         set => _owner = value;
     }
 
-    public bool Load(IInventoryItem inventoryItem)
+    public int Load(IInventoryItem inventoryItem)
     {
-        return Profile.GetVar<bool>(inventoryItem.Name + "_collected", false);
+        return Profile.GetVar<int>(inventoryItem.Name + "_collected", 0);
     }
 
-    public void Save(IInventoryItem inventoryItem, bool bInInventory)
+    public void Save(IInventoryItem inventoryItem, int count)
     {
-        Profile.SetVar<bool>(inventoryItem.Name + "_collected", bInInventory);
+        Profile.SetVar<int>(inventoryItem.Name + "_collected", count);
     }
 }

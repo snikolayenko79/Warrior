@@ -17,6 +17,6 @@ public interface IInventory
     
     IInventoryOwner Owner { get; set; }
     
-    bool Load(IInventoryItem inventoryItem);
-    void Save(IInventoryItem inventoryItem, bool bInInventory);
+    int Load(IInventoryItem inventoryItem);
+    void Save(IInventoryItem inventoryItem, int count);
 }
