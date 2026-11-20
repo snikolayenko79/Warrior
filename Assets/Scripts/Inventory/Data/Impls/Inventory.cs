@@ -44,7 +44,7 @@ public class Inventory : Container, IInventory
     public void AddItemToInventory(IInventoryItem inventoryItem)
     {
         _inventoryItems.Add(inventoryItem);
-        Save(inventoryItem, Load(inventoryItem) + 1);
+        Save(inventoryItem, Mathf.Max(1, Load(inventoryItem) + 1));
         
         if (inventoryItem is IContainerItem containerItem)
             AddItemToContainer(containerItem);
@@ -53,7 +53,7 @@ public class Inventory : Container, IInventory
     public void RemoveItemFromInventory(IInventoryItem inventoryItem)
     {
         _inventoryItems.Remove(inventoryItem);
-        Save(inventoryItem, Load(inventoryItem) - 1);
+        Save(inventoryItem, Mathf.Max(0, Load(inventoryItem) - 1));
         
         if (inventoryItem is IContainerItem containerItem)
             RemoveItemFromContainer(containerItem);

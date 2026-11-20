@@ -38,32 +38,46 @@ namespace Scenario
         
         protected override IEnumerator ExecuteCoroutine()
         {
-            yield return new WaitForSeconds(delay);
+            bool isFirstAppear = Profile.GetVar<bool>(villagerName + "_firstAppear", true);
+            //Profile.SetVar<bool>(villagerName + "_firstAppear", false);
+
+            // СОЗДАНИЕ ЖИТЕЛЯ
+            Character villager = CreateVillager(isFirstAppear);
             
-            GameObject go = _gameManager.CreateCharacter(villagerName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Friendly);
+            if (isFirstAppear)
+                yield return new WaitForSeconds(delay);
+            
+            // ОТКРЫТИЕ ДВЕРЕЙ ДОМА
+            Door door = _container.ResolveId<Door>(doorId);
+            door.Open(!isFirstAppear, null);
+            while (door && !door.IsOpened)
+                yield return null;
+            
+            // ЖИТЕЛЬ ВЫХОДИТ ИЗ ДОМА
+            if (isFirstAppear)
+            {
+                villager.CurrentPath = path;
+                _gameCharacterController.StateStart(villager, _behaviourFollowPath);
+                yield return null;
+                while (villager.IsMoving)
+                    yield return null;
+                _gameCharacterController.StateEnd(villager, _behaviourFollowPath);
+            }
+
+            _scenarioManager.SetBool(cameVar, true);
+        }
+        
+        private Character CreateVillager(bool isFirstAppear)
+        {
+            Transform pSpawn = isFirstAppear ? spawnPoint : path.GetFinishWayPoint();
+            GameObject go = _gameManager.CreateCharacter(villagerName, prefab, pSpawn.position, pSpawn.rotation * prefab.transform.rotation, SideType.Friendly);
         
             //Принудительно синхронизируем физику с текущим положением трансформы.
             // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
             // примет эту точку за стартовую, и рывка вперед не произойдет.
             Physics.SyncTransforms();
             
-            Character character = go.GetComponent<Character>();
-            
-            Door door = _container.ResolveId<Door>(doorId);
-            door.Open(null);
-            
-            while (door && !door.IsOpened)
-                yield return null;
-            
-            character.CurrentPath = path;
-            _gameCharacterController.StateStart(character, _behaviourFollowPath);
-        
-            yield return null;
-         
-            while (character.IsMoving)
-                yield return null;
-            
-            _scenarioManager.SetBool(cameVar, true);
+            return go.GetComponent<Character>();
         }
     }
 }

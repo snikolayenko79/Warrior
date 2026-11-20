@@ -29,4 +29,9 @@ public class SpecifiedPath : MonoBehaviour, INavigationPath
         if (_currentWaypointIndex >= waypoints.Count && looped)
             _currentWaypointIndex = 0;
     }
+    
+    public Transform GetFinishWayPoint()
+    {
+        return waypoints[waypoints.Count - 1];
+    }
 }

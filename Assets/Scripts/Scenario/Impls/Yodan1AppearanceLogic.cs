@@ -47,47 +47,72 @@ namespace Scenario
         
         protected override IEnumerator ExecuteCoroutine()
         {
-            _gameManager.SetGameplayLocked(true);
+            // Если уже был убит, то не спавним.
+            if (Profile.GetVar<bool>("Yodan1_dead", false))
+            {
+                _scenarioManager.SetBool(cameVar, true);
+                yield break;
+            }
+
+            bool isFirstAppear = Profile.GetVar<bool>("Yodan1_firstAppear", true);
             
+            // СОЗДАЕМ ВРАГА
+            Enemy enemy = CreateYodan();
+            
+            // ДАЕМ ДЕФОЛТНОЕ ОРУЖИЕ. У ВРАГОВ ОНО НЕ СОХРАНЯЕТСЯ
+            _attackController.SelectWeapon(enemy, defaultWeapon);
+            
+            if (isFirstAppear)
+            {
+                _gameManager.SetGameplayLocked(true);
+                
+                // ЗВУК ПРИ ПЕРВОМ ВЫХОДЕ
+                if (roarSound)
+                    roarSound.Play();
+                yield return new WaitForSeconds(0.5f);
+                
+                // ИДЕМ ОТ ТОЧКИ СПАВНА ДО ЗАДАННОЙ ПОЗИЦИИ
+                enemy.CurrentPath = path;
+                _gameCharacterController.StateStart(enemy, _behaviourFollowPath);
+                yield return null;
+                while (enemy.IsMoving)
+                    yield return null;
+                
+                // ДИАЛОГ С ИГРОКОМ ПРИ 1-М ВЫХОДЕ
+                yield return new WaitForSeconds(0.50f);
+                if (!dialogue.IsUnityNull())
+                    _dialogManager.StartDialogue(dialogue);
+                while (_dialogManager.IsDialogueRunning)
+                    yield return null;
+                
+                _gameManager.SetGameplayLocked(false);
+            }
+            else
+            {
+                // ХОДИМ ПО РАНДОМНОМУ МАРШРУТУ
+                enemy.CurrentPath = new RandomPath(enemy);
+                _gameCharacterController.StateStart(enemy, _behaviourFollowPath);
+            }
+
+            // ДАЕМ ВОЗМОЖНОСТИ ПРЕСЛЕДОВАТЬ ИГРОКА И АТАКОВАТЬ
+            _gameCharacterController.StateStart(enemy, _behaviourAttackPlayer);
+            _gameCharacterController.StateStart(enemy, _behaviourFollowPlayer);
+            
+            Profile.SetVar<bool>("Yodan1_firstAppear", false);
+            _scenarioManager.SetBool(cameVar, true);
+        }
+        
+        private Enemy CreateYodan()
+        {
             GameObject go = _gameManager.CreateCharacter("Yodan1", prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Enemy);
+            Enemy enemy = go.GetComponent<Enemy>();
             
-            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Принудительно синхронизируем физику с текущим положением трансформы.
             // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
             // примет эту точку за стартовую, и рывка вперед не произойдет.
             Physics.SyncTransforms();
-            
-            Character character = go.GetComponent<Character>();
-        
-            Enemy enemy = character as Enemy;
-            _attackController.SelectWeapon(enemy, defaultWeapon);
-            
-            if (roarSound)
-                roarSound.Play();
-        
-            yield return new WaitForSeconds(0.5f);
-            
-            character.CurrentPath = path;
-            _gameCharacterController.StateStart(character, _behaviourFollowPath);
-        
-            yield return null;
-         
-            while (character.IsMoving)
-                yield return null;
-        
-            yield return new WaitForSeconds(0.50f);
-         
-            if (!dialogue.IsUnityNull())
-                _dialogManager.StartDialogue(dialogue);
-        
-            while (_dialogManager.IsDialogueRunning)
-                yield return null;
-            
-            _gameCharacterController.StateStart(character, _behaviourAttackPlayer);
-            _gameCharacterController.StateStart(character, _behaviourFollowPlayer);
-            
-            _scenarioManager.SetBool(cameVar, true);
-            
-            _gameManager.SetGameplayLocked(false);
+
+            return enemy;
         }
     }
 }

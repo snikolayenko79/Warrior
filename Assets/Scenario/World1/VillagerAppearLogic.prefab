@@ -46,12 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ef5c02b8590bd4c8e692c11f49ce1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.VillagerAppearanceLogic
+  doorId: doorVillager
   prefab: {fileID: 198864776837070588, guid: 9526253994a2e2645ad669f78aa9d512, type: 3}
   spawnPoint: {fileID: 9083120221392221148}
   path: {fileID: 6887247325138823154}
   cameVar: VillagerCame
   villagerName: Villager
-  delay: 5
+  delay: 2
 --- !u!1 &4684047971665474383
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,13 +160,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4783950327490527108}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.9154871, z: 0, w: 0.4023473}
   m_LocalPosition: {x: 0.71, y: 0, z: -0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7444526977757168690}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -132.55, z: 0}
 --- !u!1 &4896025473302102635
 GameObject:
   m_ObjectHideFlags: 0

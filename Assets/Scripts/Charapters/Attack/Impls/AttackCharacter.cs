@@ -145,6 +145,8 @@ public class AttackCharacter : ActorCharacter, IAttacker, IAttackable, IDamageab
 
         MyRigidbody.isKinematic = true;
         
+        Profile.SetVar<bool>(name + "_dead", true);
+        
         OnDead?.Invoke(this);
     }
 }

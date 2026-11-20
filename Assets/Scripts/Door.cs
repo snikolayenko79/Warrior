@@ -11,43 +11,61 @@ public class Door : MonoBehaviour
     private bool _isOpened = false;
     public bool IsOpened => _isOpened;
     
-    public void Open(OnOpened onOpened)
+    private Quaternion _startRotation;
+    private Quaternion _endRotation;
+    
+    public void Open(bool bInstantly, OnOpened onOpened)
     {
-        // Открывается уже. Делегат вызовется по завершению.
-        if (_isOpening)
-            return;
-        
         // Открыта уже. Делегат не вызовется по завершению. Нужно вызвать.
         if (_isOpened)
         {
             onOpened();
             return;
         }
+
+        _startRotation = transform.localRotation;
+        _endRotation = _startRotation * Quaternion.Euler(0, 0, -145f);
         
-        // Открываем и вызываем делегат.
-        StartCoroutine(OpenRoutine(onOpened));
+        if (bInstantly)
+        {
+            if (_isOpening)
+                StopAllCoroutines();
+            
+            transform.localRotation = _endRotation;
+            
+            _isOpened = true;
+            _isOpening = false;
+
+            onOpened?.Invoke();
+            
+            return;
+        }
+        
+        // Открывается уже. Делегат вызовется по завершению.
+        if (_isOpening)
+            return;
         
         _isOpened = false;
         _isOpening = true;
+        
+        // Открываем и вызываем делегат.
+        StartCoroutine(OpenRoutine(onOpened));
     }
 
     private IEnumerator OpenRoutine(OnOpened onOpened)
     {
-        Quaternion startRotation = transform.localRotation;
-        Quaternion targetRotation = startRotation * Quaternion.Euler(0, 0, -145f); 
-    
         float progress = 0;
         
         while (progress < 1f)
         {
             progress += Time.unscaledDeltaTime / openDuration;
 
-            transform.localRotation = Quaternion.Slerp(startRotation, targetRotation, progress);
+            transform.localRotation = Quaternion.Slerp(_startRotation, _endRotation, progress);
         
             yield return null;
         }
         
-        transform.localRotation = targetRotation;
+        transform.localRotation = _endRotation;
 
         _isOpened = true;
         _isOpening = false;

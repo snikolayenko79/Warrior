@@ -58,57 +58,73 @@ namespace Scenario
             _behaviourPlayerInteract = behaviourPlayerInteract;
             _cameraMover = cameraMover;
         }
-        
+
         protected override IEnumerator ExecuteCoroutine()
         {
             _gameManager.SetGameplayLocked(true);
             
-            //yield return new WaitForSeconds(3);
+            bool isFirstAppear = Profile.GetVar<bool>("Warrior_firstAppear", true);
+            if (isFirstAppear)
+            {
+                // На всякий случай очистим профиль игрока. Чтобы все в нуля начиналось.
+                Profile.ResetPlayerAsync();
+                _inventory.RemoveItemFromInventory(defaultInventoryItem);
+            }
+
+            // 1. СОЗДАЕМ ИГРОКА
+            Player player = CreatePlayer(isFirstAppear);
         
-            GameObject goPlayer = _gameManager.CreateCharacter("Warrior", prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Player);
+            // 2. ДАЕМ ДЕФОЛТНОЕ ОРУЖИЕ ПРИ ПЕРВОМ ВХОДЕ
+            if (isFirstAppear)
+            {
+                _inventory.AddItemToInventory(defaultInventoryItem);
+                _attackController.SelectWeapon(player, defaultWeapon);
+                
+                // 3. ИДЕМ ОТ ТОЧКИ СПАВНА ДО ЗАДАННОЙ ПОЗИЦИИ
+                player.CurrentPath = path;
+                _gameCharacterController.StateStart(player, _behaviourFollowPath);
+                yield return null;
+                while (player.IsMoving)
+                    yield return null;
+                _gameCharacterController.StateEnd(player, _behaviourFollowPath);
+                
+                // 4. ПЕРВАЯ РЕПЛИКА ИГРОКА ПРИ ПЕРВОМ ВХОДЕ
+                yield return new WaitForSeconds(0.50f);
+                _dialogManager.StartDialogue(dialogue);
+                while (_dialogManager.IsDialogueRunning)
+                    yield return null;
+            }
+
+            // 5. ПРИВЯЗКА КАМЕРЫ К ИГРОКУ
+            _cameraMover.SetTarget(player);
             
-            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // 6. ВКЛЮЧАЕМ ИНПУТ ДЛЯ ИГРОКА
+            _gameCharacterController.StateStart(player, _behaviourPlayerInput);
+            _gameCharacterController.StateStart(player, _behaviourPlayerInteract);
+
+            Profile.SetVar<bool>("Warrior_firstAppear", false);
+            
+            _scenarioManager.SetBool(cameVar, true);
+            _gameManager.SetGameplayLocked(false);
+        }
+
+        private Player CreatePlayer(bool isFirstAppear)
+        {
+            Transform pSpawn = isFirstAppear ? spawnPoint : path.GetFinishWayPoint();
+            
+            GameObject goPlayer = _gameManager.CreateCharacter("Warrior", prefab, pSpawn.position, pSpawn.rotation * prefab.transform.rotation, SideType.Player);
+            Player player = goPlayer.GetComponent<Player>();
+            
+            // TODO. Как минимум отказаться от добавления прямо в список.
+            _behaviourAttackPlayer.players.Add(player);
+            _behaviourFollowPlayer.players.Add(player);
+            
+            // Принудительно синхронизируем физику с текущим положением трансформы.
             // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
             // примет эту точку за стартовую, и рывка вперед не произойдет.
             Physics.SyncTransforms();
-        
-            Character chPlayer = goPlayer.GetComponent<Character>();
-        
-            _inventory.AddItemToInventory(defaultInventoryItem);
 
-            chPlayer.CurrentPath = path;
-            _gameCharacterController.StateStart(chPlayer, _behaviourFollowPath);
-        
-            Player player = chPlayer as Player;
-            _attackController.SelectWeapon(player, defaultWeapon);
-        
-            // TODO. Как минимум отказаться от добавления прямо в список.
-            _behaviourAttackPlayer.players.Add(chPlayer as Player);
-            _behaviourFollowPlayer.players.Add(chPlayer as Player);
-        
-            yield return null;
-        
-            while (chPlayer.IsMoving)
-                yield return null;
-        
-            _gameCharacterController.StateEnd(chPlayer, _behaviourFollowPath);
-        
-            yield return new WaitForSeconds(0.50f);
-        
-            _dialogManager.StartDialogue(dialogue);
-        
-            while (_dialogManager.IsDialogueRunning)
-                yield return null;
-            
-            IMovable movable = chPlayer as IMovable;
-            _cameraMover.SetTarget(movable);
-            
-            _gameCharacterController.StateStart(chPlayer, _behaviourPlayerInput);
-            _gameCharacterController.StateStart(chPlayer, _behaviourPlayerInteract);
-            
-            _scenarioManager.SetBool(cameVar, true);
-            
-            _gameManager.SetGameplayLocked(false);
+            return player;
         }
     }
 }

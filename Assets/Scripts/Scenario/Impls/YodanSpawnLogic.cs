@@ -45,9 +45,15 @@ namespace Scenario
         {
             for (int i = 0; i < prefabs.Count; i++)
             {
+                string yodanName = "Yodan" + startNameIndex++.ToString();
+                
+                // Если уже был убит, то не спавним.
+                if (Profile.GetVar<bool>(yodanName + "_dead", false))
+                    continue;
+                
                 GameObject prefab = prefabs[i];
                 Transform spawnPoint = spawnPoints[i];
-                GameObject go = _gameManager.CreateCharacter("Yodan" + startNameIndex++.ToString(), prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Enemy);
+                GameObject go = _gameManager.CreateCharacter(yodanName, prefab, spawnPoint.position, spawnPoint.rotation * prefab.transform.rotation, SideType.Enemy);
                 Character character = go.GetComponent<Character>();
         
                 Enemy enemy = character as Enemy;
@@ -62,7 +68,7 @@ namespace Scenario
                 }
             }
             
-            //Принудительно синхронизируем физику с текущим положением трансформы.
+            // Принудительно синхронизируем физику с текущим положением трансформы.
             // Если у этого персонажа есть Rigidbody, его буфер интерполяции мгновенно
             // примет эту точку за стартовую, и рывка вперед не произойдет.
             Physics.SyncTransforms();

@@ -11,12 +11,14 @@ public class CameraMoverBase : MonoBehaviour
 
     protected void Start()
     {
-        // Кэшируем собственный трансформ камеры для исключения нативных вызовов
-        _cameraTransform = this.transform;
+        
     }
 
     public void SetTarget(IMovable newTarget)
     {
+        // Кэшируем собственный трансформ камеры для исключения нативных вызовов
+        _cameraTransform = this.transform;
+        
         _target = newTarget;
         _offset = _cameraTransform.position - _target.Position;
     }
