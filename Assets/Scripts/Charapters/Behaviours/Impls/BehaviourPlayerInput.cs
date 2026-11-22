@@ -40,8 +40,15 @@ public class BehaviourPlayerInput : BehaviourBase
     private void OnInputAction(string logicalActionName, InputContext context)
     {
         if (_gameManager.IsUnityNull() || _gameManager.IsGameplayLocked())
+        {
+            if (!_movable.IsUnityNull())
+            {
+                _movable.IsMoving = false;
+                _movable.RotationDirection = 0;
+            }
             return;
-        
+        }
+
         if (logicalActionName == "Move")
         {
             if (_movable == null || _movable.IsDead)

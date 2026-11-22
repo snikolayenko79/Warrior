@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using Zenject;
 using Scenario;
@@ -8,6 +9,7 @@ public class TransitionTrigger : MonoBehaviour
     [SerializeField] private string MoveToSceneName = "";
     [SerializeField] private Dialogue CantLeaveVillagers = null;
     [SerializeField] private Dialogue CantLeaveMonsters = null;
+    [SerializeField] private Collider Blocker = null;
 
     private ISceneLoader _sceneLoader;
     private ISaveLoadService _saveLoadService;
@@ -53,11 +55,12 @@ public class TransitionTrigger : MonoBehaviour
         // Проверяем, что это именно игрок
         if (other.CompareTag("Player"))
         {
-            ExecuteLevelTransition();
+            other.gameObject.TryGetComponent<Player>(out Player player);
+            ExecuteLevelTransition(player);
         }
     }
 
-    public void ExecuteLevelTransition()
+    private void ExecuteLevelTransition(Player player)
     {
         // Опрашиваем по очереди профиль и инвентарь. 
         // Каждый класс запишет свои данные в глобальный контейнер сохранения.
@@ -66,7 +69,10 @@ public class TransitionTrigger : MonoBehaviour
         //    system.Save();
         //}
 
-        Debug.Log("[LevelExitTrigger] Переход...");
+        //Debug.Log("[LevelExitTrigger] Переход...");
+        
+        if (Blocker)
+            Blocker.gameObject.SetActive(false);
 
         // Загружаем следующий уровень
         _sceneLoader.LoadScene(MoveToSceneName); 
