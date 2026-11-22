@@ -86,7 +86,6 @@
     <Compile Include="Assets\Scripts\Charapters\Player\Impls\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Charapters\Base\Impls\Character.cs" />
     <Compile Include="Assets\Scripts\Charapters\Enemy\Impls\EnemyData.cs" />
-    <Compile Include="Assets\Scripts\WorldExitTrigger.cs" />
     <Compile Include="Assets\Scripts\Zenject\ProjectInstaller.cs" />
     <Compile Include="Assets\Scripts\Inventory\Logic\Impls\InventoryUseLogic_SelectWeapon.cs" />
     <Compile Include="Assets\Scripts\Container\Data\Impls\ContainerConfig.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\InventoryConfig.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
+    <Compile Include="Assets\Scripts\TransitionTrigger.cs" />
     <Compile Include="Assets\Scripts\Charapters\Attack\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Charapters\Factory\ICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\Inventory.cs" />

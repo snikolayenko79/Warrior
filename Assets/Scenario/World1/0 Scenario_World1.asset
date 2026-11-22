@@ -27,3 +27,5 @@ MonoBehaviour:
   - AllEnemiesDie
   - VillagerCame
   - SellerCame
+  - VillagerInteract
+  - SellerInteract

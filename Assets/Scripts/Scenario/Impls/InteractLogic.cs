@@ -68,7 +68,11 @@ namespace  Scenario
                 if (_dialogVillager1Ended)
                     StartCoroutine(ShowDialogue(dialogueVillager2, null));
                 else
-                    StartCoroutine(ShowDialogue(dialogueVillager1, () => AddSpell(playerInteractor as ISpellCaster)));
+                    StartCoroutine(ShowDialogue(dialogueVillager1, () => 
+                    {
+                        AddSpell(playerInteractor as ISpellCaster);
+                        _scenarioManager.SetBool("VillagerInteract", true);
+                    }));
             }
             else if (interactor.Name == "Seller")
             {
@@ -79,6 +83,7 @@ namespace  Scenario
                         {
                             Heal(playerInteractor as IDamageable);
                             ShowStore(playerInteractor as ICustomer);
+                            _scenarioManager.SetBool("SellerInteract", true);
                         }
                     ));
             }

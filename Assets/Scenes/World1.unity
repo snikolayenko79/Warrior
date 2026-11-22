@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door1
       objectReference: {fileID: 0}
+    - target: {fileID: 1104928546021949277, guid: b13e85b3467ed78408aaee11c527e334, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1240,6 +1244,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72eb2dd2be5c37499226fc67528aabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+--- !u!1 &2104308527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2104308528}
+  - component: {fileID: 2104308529}
+  - component: {fileID: 2104308530}
+  m_Layer: 0
+  m_Name: ExitZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2104308528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104308527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.47, y: -7.76, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3933186823132530410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2104308529
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104308527}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2104308530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104308527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c5c3d22480d5949b102c1206c01ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransitionTrigger
+  MoveToSceneName: World2
+  CantLeaveVillagers: {fileID: 11400000, guid: fb08e13024958ab4094b93652ef44149, type: 2}
+  CantLeaveMonsters: {fileID: 11400000, guid: c187d3e944e4f9244bc87d96c50c53da, type: 2}
 --- !u!1 &2116117191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1454,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4313949530802746108, guid: 1c6fb1a3c8a24744aa6e44628a022858, type: 3}
       insertIndex: -1
       addedObject: {fileID: 77542057}
+    - targetCorrespondingSourceObject: {fileID: 4313949530802746108, guid: 1c6fb1a3c8a24744aa6e44628a022858, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2104308528}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c6fb1a3c8a24744aa6e44628a022858, type: 3}
 --- !u!4 &3933186823132530410 stripped
