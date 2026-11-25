@@ -38,7 +38,7 @@ public class BehaviourAttackPlayer : AttackerBehaviourBase
         {
             if (player.IsDead)
                 continue;
-                
+            
             if (_attackController.CanAttack(attacker, player))
             {
                 if (TryToAttack(attacker))

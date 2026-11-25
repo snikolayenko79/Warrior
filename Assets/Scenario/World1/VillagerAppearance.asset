@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafee970e6ed8d848acc5e6bdb264cb3, type: 3}
   m_Name: VillagerAppearance
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.ScenarioStage
-  dependencies:
-  - varName: AllEnemiesDie
-    varState: 1
+  startTrigger: AllEnemiesDie
+  endTrigger: 
   scenarioLogicPrefab: {fileID: 926212796374294164, guid: 739e77e153eb74a4ab066337226e4843, type: 3}

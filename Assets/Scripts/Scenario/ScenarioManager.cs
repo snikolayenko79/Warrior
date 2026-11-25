@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Zenject;
 using Object = System.Object;
 
@@ -9,14 +10,15 @@ namespace Scenario
 {
     public class ScenarioManager : IInitializable
     {
-        private ScenarioData _scenarioData;
+        private readonly ScenarioData _scenarioData;
 
-        private Dictionary<string, bool> _varsState;
+        private Dictionary<string, bool> _triggersState;
         
-        private List<ScenarioStage> _scenarioStagesToExecute = new List<ScenarioStage>();
-
-        private DiContainer _diContainer = null;
-        private CoroutineRunner _coroutineRunner = null;
+        private readonly List<ScenarioStage> _scenarioStagesToExecute = new List<ScenarioStage>();
+        private List<ScenarioStage> _scenarioStagesCanExecute = new List<ScenarioStage>();
+        
+        private readonly DiContainer _diContainer = null;
+        private readonly CoroutineRunner _coroutineRunner = null;
         private Coroutine _coroutineCheckStages = null;
         
         public ScenarioManager(DiContainer diContainer, ScenarioData scenarioData, CoroutineRunner coroutineRunner)
@@ -28,17 +30,21 @@ namespace Scenario
 
         public void Initialize()
         {
-            InitVars();
+            InitTriggers();
             InitStages();
             CheckStages();
         }
         
-        private void InitVars()
+        private void InitTriggers()
         {
-            _varsState = new Dictionary<string, bool>();
-            foreach (var scenarioVar in _scenarioData.ScenarioVars)
+            _triggersState = new Dictionary<string, bool>();
+            foreach (var trigger in _scenarioData.ScenarioTriggers)
             {
-                _varsState.Add(scenarioVar, false);
+                _triggersState.Add(trigger, false);
+            }
+            foreach (var trigger in _scenarioData.ScenarioAutoTriggers)
+            {
+                _triggersState.Add(trigger, true);
             }
         }
 
@@ -50,17 +56,17 @@ namespace Scenario
             }
         }
 
-        public bool GetBool(string varName)
+        public bool GetTrigger(string name)
         {
-            _varsState.TryGetValue(varName, out bool varState);
+            _triggersState.TryGetValue(name, out bool varState);
             return varState;
         }
         
-        public void SetBool(string varName, bool varState)
+        public void SetTrigger(string name, bool state)
         {
-            if (varName != null && _varsState.ContainsKey(varName))
+            if (name != null && _triggersState.ContainsKey(name))
             {
-                _varsState[varName] = varState;
+                _triggersState[name] = state;
                 
                 if (_coroutineCheckStages == null)
                     _coroutineCheckStages = _coroutineRunner.StartCoroutine(CheckStagesOnNextFrame());
@@ -76,28 +82,20 @@ namespace Scenario
         
         private void CheckStages()
         {
+            _scenarioStagesCanExecute.Clear();
             for (int i = _scenarioStagesToExecute.Count - 1; i >= 0; i--)
             {
-                
                 ScenarioStage scenarioStage = _scenarioStagesToExecute[i];
-                if (CheckDependencies(scenarioStage))
-                {
-                    StartStage(scenarioStage);
-                    _scenarioStagesToExecute.RemoveAt(i);
-                }
+                if (GetTrigger(scenarioStage.StartTrigger))
+                    _scenarioStagesCanExecute.Add(scenarioStage);
             }
-        }
-        
-        private bool CheckDependencies(ScenarioStage scenarioStage)
-        {
-            foreach (var dependency in scenarioStage.Dependencies)
+
+            for (int i = _scenarioStagesCanExecute.Count - 1; i >= 0; i--)
             {
-                //Debug.Log(scenarioStage + " - " + dependency.varName + " - " + GetBool(dependency.varName) + " - " + dependency.varState);
-                if (GetBool(dependency.varName) != dependency.varState)
-                    return false;
+                ScenarioStage scenarioStage = _scenarioStagesCanExecute[i];
+                SetTrigger(scenarioStage.StartTrigger, false);
+                StartStage(scenarioStage);
             }
-            
-            return true;
         }
 
         private void StartStage(ScenarioStage scenarioStage)
@@ -109,6 +107,9 @@ namespace Scenario
             
             logic.Execute(() =>
             {
+                if (scenarioStage && scenarioStage.EndTrigger != string.Empty)
+                    SetTrigger(scenarioStage.EndTrigger, true);
+                
                 if (logic)
                     UnityEngine.Object.Destroy(logic.gameObject);
             });

@@ -40,13 +40,13 @@ public class TransitionTrigger : MonoBehaviour
         if (_scenarioManager.IsUnityNull())
             return;
             
-        if (!_scenarioManager.GetBool("AllEnemiesDie"))
+        if (!Profile.GetVar<bool>("AllEnemiesDie", false))
         {
             _dialogueManager.StartDialogue(CantLeaveMonsters);
             return;
         }
 
-        if (!_scenarioManager.GetBool("VillagerInteract") || !_scenarioManager.GetBool("SellerInteract"))
+        if (!Profile.GetVar<bool>("VillagerInteract", false) || !Profile.GetVar<bool>("SellerInteract", false))
         {
             _dialogueManager.StartDialogue(CantLeaveVillagers);
             return;
@@ -62,15 +62,6 @@ public class TransitionTrigger : MonoBehaviour
 
     private void ExecuteLevelTransition(Player player)
     {
-        // Опрашиваем по очереди профиль и инвентарь. 
-        // Каждый класс запишет свои данные в глобальный контейнер сохранения.
-        //foreach (ISavable system in _savableSystems)
-        //{
-        //    system.Save();
-        //}
-
-        //Debug.Log("[LevelExitTrigger] Переход...");
-        
         if (Blocker)
             Blocker.gameObject.SetActive(false);
 

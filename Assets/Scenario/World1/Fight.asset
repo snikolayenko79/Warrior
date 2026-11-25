@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafee970e6ed8d848acc5e6bdb264cb3, type: 3}
   m_Name: Fight
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.ScenarioStage
-  dependencies:
-  - varName: EnemiesSpawned
-    varState: 1
+  startTrigger: Yodan2Spawned
+  endTrigger: AllEnemiesDie
   scenarioLogicPrefab: {fileID: 6047001294576934415, guid: c9b7b5ddecafdf94c86aa853958e0caf, type: 3}

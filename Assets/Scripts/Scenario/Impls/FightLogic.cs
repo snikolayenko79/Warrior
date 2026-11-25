@@ -8,8 +8,6 @@ namespace Scenario
 {
     public class FightLogic : ScenarioStageLogic
     {
-        public string fightEndedVar = "";
-        
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
         
@@ -47,8 +45,6 @@ namespace Scenario
                 
                 yield return null;
             }
-
-            _scenarioManager.SetBool(fightEndedVar, true);
         }
 
         private void InitEnemiesList()

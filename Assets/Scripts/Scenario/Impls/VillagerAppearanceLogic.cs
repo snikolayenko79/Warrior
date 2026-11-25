@@ -11,7 +11,6 @@ namespace Scenario
         public GameObject prefab;
         public Transform spawnPoint;
         public SpecifiedPath path;
-        public string cameVar = "";
         public string villagerName = "";
         public float delay = 4.0f;
 
@@ -63,8 +62,6 @@ namespace Scenario
                     yield return null;
                 _gameCharacterController.StateEnd(villager, _behaviourFollowPath);
             }
-
-            _scenarioManager.SetBool(cameVar, true);
         }
         
         private Character CreateVillager(bool isFirstAppear)

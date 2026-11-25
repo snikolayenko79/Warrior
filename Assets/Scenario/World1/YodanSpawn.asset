@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafee970e6ed8d848acc5e6bdb264cb3, type: 3}
   m_Name: YodanSpawn
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.ScenarioStage
-  dependencies:
-  - varName: Yodan1Came
-    varState: 1
+  startTrigger: Yodan1Came
+  endTrigger: Yodan2Spawned
   scenarioLogicPrefab: {fileID: 4168871946009603919, guid: 23b86dd8576002a489d813e80ce860e7, type: 3}

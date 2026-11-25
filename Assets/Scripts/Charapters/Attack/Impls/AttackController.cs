@@ -66,13 +66,13 @@ public class AttackController : MonoBehaviour, IAttackController
     {
         if (attackable.IsDead)
             return false;
-            
+        
         if (attacker.Side == SideType.Player && attackable.Side != SideType.Enemy)
             return false;
-            
+        
         if (attacker.Side == SideType.Enemy && attackable.Side != SideType.Player)
             return false;
-
+        
         return Vector3.Distance(attacker.Position, attackable.Position) <= attackDistance;
     }
 

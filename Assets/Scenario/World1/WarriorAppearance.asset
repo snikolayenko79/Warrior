@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafee970e6ed8d848acc5e6bdb264cb3, type: 3}
   m_Name: WarriorAppearance
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.ScenarioStage
-  dependencies: []
+  startTrigger: WarriorAppear
+  endTrigger: WarriorCame
   scenarioLogicPrefab: {fileID: 6029075617289164802, guid: 4f0fb07e09b8a5446b891ab8b3b40b86, type: 3}

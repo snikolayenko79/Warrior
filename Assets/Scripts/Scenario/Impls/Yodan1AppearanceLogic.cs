@@ -13,8 +13,7 @@ namespace Scenario
         public SpecifiedPath path;
         public Dialogue dialogue = null;
         public AudioSource roarSound;
-        public string cameVar = "";
-
+        
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
         private IDialogManager _dialogManager;
@@ -50,7 +49,6 @@ namespace Scenario
             // Если уже был убит, то не спавним.
             if (Profile.GetVar<bool>("Yodan1_dead", false))
             {
-                _scenarioManager.SetBool(cameVar, true);
                 yield break;
             }
 
@@ -99,7 +97,6 @@ namespace Scenario
             _gameCharacterController.StateStart(enemy, _behaviourFollowPlayer);
             
             Profile.SetVar<bool>("Yodan1_firstAppear", false);
-            _scenarioManager.SetBool(cameVar, true);
         }
         
         private Enemy CreateYodan()

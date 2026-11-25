@@ -12,7 +12,6 @@ namespace Scenario
         public Transform spawnPoint;
         public SpecifiedPath path;
         public Dialogue dialogue = null;
-        public string cameVar = "";
 
         private ScenarioManager _scenarioManager;
         private IGameManager _gameManager;
@@ -103,8 +102,6 @@ namespace Scenario
             _gameCharacterController.StateStart(player, _behaviourPlayerInteract);
 
             Profile.SetVar<bool>("Warrior_firstAppear", false);
-            
-            _scenarioManager.SetBool(cameVar, true);
             _gameManager.SetGameplayLocked(false);
         }
 

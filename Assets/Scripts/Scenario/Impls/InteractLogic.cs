@@ -23,8 +23,6 @@ namespace  Scenario
         private BehaviourPlayerInteract _behaviourInteract;
 
         private Dialogue _currentDialogue;
-        private bool _dialogVillager1Ended = false;
-        private bool _dialogSellerEnded = false;
         
         private delegate void OnDialogueEnd();
         
@@ -65,25 +63,25 @@ namespace  Scenario
             
             if (interactor.Name == "Villager")
             {
-                if (_dialogVillager1Ended)
+                if (Profile.GetVar<bool>("VillagerInteract", false))
                     StartCoroutine(ShowDialogue(dialogueVillager2, null));
                 else
                     StartCoroutine(ShowDialogue(dialogueVillager1, () => 
                     {
                         AddSpell(playerInteractor as ISpellCaster);
-                        _scenarioManager.SetBool("VillagerInteract", true);
+                        Profile.SetVar<bool>("VillagerInteract", true);
                     }));
             }
             else if (interactor.Name == "Seller")
             {
-                if (_dialogSellerEnded)
+                if (Profile.GetVar<bool>("SellerInteract", false))
                     ShowStore(playerInteractor as ICustomer);
                 else
                     StartCoroutine(ShowDialogue(dialogueSeller, () =>
                         {
                             Heal(playerInteractor as IDamageable);
                             ShowStore(playerInteractor as ICustomer);
-                            _scenarioManager.SetBool("SellerInteract", true);
+                            Profile.SetVar<bool>("SellerInteract", true);
                         }
                     ));
             }
@@ -117,8 +115,6 @@ namespace  Scenario
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(movable.Position);
                 _uiManager.CreateView(TextViewPrefab.gameObject, "+ spell", screenPos.x, screenPos.y);
             }
-
-            _dialogVillager1Ended = true;
         }
 
         private void Heal(IDamageable damageable)
@@ -145,7 +141,6 @@ namespace  Scenario
         private void ShowStore(ICustomer customer)
         {
             _uiManager.OpenWindow(ShopUIPrefab.gameObject, customer);
-            _dialogSellerEnded = true;
         }
     }
 }

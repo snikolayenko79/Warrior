@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BehaviourStartFollowPlayer
   players: []
   startFollowDistanceMin: 0.6
-  startFollowDistanceMax: 3
+  startFollowDistanceMax: 1.7
   stopFollowDistance: 0.6
 --- !u!1 &1537528159
 GameObject:

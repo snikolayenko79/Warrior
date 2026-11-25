@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafee970e6ed8d848acc5e6bdb264cb3, type: 3}
   m_Name: InteractWithVillagers
   m_EditorClassIdentifier: Assembly-CSharp::Scenario.ScenarioStage
-  dependencies:
-  - varName: AllEnemiesDie
-    varState: 1
+  startTrigger: AllEnemiesDie
+  endTrigger: 
   scenarioLogicPrefab: {fileID: 1122203961182596202, guid: 7202ae883006a8b49a3659e4482f7d30, type: 3}

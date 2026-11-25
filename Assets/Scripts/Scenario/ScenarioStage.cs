@@ -9,17 +9,12 @@ namespace Scenario
     [CreateAssetMenu(fileName = "NewScenarioStage", menuName = "Scenario/New scenario stage data")]
     public class ScenarioStage : ScriptableObject
     {
-        [System.Serializable]
-        public class Dependency
-        {
-            public string varName;
-            public bool varState;
-        }
-
-        [SerializeField] private List<Dependency> dependencies;
+        [SerializeField] private string startTrigger;
+        [SerializeField] private string endTrigger = string.Empty;
         [SerializeField] private ScenarioStageLogic scenarioLogicPrefab;
         
-        public IReadOnlyCollection<Dependency> Dependencies => dependencies;
+        public string StartTrigger => startTrigger;
+        public string EndTrigger => endTrigger;
         public ScenarioStageLogic LogicPrefab => scenarioLogicPrefab;
     }
 }

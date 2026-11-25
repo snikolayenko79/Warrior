@@ -7,9 +7,11 @@ namespace Scenario
     public class ScenarioData : ScriptableObject
     {
         [SerializeField] private List<ScenarioStage> scenarioStages = new List<ScenarioStage>();
-        [SerializeField] private List<string> scenarioVars = new List<string>();
+        [SerializeField] private List<string> scenarioTriggers = new List<string>();
+        [SerializeField] private List<string> scenarioAutoTriggers = new List<string>();
         
         public IReadOnlyCollection<ScenarioStage> ScenarioStages => scenarioStages;
-        public IReadOnlyCollection<string> ScenarioVars => scenarioVars;
+        public IReadOnlyCollection<string> ScenarioTriggers => scenarioTriggers;
+        public IReadOnlyCollection<string> ScenarioAutoTriggers => scenarioAutoTriggers;
     }
 }
