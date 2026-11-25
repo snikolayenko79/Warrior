@@ -1,0 +1,71 @@
+using Scenario;
+using UnityEngine;
+using UnityEngine.Serialization;
+using Zenject;
+
+public class World2Installer : MonoInstaller
+{
+    [Header("Менеджер игры.")]
+    [SerializeField] private GameManager gameManager;
+    
+    [Header("Фабрика персонажей.")]
+    [SerializeField] private CharacterFactory characterFactory;
+    
+    [FormerlySerializedAs("characterController")]
+    [FormerlySerializedAs("_characterStateController")]
+    [Header("Контроллер персонажей основной.")]
+    [SerializeField] private GameCharacterController gameCharacterController;
+    
+    [Header("Контроллер атак.")]
+    [SerializeField] private AttackController _attackController;
+    
+    [Header("Контроллер заклинаний.")]
+    [SerializeField] private SpellController _spellController;
+    
+    [Header("Поведение - ввод для игрока.")]
+    [SerializeField] private BehaviourPlayerInput _behaviourPlayerInput;
+    [SerializeField] private BehaviourPlayerInteract _behaviourPlayerInteract;
+    
+    [Header("Поведение - атаковать игрока.")]
+    [SerializeField] private BehaviourAttackPlayer _behaviourAttackPlayer;
+    
+    [Header("Поведение - следовать за игроком.")]
+    [SerializeField] private BehaviourFollowPlayer _behaviourFollowPlayer;
+    
+    [Header("Поведение - идти по заданному пути.")]
+    [SerializeField] private BehaviourFollowPath _behaviourFollowPath;
+    
+    [Header("Инвентарь")]
+    [SerializeField] private InventoryConfig inventoryConfig;
+    
+    [Header("Сценарий")]
+    [SerializeField] private ScenarioData scenarioData;
+    
+    [Header("Блокиратор выхода из уровня.")]
+    [SerializeField] private Collider exitBlocker;
+    
+    public override void InstallBindings()
+    {
+        Container.Bind<IGameManager>().FromInstance(gameManager);
+        Container.Bind<ICharacterFactory>().FromInstance(characterFactory);
+        Container.Bind<GameCharacterController>().FromInstance(gameCharacterController);
+        Container.Bind<IAttackController>().FromInstance(_attackController);
+        Container.Bind<SpellController>().FromInstance(_spellController);
+        Container.Bind<BehaviourPlayerInput>().FromInstance(_behaviourPlayerInput);
+        Container.Bind<BehaviourPlayerInteract>().FromInstance(_behaviourPlayerInteract);
+        Container.Bind<BehaviourAttackPlayer>().FromInstance(_behaviourAttackPlayer);
+        Container.Bind<BehaviourFollowPlayer>().FromInstance(_behaviourFollowPlayer);
+        Container.Bind<BehaviourFollowPath>().FromInstance(_behaviourFollowPath);
+
+        Container.BindInstance(inventoryConfig).AsSingle();
+        Container.Bind(typeof(IInventory)).To<Inventory>().AsSingle();
+        
+        Container.BindInterfacesAndSelfTo<ScenarioManager>().AsSingle().NonLazy();
+        Container.Bind<ScenarioData>().FromInstance(scenarioData);
+        
+        //Container.Bind<Collider>().FromInstance(exitBlocker);
+        
+        if (Camera.main.TryGetComponent<CameraMoverBase>(out CameraMoverBase cameraMover))
+            Container.Bind<CameraMoverBase>().FromInstance(cameraMover).AsSingle();
+    }
+}

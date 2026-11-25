@@ -20,7 +20,9 @@ public class CameraMoverBase : MonoBehaviour
         _cameraTransform = this.transform;
         
         _target = newTarget;
-        _offset = _cameraTransform.position - _target.Position;
+        
+        if (!_target.IsUnityNull())
+            _offset = _cameraTransform.position - _target.Position;
     }
 
     protected void LateUpdate()
