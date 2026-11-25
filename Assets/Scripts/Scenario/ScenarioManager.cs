@@ -68,8 +68,13 @@ namespace Scenario
             {
                 _triggersState[name] = state;
                 
-                if (_coroutineCheckStages == null)
-                    _coroutineCheckStages = _coroutineRunner.StartCoroutine(CheckStagesOnNextFrame());
+                //Debug.Log("Set trigger " + name + ": " + state);
+
+                if (state == true)
+                {
+                    if (_coroutineCheckStages == null)
+                        _coroutineCheckStages = _coroutineRunner.StartCoroutine(CheckStagesOnNextFrame());
+                }
             }
         }
 

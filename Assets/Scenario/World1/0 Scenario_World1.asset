@@ -20,10 +20,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 225f1f84c6c912e43a7d122d5f8a9ee6, type: 2}
   - {fileID: 11400000, guid: 895753ec27646a74b92685eaaed82ad2, type: 2}
   - {fileID: 11400000, guid: 4b89ca34ecacb854f85fcac8fa74483e, type: 2}
+  - {fileID: 11400000, guid: 8e76952ae7508074c97aac665105a819, type: 2}
   scenarioTriggers:
   - WarriorCame
   - Yodan1Came
   - Yodan2Spawned
   - AllEnemiesDie
+  - ExitEnter
   scenarioAutoTriggers:
   - WarriorAppear

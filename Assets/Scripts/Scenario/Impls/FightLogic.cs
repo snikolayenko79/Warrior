@@ -45,6 +45,8 @@ namespace Scenario
                 
                 yield return null;
             }
+
+            Profile.SetVar<bool>("AllEnemiesDie", true);
         }
 
         private void InitEnemiesList()

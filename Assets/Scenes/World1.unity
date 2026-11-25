@@ -1014,6 +1014,7 @@ MonoBehaviour:
   scenarioData: {fileID: 11400000, guid: fb3dc9597834e5e48abb4ccaa68ce528, type: 2}
   doorVillager: {fileID: 77542058}
   doorSeller: {fileID: 2087222208}
+  exitBlocker: {fileID: 350066704}
 --- !u!1 &1501112510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BehaviourStartFollowPlayer
   players: []
   startFollowDistanceMin: 0.6
-  startFollowDistanceMax: 1.7
+  startFollowDistanceMax: 2.5
   stopFollowDistance: 0.6
 --- !u!1 &1537528159
 GameObject:
@@ -1309,7 +1310,7 @@ GameObject:
   - component: {fileID: 2104308529}
   - component: {fileID: 2104308530}
   m_Layer: 0
-  m_Name: Transition
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1364,10 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c5c3d22480d5949b102c1206c01ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransitionTrigger
-  MoveToSceneName: World2
-  CantLeaveVillagers: {fileID: 11400000, guid: fb08e13024958ab4094b93652ef44149, type: 2}
-  CantLeaveMonsters: {fileID: 11400000, guid: c187d3e944e4f9244bc87d96c50c53da, type: 2}
-  Blocker: {fileID: 350066704}
 --- !u!1 &2116117191
 GameObject:
   m_ObjectHideFlags: 0

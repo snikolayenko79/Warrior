@@ -49,8 +49,6 @@ namespace  Scenario
             
             while (true)
                 yield return null;
-            
-            _behaviourInteract.OnInteract -= OnInteract;
         }
 
         private void OnInteract(IInteractor playerInteractor, IInteractor interactor)

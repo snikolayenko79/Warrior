@@ -6,66 +6,23 @@ using Scenario;
 
 public class TransitionTrigger : MonoBehaviour
 {
-    [SerializeField] private string MoveToSceneName = "";
-    [SerializeField] private Dialogue CantLeaveVillagers = null;
-    [SerializeField] private Dialogue CantLeaveMonsters = null;
-    [SerializeField] private Collider Blocker = null;
-
-    private ISceneLoader _sceneLoader;
-    private ISaveLoadService _saveLoadService;
-    private List<ISavable> _savableSystems;
-    
     private ScenarioManager _scenarioManager;
-    private IDialogManager _dialogueManager;
     
     [Inject]
-    public void Construct(
-        ScenarioManager scenarioManager,
-        IDialogManager dialogueManager,
-        ISaveLoadService saveLoadService, 
-        ISceneLoader sceneLoader, 
-        List<ISavable> savableSystems) // <- Zenject сам найдет и подставит сюда все ISavable сцены
+    public void Construct(ScenarioManager scenarioManager)
     {
-        _saveLoadService = saveLoadService;
-        _sceneLoader = sceneLoader;
-        _savableSystems = savableSystems;
         _scenarioManager = scenarioManager;
-        _dialogueManager = dialogueManager;
     }
 
     // Вызывается, например, при входе игрока в триггер-коллайдер двери перехода
     private void OnTriggerEnter(Collider other)
     {
-        //Проверяем выполнение заданий. Можем ли перейти.
+        Debug.Log("q1");
         if (_scenarioManager.IsUnityNull())
             return;
-            
-        if (!Profile.GetVar<bool>("AllEnemiesDie", false))
-        {
-            _dialogueManager.StartDialogue(CantLeaveMonsters);
-            return;
-        }
-
-        if (!Profile.GetVar<bool>("VillagerInteract", false) || !Profile.GetVar<bool>("SellerInteract", false))
-        {
-            _dialogueManager.StartDialogue(CantLeaveVillagers);
-            return;
-        }
-
+        Debug.Log("q2");
         // Проверяем, что это именно игрок
         if (other.CompareTag("Player"))
-        {
-            other.gameObject.TryGetComponent<Player>(out Player player);
-            ExecuteLevelTransition(player);
-        }
-    }
-
-    private void ExecuteLevelTransition(Player player)
-    {
-        if (Blocker)
-            Blocker.gameObject.SetActive(false);
-
-        // Загружаем следующий уровень
-        _sceneLoader.LoadScene(MoveToSceneName); 
+            _scenarioManager.SetTrigger("ExitEnter", true);
     }
 }
