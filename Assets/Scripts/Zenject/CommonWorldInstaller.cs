@@ -44,15 +44,6 @@ public class CommonWorldInstaller : MonoInstaller
     [Header("Сценарий")]
     [SerializeField] private ScenarioData scenarioData;
     
-    [Header("Дверь жителя, который дает заклинание.")]
-    [SerializeField] private Door doorVillager;
-    
-    [Header("Дверь жителя - торговца.")]
-    [SerializeField] private Door doorSeller;
-    
-    [Header("Блокиратор выхода из уровня.")]
-    [SerializeField] private Collider exitBlocker;
-    
     public override void InstallBindings()
     {
         Container.Bind<IGameManager>().FromInstance(gameManager);
@@ -74,11 +65,6 @@ public class CommonWorldInstaller : MonoInstaller
         
         Container.BindInterfacesAndSelfTo<ScenarioManager>().AsSingle().NonLazy();
         Container.Bind<ScenarioData>().FromInstance(scenarioData);
-        
-        Container.Bind<Door>().WithId("doorVillager").FromInstance(doorVillager);
-        Container.Bind<Door>().WithId("doorSeller").FromInstance(doorSeller);
-        
-        Container.Bind<Collider>().FromInstance(exitBlocker);
         
         if (Camera.main.TryGetComponent<CameraMoverBase>(out CameraMoverBase cameraMover))
             Container.Bind<CameraMoverBase>().FromInstance(cameraMover).AsSingle();
