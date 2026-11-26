@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using UnityEngine.InputSystem.Users;
+using Zenject;
 
 public class InputListener : MonoBehaviour, IInputListener
 {
@@ -13,7 +13,13 @@ public class InputListener : MonoBehaviour, IInputListener
     protected IInputRouter MyInputRouter { get; private set; }
     private bool _isInitialized;
 
-    public void Initialize(IInputRouter inputRouter)
+    [Inject]
+    public void Construct(IInputRouter inputRouter)
+    {
+        Initialize(inputRouter);
+    }
+    
+    private void Initialize(IInputRouter inputRouter)
     {
         MyInputRouter = inputRouter;
         _isInitialized = true;

@@ -95,7 +95,6 @@
     <Compile Include="Assets\Scripts\CameraMover\CameraMoverBase.cs" />
     <Compile Include="Assets\Scripts\Spells\ISpellBehaviour.cs" />
     <Compile Include="Assets\Scripts\Dialogues\Impls\UITrianglePointer.cs" />
-    <Compile Include="Assets\Scripts\Zenject\World1Installer.cs" />
     <Compile Include="Assets\Scripts\Inventory\Data\Impls\InventoryConfig.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\IObjectPool.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueActorsRegistry.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="Assets\Scripts\Store\Data\Impls\StoreItem.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Weapons\Impls\BladedWeapon.cs" />
+    <Compile Include="Assets\Scripts\Zenject\CommonWorldInstaller.cs" />
     <Compile Include="Assets\Scripts\Charapters\Spells\SpellController.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Button_DialogueNext.cs" />
     <Compile Include="Assets\Scripts\Dialogues\IDialogueManager.cs" />

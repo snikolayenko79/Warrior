@@ -7,7 +7,12 @@ public class InputRouter : IInputRouter
     public IInputEventSource InputSource => MyInputSource;
     private IInputEventSource MyInputSource;
     
-    public void Initialize(IInputEventSource inputSource)
+    public InputRouter(IInputEventSource inputSource)
+    {
+        Initialize(inputSource);
+    }
+    
+    private void Initialize(IInputEventSource inputSource)
     {
         MyInputSource = inputSource;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 
-public class World1Installer : MonoInstaller
+public class CommonWorldInstaller : MonoInstaller
 {
     [Header("Менеджер игры.")]
     [SerializeField] private GameManager gameManager;

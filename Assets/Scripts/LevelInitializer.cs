@@ -12,14 +12,6 @@ public class LevelInitializer : MonoBehaviour
     
     async void Start()
     {
-        inputRouter = new  InputRouter();
-        inputRouter.Initialize(MyInputSource);
-        MyPlayerInputListener.Initialize(inputRouter);
-        MyPlayerInputListener2.Initialize(inputRouter);
         
-        int a = Profile.GetVar<int>("a");
-        Debug.Log("Loaded = " + a);
-        Profile.SetVar("a", a + 1);
-        Profile.SetVar("a", a + 1, true);
     }
 }

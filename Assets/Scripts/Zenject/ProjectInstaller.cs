@@ -12,6 +12,9 @@ public struct SceneUIConfig
 
 public class ProjectInstaller : MonoInstaller
 {
+    [Header("Источник ввода")]
+    [SerializeField] private NewInputEventSource inputSourcePrefab;
+    
     [Header("Настройки Экранов Сцен")]
     [SerializeField] private List<SceneUIConfig> sceneUIConfigs;
 
@@ -25,6 +28,13 @@ public class ProjectInstaller : MonoInstaller
     {
          Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
          Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle().NonLazy();
+         
+         // INPUT
+         Container.Bind<IInputEventSource>()
+             .To<NewInputEventSource>()
+             .FromComponentInNewPrefab(inputSourcePrefab)
+             .AsSingle();
+         Container.Bind<IInputRouter>().To<InputRouter>().AsSingle().NonLazy();
         
         // 1. Биндим префаб паузы как чистый интерфейс IUIView
         IUIView pauseInterface = pauseMenuPrefab as IUIView;
